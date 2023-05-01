@@ -1,7 +1,10 @@
-﻿using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM;
+using FUNERAL_MVVM.Utility;
+using FUNERALMVVM.View;
 using FUNERALMVVM.ViewModel;
 using Infrastructure.Worker;
 using Model.Worker;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FUNERALMVVM.Commands.Workers
@@ -21,14 +24,14 @@ namespace FUNERALMVVM.Commands.Workers
             Auth auth = new(_controller.Name, _controller.Password);
 
             //if this thing return not okay fucked up
-            Check(auth);
-        }
-        public async void Check(Auth auth)
-        {
-            await Task.Run(() =>
+            _controller.Response = auth.TryAuth(_workerRepos);
+
+            if (_controller.Response is "ok")
             {
-                _controller.Response = auth.TryAuth(_workerRepos);
-            });
+                WorkWindow workWindow = new();
+                workWindow.Show();
+                _controller._mainWindow.Close();
+            }
         }
     }
 }
