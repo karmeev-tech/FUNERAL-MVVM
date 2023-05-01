@@ -9,7 +9,7 @@ namespace FUNERALMVVM.ViewModel
     {
         private string _response = null!;
 
-        public AuthenticationController(IWorkerRepos workerContext)
+        public AuthenticationController()
         {
             
         }

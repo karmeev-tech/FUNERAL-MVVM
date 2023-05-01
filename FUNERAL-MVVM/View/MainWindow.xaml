@@ -4,11 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" GotMouseCapture="Page_GotMouseCapture" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <TextBox Text="{Binding Name}" HorizontalAlignment="Left" Margin="333,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding Password}" HorizontalAlignment="Left" Margin="333,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Auth" Command="{Binding AuthCommand}" HorizontalAlignment="Left" Margin="366,242,0,0" VerticalAlignment="Top" Width="54"/>
-        <Label Content="{Binding Response}" HorizontalAlignment="Left" Margin="374,267,0,0" VerticalAlignment="Top"/>
+        Height="600" Width="522" GotMouseCapture="Page_GotMouseCapture" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FFDDDDDD">
+        <TextBox Panel.ZIndex="1" Text="{Binding Name}" HorizontalAlignment="Center" Margin="0,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Height="32" FontSize="16" FontFamily="Consolas"/>
+        <TextBox Panel.ZIndex="1" Text="{Binding Password}" HorizontalAlignment="Center" Margin="0,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" FontFamily="Consolas" Height="35" FontSize="16"/>
+        <Button Content="Войти" Command="{Binding AuthCommand}"
+                HorizontalAlignment="Center" Margin="0,311,0,0" 
+                VerticalAlignment="Top" Width="98"
+                Background="#FF92ADCB" 
+                Panel.ZIndex="1"
+                Foreground="White" BorderBrush="{x:Null}" FontSize="10" Height="39">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+
+        </Button>
+        <Label Content="{Binding Response}" Panel.ZIndex="1" HorizontalAlignment="Center" Margin="0,352,0,0" VerticalAlignment="Top"/>
+        <Image Panel.ZIndex="1" HorizontalAlignment="Center" Height="100" Margin="0,46,0,0" VerticalAlignment="Top" Width="220" Source="/View/logo2.jpeg"/>
+        <Rectangle Height="519" Margin="94,0,94,0" 
+            Stroke="White" VerticalAlignment="Center" 
+            Fill="White" RadiusX="10" RadiusY="10" Width="NaN"
+                   />
     </Grid>
 </Window>

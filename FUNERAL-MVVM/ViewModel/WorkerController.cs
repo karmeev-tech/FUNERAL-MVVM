@@ -12,14 +12,24 @@ namespace FUNERALMVVM.ViewModel
         {
             //сбор всех сотрудников из базы
             //нужно обеспечение из журнала посещения последнее имя
-            var workerInfo = workerContext.GetWorkerInfo("name");
-            WorkerMoney = workerInfo[0];
-            WorkerSalary = workerInfo[1];
-            WorkerStatus = workerInfo[2];
-            WorkerProcent = workerInfo[3];
+            var worker = workerContext.GetLastFromJournal();
+
+            WorkerMoney = "0";
+            WorkerSalary = "0";
+            WorkerStatus = workerContext.GetLastRoleFromJournal(worker);
+            WorkerProcent = "0";
         }
 
-        public string WorkerStatus { get; set; }
+        private string _status = string.Empty;
+        public string WorkerStatus 
+        { 
+            get => _status;
+            set
+            {
+                _status = value;
+                OnPropertyChanged(nameof(WorkerStatus));
+            }    
+        }
         public string WorkerMoney { get; set; }
         public string WorkerSalary { get; set; }
         public string WorkerProcent { get; set; }

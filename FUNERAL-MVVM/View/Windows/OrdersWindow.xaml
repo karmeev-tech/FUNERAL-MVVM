@@ -1,0 +1,110 @@
+﻿<Window x:Class="FUNERALMVVM.View.Windows.OrdersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FUNERALMVVM.View.Windows" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ServicesController}"
+        mc:Ignorable="d"
+        Title="OrdersWindow" Height="562" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,0,-6" Height="NaN">
+        <Label Content="Цоколь из блоков гранит габро-диабаз (Карелия) цвет черный" HorizontalAlignment="Left" Margin="26,50,0,0" VerticalAlignment="Top"/>
+        <Label Content="Дополнительный фундамент под памятники" HorizontalAlignment="Left" Margin="26,76,0,0" VerticalAlignment="Top"/>
+        <Label Content="Бордюр" HorizontalAlignment="Left" Margin="26,128,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Плитка" HorizontalAlignment="Left" Margin="26,154,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="памятника" HorizontalAlignment="Left" Margin="153,183,0,0" VerticalAlignment="Top"/>
+        <Label Content="ограды" HorizontalAlignment="Left" Margin="152,208,0,0" VerticalAlignment="Top"/>
+        <Label Content="лавочки и стола" HorizontalAlignment="Left" Margin="152,232,0,0" VerticalAlignment="Top"/>
+        <Label Content="Сварные работы + покраска" HorizontalAlignment="Left" Margin="26,258,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пароизол" HorizontalAlignment="Left" Margin="26,284,0,0" VerticalAlignment="Top"/>
+        <Label Content="Песок" HorizontalAlignment="Left" Margin="26,310,0,0" VerticalAlignment="Top"/>
+        <Label Content="Грунт" HorizontalAlignment="Left" Margin="26,336,0,0" VerticalAlignment="Top"/>
+        <Label Content="Гранитная щебень" HorizontalAlignment="Left" Margin="26,371,0,0" VerticalAlignment="Top"/>
+        <Label Content="Памятник комплект +оформление" HorizontalAlignment="Left" Margin="26,396,0,0" VerticalAlignment="Top"/>
+        <Label Content="Столб" HorizontalAlignment="Left" Margin="26,427,0,0" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="594,54,0,0" TextWrapping="Wrap" Text="{Binding s1}" VerticalAlignment="Top" Width="111" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,80,0,0" TextWrapping="Wrap" Text="{Binding s2}" VerticalAlignment="Top" Width="111"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,132,0,0" TextWrapping="Wrap" Text="{Binding s4}" VerticalAlignment="Top" Width="111" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,158,0,0" TextWrapping="Wrap" Text="{Binding s5}" VerticalAlignment="Top" Width="111" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,184,0,0" TextWrapping="Wrap" Text="{Binding s6}" VerticalAlignment="Top" Width="111"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,210,0,0" TextWrapping="Wrap" Text="{Binding s7}" VerticalAlignment="Top" Width="111"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,236,0,0" TextWrapping="Wrap" Text="{Binding s8}" VerticalAlignment="Top" Width="111"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,262,0,0" TextWrapping="Wrap" Text="{Binding s9}" VerticalAlignment="Top" Width="111"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,288,0,0" TextWrapping="Wrap" Text="{Binding s10}" VerticalAlignment="Top" Width="111" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,314,0,0" TextWrapping="Wrap" Text="{Binding s11}" VerticalAlignment="Top" Width="111" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,340,0,0" TextWrapping="Wrap" Text="{Binding s12}" VerticalAlignment="Top" Width="111" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,376,0,0" TextWrapping="Wrap" Text="{Binding s15}" VerticalAlignment="Top" Width="111" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,402,0,0" TextWrapping="Wrap" Text="{Binding s16}" VerticalAlignment="Top" Width="111"/>
+        <TextBox HorizontalAlignment="Left" Margin="594,433,0,0" TextWrapping="Wrap" Text="{Binding s17}" VerticalAlignment="Top" Width="111"/>
+
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,50,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,76,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,123,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,150,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,176,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,202,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,228,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,253,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,280,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,306,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,332,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,368,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,394,0,0" VerticalAlignment="Top"/>
+        <Label Content="руб." HorizontalAlignment="Left" Margin="710,425,0,0" VerticalAlignment="Top"/>
+
+        <ComboBox Text="{Binding Plitka}" HorizontalAlignment="Left" Margin="91,155,0,0" VerticalAlignment="Top" Width="136" Height="21">
+            <ComboBoxItem Content="тротуарная"/>
+            <ComboBoxItem Content="гранитная"/>
+        </ComboBox>
+        <ComboBox Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="27,184,0,0" VerticalAlignment="Top" Width="120" Height="22">
+            <ComboBoxItem Content="Установка"/>
+            <ComboBoxItem Content="Демонтаж"/>
+            <ComboBoxItem Content="Установка и демонтаж"/>
+        </ComboBox>
+        <ComboBox Text="{Binding Fences}" HorizontalAlignment="Left" Margin="26,210,0,0" VerticalAlignment="Top" Width="120" Height="21">
+            <ComboBoxItem Content="Установка"/>
+            <ComboBoxItem Content="Демонтаж"/>
+            <ComboBoxItem Content="Установка и демонтаж"/>
+        </ComboBox>
+        <ComboBox Text="{Binding Tables}" HorizontalAlignment="Left" Margin="26,236,0,0" VerticalAlignment="Top" Width="120" Height="22">
+            <ComboBoxItem Content="Установка"/>
+            <ComboBoxItem Content="Демонтаж"/>
+            <ComboBoxItem Content="Установка и демонтаж"/>
+        </ComboBox>
+        <ComboBox Text="{Binding Bord}" HorizontalAlignment="Left" Margin="91,128,0,0" VerticalAlignment="Top" Width="190" Height="22">
+            <ComboBoxItem Content="тротуарный"/>
+            <ComboBoxItem Content="гранитный"/>
+        </ComboBox>
+        <Button Content="Добавить" 
+                Command="{Binding AddServCommand}"
+                HorizontalAlignment="Center" Margin="0,460,0,0" 
+                VerticalAlignment="Top" Width="102" Height="36"
+                Background="#FF92ADCB" 
+                Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Label Content="Размеры" HorizontalAlignment="Left" Margin="232,153,0,0" VerticalAlignment="Top" Width="60"/>
+        <ComboBox Text="{Binding Plitka}" HorizontalAlignment="Left" Margin="297,156,0,0" VerticalAlignment="Top" Width="73" Height="21">
+            <ComboBoxItem Content="30x30"/>
+            <ComboBoxItem Content="30x40"/>
+            <ComboBoxItem Content="30x60"/>
+            <ComboBoxItem Content="40x60"/>
+        </ComboBox>
+        <TextBox HorizontalAlignment="Left" Margin="391,157,0,0" TextWrapping="Wrap" Text="{Binding PlitkaOther}" VerticalAlignment="Top" Width="54"/>
+        <Label Content="Кол-во" HorizontalAlignment="Left" Margin="525,27,0,0" VerticalAlignment="Top"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="525,54,0,0" TextWrapping="Wrap" Text="{Binding CokolCount}" VerticalAlignment="Top" Width="49"/>
+        <TextBox HorizontalAlignment="Left" Margin="524,128,0,0" TextWrapping="Wrap" Text="{Binding BordCount}" VerticalAlignment="Top" Width="50"/>
+        <TextBox HorizontalAlignment="Left" Margin="524,157,0,0" TextWrapping="Wrap" Text="{Binding PlitkaCount}" VerticalAlignment="Top" Width="50"/>
+        <TextBox HorizontalAlignment="Left" Margin="524,288,0,0" TextWrapping="Wrap" Text="{Binding ParoizolCount}" VerticalAlignment="Top" Width="50"/>
+        <TextBox HorizontalAlignment="Left" Margin="524,314,0,0" TextWrapping="Wrap" Text="{Binding SandCount}" VerticalAlignment="Top" Width="50"/>
+        <TextBox HorizontalAlignment="Left" Margin="524,340,0,0" TextWrapping="Wrap" Text="{Binding GruntCount}" VerticalAlignment="Top" Width="50"/>
+        <TextBox HorizontalAlignment="Left" Margin="525,376,0,0" TextWrapping="Wrap" Text="{Binding GranitCount}" VerticalAlignment="Top" Width="50"/>
+
+    </Grid>
+</Window>

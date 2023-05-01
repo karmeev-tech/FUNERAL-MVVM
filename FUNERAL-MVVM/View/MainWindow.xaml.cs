@@ -1,6 +1,5 @@
 ﻿using FUNERALMVVM.View;
 using FUNERALMVVM.ViewModel;
-using Infrastructure.Worker;
 using System.Windows;
 
 namespace FUNERAL_MVVM
@@ -10,7 +9,7 @@ namespace FUNERAL_MVVM
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly AuthenticationController _authenticationController = new(new WorkerRepos());
+        private readonly AuthenticationController _authenticationController = new();
         public MainWindow()
         {
             DataContext = _authenticationController;
@@ -32,6 +31,7 @@ namespace FUNERAL_MVVM
         }
         #endregion
 
+        // TODO: поправить событие срабатывания
         private void Page_GotMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
         {
             OnNextPage();

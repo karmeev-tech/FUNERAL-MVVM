@@ -1,5 +1,8 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
+using Infrastructure.Worker;
+using Model.Worker;
+using System.Threading.Tasks;
 
 namespace FUNERALMVVM.Commands.Workers
 {

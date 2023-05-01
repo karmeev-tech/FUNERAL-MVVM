@@ -1,6 +1,4 @@
-﻿using Infrastructure.Connector;
-using Infrastructure.Worker;
-using System.Windows;
+﻿using System.Windows;
 
 namespace FUNERAL_MVVM
 {

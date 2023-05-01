@@ -1,4 +1,5 @@
 ﻿using FUNERAL_MVVM.Utility;
+using FUNERALMVVM.View;
 using FUNERALMVVM.ViewModel;
 using System;
 
@@ -15,7 +16,8 @@ namespace FUNERALMVVM.Commands.Workers
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            AddAuthWindow addAuthWindow = new();
+            addAuthWindow.Show();
         }
     }
 }

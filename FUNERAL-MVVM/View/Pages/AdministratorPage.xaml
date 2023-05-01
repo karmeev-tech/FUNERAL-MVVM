@@ -1,0 +1,18 @@
+﻿<Page x:Class="FUNERALMVVM.View.Pages.AdministratorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FUNERALMVVM.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="857" d:DesignWidth="1219"
+      Title="AdministratorPage">
+
+    <Grid>
+        <Label Content="Авторизованный сотрудник:" HorizontalAlignment="Left" Margin="84,114,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FFA1A1A1"/>
+        <Label Content="Роль:" HorizontalAlignment="Left" Margin="84,161,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FFA1A1A1"/>
+        <Label Content="{Binding Role}" HorizontalAlignment="Center" Margin="0,161,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FFA1A1A1"/>
+        <Label Content="{Binding UserName}" HorizontalAlignment="Center" Margin="0,114,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FFA1A1A1"/>
+        <Label Content="Продажи(руб):" HorizontalAlignment="Left" Margin="84,208,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FFA1A1A1"/>
+    </Grid>
+</Page>

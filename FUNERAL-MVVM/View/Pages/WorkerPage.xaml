@@ -20,7 +20,7 @@
         <Rectangle Fill="#FFF2F2F2" HorizontalAlignment="Left" Width="365" Margin="0,-22,0,-2" Grid.RowSpan="6"/>
         <Label Content="Статус:" HorizontalAlignment="Left" Margin="439,78,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="24" Grid.RowSpan="2"/>
         <Label Content="ЗП:" HorizontalAlignment="Left" Margin="439,0,0,0" VerticalAlignment="Top" Foreground="#FF4F4F4F" FontSize="24" Grid.Row="2"/>
-        <Label Content="Оклад:" HorizontalAlignment="Left" Margin="440,55,0,0" VerticalAlignment="Top" Foreground="#FF4F4F4F" FontSize="24" Grid.Row="2" Grid.RowSpan="2"/>
+        <Label Content="Выход:" HorizontalAlignment="Left" Margin="440,55,0,0" VerticalAlignment="Top" Foreground="#FF4F4F4F" FontSize="24" Grid.Row="2" Grid.RowSpan="2"/>
         <Label Content="Процент:" HorizontalAlignment="Left" Margin="439,0,0,0" VerticalAlignment="Top" Foreground="#FF4F4F4F" FontSize="24" Grid.Row="4"/>
 
         <Label Content="{Binding WorkerStatus}" HorizontalAlignment="Left" Margin="610,78,0,0" VerticalAlignment="Top" FontSize="24" Foreground="Black" Grid.RowSpan="2"/>
@@ -30,5 +30,11 @@
 
         <Label Content="Сотрудники" HorizontalAlignment="Left" Margin="112,0,0,0" VerticalAlignment="Center" Foreground="Black" FontSize="24" Grid.Row="1"/>
         <Label Content="Список сотрудников" HorizontalAlignment="Left" Margin="64,0,0,0" VerticalAlignment="Center" Foreground="#FF4F4F4F" FontSize="24" Grid.Row="2"/>
+        
+        <Button Content="Добавить сотрудника" 
+                HorizontalAlignment="Left" Margin="996,10,0,0" 
+                Grid.Row="5" VerticalAlignment="Top" RenderTransformOrigin="0.506,0.604" 
+                Height="30" Width="136"
+                Command="{Binding AddCommand}" Background="{x:Null}" Foreground="#FF0800FF" BorderBrush="{x:Null}"/>
     </Grid>
 </Page>

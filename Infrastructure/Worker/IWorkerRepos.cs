@@ -1,10 +1,15 @@
-﻿namespace Infrastructure.Worker
+﻿using Domain.Worker;
+
+namespace Infrastructure.Worker
 {
     public interface IWorkerRepos
     {
         void GetWorkers();
-        string[] GetWorkerInfo(string name);
+        UserWorker GetWorkerInfo(string name);
         void SendToJournal(string name);
         string AuthenticatedWorker(string name, string password);
+        string GetLastFromJournal();
+        string GetLastRoleFromJournal(string name);
+        public string GetLastTimeFromJournalByName(string name);
     }
 }

@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace FUNERAL_MVVM.Utility
 {
 #nullable disable
-    internal abstract class BaseCommands : ICommand
+    public abstract class BaseCommands : ICommand
     {
         public event EventHandler CanExecuteChanged;
 

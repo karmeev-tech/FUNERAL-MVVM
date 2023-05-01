@@ -8,8 +8,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="View\logo.jpeg" />
+    <None Remove="View\logo2.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.19" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="sautinsoft.document" Version="2023.4.19" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Model\Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\logo.jpeg" />
+    <Resource Include="View\logo2.jpeg" />
   </ItemGroup>
 
 </Project>

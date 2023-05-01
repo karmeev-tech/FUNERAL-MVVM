@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{925D9363-E268-4F94-9781-3CB712DD0300}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BDs", "BDs", "{187877BE-26C0-4952-9D61-B12F723DA2A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{96789BE8-8C9C-465F-88A7-4160C742BA24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{96789BE8-8C9C-465F-88A7-4160C742BA24}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dep", "Dep", "{53E73FCD-388F-4CF0-AA94-633A29B5D2A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{A24AC957-ED44-45A6-ADF9-ADB8AB39761D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legacy.DocumentPictureManager", "Legacy.DocumentPictureManager\Legacy.DocumentPictureManager.csproj", "{764DCDD3-6456-4258-AD0F-F666A7EB163F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,9 +39,21 @@ Global
 		{96789BE8-8C9C-465F-88A7-4160C742BA24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96789BE8-8C9C-465F-88A7-4160C742BA24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96789BE8-8C9C-465F-88A7-4160C742BA24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A24AC957-ED44-45A6-ADF9-ADB8AB39761D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24AC957-ED44-45A6-ADF9-ADB8AB39761D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24AC957-ED44-45A6-ADF9-ADB8AB39761D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24AC957-ED44-45A6-ADF9-ADB8AB39761D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{764DCDD3-6456-4258-AD0F-F666A7EB163F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764DCDD3-6456-4258-AD0F-F666A7EB163F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764DCDD3-6456-4258-AD0F-F666A7EB163F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{764DCDD3-6456-4258-AD0F-F666A7EB163F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A24AC957-ED44-45A6-ADF9-ADB8AB39761D} = {53E73FCD-388F-4CF0-AA94-633A29B5D2A0}
+		{764DCDD3-6456-4258-AD0F-F666A7EB163F} = {53E73FCD-388F-4CF0-AA94-633A29B5D2A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD543608-F7C6-494C-8230-5DA3F17FD226}

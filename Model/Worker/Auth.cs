@@ -15,7 +15,6 @@ namespace Model.Worker
 
         public string TryAuth(IWorkerRepos workerRepos)
         {
-
             if (_name is not null && _name is not "")
             {
                 if (workerRepos.AuthenticatedWorker(_name, _password) is "ok")
