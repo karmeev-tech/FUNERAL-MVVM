@@ -6,7 +6,7 @@ using Domain.Main;
 using Domain.Services;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
-using Infrastructure.Worker;
+using LegacyInfrastructure.Worker;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

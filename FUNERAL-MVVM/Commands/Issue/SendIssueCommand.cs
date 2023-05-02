@@ -1,7 +1,7 @@
 ﻿using Domain.Issue;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
-using Infrastructure.Worker;
+using LegacyInfrastructure.Worker;
 using System;
 using System.IO;
 using System.Text.Json;

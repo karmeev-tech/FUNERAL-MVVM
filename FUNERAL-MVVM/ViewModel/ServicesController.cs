@@ -2,7 +2,7 @@
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Services;
 using FUNERALMVVM.View.Windows;
-using Infrastructure.Complect;
+using LegacyInfrastructure.Complect;
 using System;
 using System.Collections.Generic;
 using System.Windows.Input;

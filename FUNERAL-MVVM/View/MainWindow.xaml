@@ -4,27 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="600" Width="425" GotMouseCapture="Page_GotMouseCapture" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Height="600" Width="481" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Background="#FFDDDDDD">
-        <TextBox Panel.ZIndex="1" Text="{Binding Name}" Margin="138,173,138,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="32" FontSize="16" FontFamily="Consolas"/>
-        <TextBox Panel.ZIndex="1" Text="{Binding Password}" Margin="138,234,138,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Consolas" Height="35" FontSize="16"/>
-        <Button Content="Войти" Command="{Binding AuthCommand}" Margin="169,318,169,0" 
+
+
+
+        <TextBox Panel.ZIndex="1" Text="{Binding Name}" 
+                 Margin="132,186,134,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Height="24" 
+                 FontSize="16"
+                 FontFamily="Consolas" SelectionTextBrush="Black" 
+                 CaretBrush="Black" BorderBrush="#FF3424A5"/>
+        <!--<PasswordBox Name="textPassword" Margin="130,272,129,0" 
+                     VerticalAlignment="Top" Height="24" FontSize="16" 
+                     SelectionTextBrush="Black" 
+                      SelectionBrush="Black" 
+                     BorderBrush="Black" CaretBrush="Black" OpacityMask="Black" Panel.ZIndex="1"/>-->
+        <PasswordBox Name="textPassword" HorizontalAlignment="Center" 
+                     Margin="0,228,0,0" VerticalAlignment="Top" 
+                     Width="200" Height="24"
+                     BorderBrush="#FF3424A5" Panel.ZIndex="1"/>
+
+
+
+        <Button Content="Войти" Command="{Binding AuthCommand}" Margin="170,279,169,0" 
                 VerticalAlignment="Top"
                 Background="#FF92ADCB" 
                 Panel.ZIndex="1"
-                Foreground="White" BorderBrush="{x:Null}" FontSize="10" Height="39">
+                Foreground="White" BorderBrush="{x:Null}" FontSize="10" Height="39" Click="Button_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
-
         </Button>
+
+
         <Label Content="{Binding Response}" Panel.ZIndex="1" HorizontalAlignment="Center" Margin="0,364,0,0" VerticalAlignment="Top" Foreground="#FFFF0202"/>
-        <Image Panel.ZIndex="1" Height="100" Margin="130,46,129,0" VerticalAlignment="Top" Source="/View/logo2.jpeg"/>
+        <Image Panel.ZIndex="1" Height="66" Margin="130,85,129,0" VerticalAlignment="Top" Source="/View/logo2.jpeg"/>
         <Rectangle Height="519" Margin="50,0,50,0" 
             Stroke="White" VerticalAlignment="Center" 
-            Fill="White" RadiusX="10" RadiusY="10" Width="NaN"
-                   />
+            Fill="White" RadiusX="10" RadiusY="10" Width="NaN"/>
     </Grid>
 </Window>

@@ -1,6 +1,6 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
-using Infrastructure.Storage;
+using LegacyInfrastructure.Storage;
 using Model.Storage;
 using System;
 using System.Threading.Tasks;

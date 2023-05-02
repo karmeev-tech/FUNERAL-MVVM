@@ -1,6 +1,6 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.HeadStorage;
-using Infrastructure.Storage;
+using LegacyInfrastructure.Storage;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;

@@ -9,16 +9,17 @@ namespace FUNERAL_MVVM
     /// </summary>
     public partial class MainWindow : Window
     {
+        private AuthenticationController _authentication;
         public MainWindow()
         {
-            DataContext = new AuthenticationController(this);
+            _authentication = new(this);
+            DataContext = _authentication;
             InitializeComponent();
         }
 
-        // TODO: поправить событие срабатывания
-        private void Page_GotMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //OnNextPage();
+           _authentication.Password = textPassword.Password;
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿using ClassLibrary;
-using Infrastructure.Connector;
+using LegacyInfrastructure.Connector;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Infrastructure.Storage
+namespace LegacyInfrastructure.Storage
 {
     public class ShopRepos : GenConnector, IShopRepos
     {

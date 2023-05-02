@@ -1,4 +1,4 @@
-﻿using Infrastructure.Worker;
+﻿using LegacyInfrastructure.Worker;
 
 namespace Model.Worker
 {

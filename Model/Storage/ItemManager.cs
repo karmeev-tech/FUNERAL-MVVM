@@ -1,4 +1,4 @@
-﻿using Infrastructure.Storage;
+﻿using LegacyInfrastructure.Storage;
 
 namespace Model.Storage
 {

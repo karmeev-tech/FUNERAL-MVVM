@@ -2,7 +2,7 @@
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.View;
 using FUNERALMVVM.ViewModel;
-using Infrastructure.Worker;
+using LegacyInfrastructure.Worker;
 using Model.Worker;
 using System.Threading;
 using System.Threading.Tasks;

@@ -1,7 +1,7 @@
 ﻿using Domain.Main;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Main;
-using Infrastructure.Worker;
+using LegacyInfrastructure.Worker;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;

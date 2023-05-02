@@ -1,9 +1,9 @@
 ﻿using Domain.Worker;
-using Infrastructure.Connector;
+using LegacyInfrastructure.Connector;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Infrastructure.Worker
+namespace LegacyInfrastructure.Worker
 {
     public partial class WorkerRepos : GenConnector, IWorkerRepos
     {

@@ -1,6 +1,6 @@
 ﻿using Domain.Worker;
 
-namespace Infrastructure.Worker
+namespace LegacyInfrastructure.Worker
 {
     public interface IWorkerRepos
     {

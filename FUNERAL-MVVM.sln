@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FUNERALMVVM", "FUNERAL-MVVM\FUNERALMVVM.csproj", "{182A75BC-8146-4964-A943-F82D949D7DA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FuneralClient", "FUNERAL-MVVM\FuneralClient.csproj", "{182A75BC-8146-4964-A943-F82D949D7DA1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{AA5D8851-A3A5-408F-BB78-2A2CE2F63996}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{925D9363-E268-4F94-9781-3CB712DD0300}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legacy.Infrastructure", "Infrastructure\Legacy.Infrastructure.csproj", "{925D9363-E268-4F94-9781-3CB712DD0300}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{96789BE8-8C9C-465F-88A7-4160C742BA24}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dep", "Dep", "{53E73FCD-388
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{A24AC957-ED44-45A6-ADF9-ADB8AB39761D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Legacy.DocumentPictureManager", "Legacy.DocumentPictureManager\Legacy.DocumentPictureManager.csproj", "{764DCDD3-6456-4258-AD0F-F666A7EB163F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Legacy.DocumentPictureManager", "Legacy.DocumentPictureManager\Legacy.DocumentPictureManager.csproj", "{764DCDD3-6456-4258-AD0F-F666A7EB163F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

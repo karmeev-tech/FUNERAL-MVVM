@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Infrastructure.Connector
+namespace LegacyInfrastructure.Connector
 {
 #nullable disable
     public class GenConnector
