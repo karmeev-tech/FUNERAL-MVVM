@@ -3,7 +3,7 @@ using System.IO;
 using DocumentFormat.OpenXml.Packaging;
 using Domain.Order;
 
-namespace Infrastructure.Order
+namespace LegacyInfrastructure.Order
 {
     public class OrderManager
     {

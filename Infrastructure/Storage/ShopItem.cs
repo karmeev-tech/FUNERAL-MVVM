@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Storage
+﻿namespace LegacyInfrastructure.Storage
 {
     public class ShopItem
     {

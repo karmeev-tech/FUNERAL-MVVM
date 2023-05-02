@@ -1,4 +1,4 @@
-﻿using Infrastructure.Worker;
+﻿using LegacyInfrastructure.Worker;
 
 namespace Model.Worker
 {
@@ -26,11 +26,11 @@ namespace Model.Worker
                 else
                 {
                     // db say no
-                    return "not okay";
+                    return "Ошибка авторизации";
                 }
             }
 
-            return "not okay";
+            return "Ошибка авторизации";
         }
     }
 }

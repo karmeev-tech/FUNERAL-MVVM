@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 
-namespace Infrastructure.Storage
+namespace LegacyInfrastructure.Storage
 {
     public interface IShopRepos
     {

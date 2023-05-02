@@ -1,10 +1,9 @@
 ﻿using Domain.Complect;
-using Infrastructure.Connector;
-using System.Data.SqlClient;
+using LegacyInfrastructure.Connector;
 using System.Data;
-using System.Collections.Generic;
+using System.Data.SqlClient;
 
-namespace Infrastructure.Complect
+namespace LegacyInfrastructure.Complect
 {
     public class ComplectRepos : GenConnector
     {

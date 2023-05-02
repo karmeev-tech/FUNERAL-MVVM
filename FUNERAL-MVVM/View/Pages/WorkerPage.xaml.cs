@@ -1,5 +1,5 @@
 ﻿using FUNERALMVVM.ViewModel;
-using Infrastructure.Worker;
+using LegacyInfrastructure.Worker;
 using System.Windows.Controls;
 
 namespace FUNERALMVVM.View.Pages

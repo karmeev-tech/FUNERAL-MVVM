@@ -1,6 +1,6 @@
 ﻿using ClassLibrary;
 using Microsoft.Win32;
-namespace Infrastructure.Storage
+namespace LegacyInfrastructure.Storage
 {
 #nullable disable
     public class PickManagerExtendet

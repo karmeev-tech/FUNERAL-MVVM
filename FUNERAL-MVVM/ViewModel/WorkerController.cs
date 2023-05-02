@@ -1,6 +1,6 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Workers;
-using Infrastructure.Worker;
+using LegacyInfrastructure.Worker;
 using System.Windows.Input;
 
 namespace FUNERALMVVM.ViewModel

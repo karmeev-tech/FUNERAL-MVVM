@@ -3,7 +3,7 @@ using System.Reflection.Metadata;
 using System.Windows;
 using System;
 using System.Windows.Controls;
-using Infrastructure.Storage;
+using LegacyInfrastructure.Storage;
 
 namespace FUNERALMVVM.View.Pages
 {

@@ -1,10 +1,10 @@
 ﻿using Domain.Worker;
-using Infrastructure.Connector;
+using LegacyInfrastructure.Connector;
 using System.Data.SqlClient;
 using System.Data;
 using System.Xml.Linq;
 
-namespace Infrastructure.Worker
+namespace LegacyInfrastructure.Worker
 {
 #nullable disable
     public partial class WorkerRepos : GenConnector, IWorkerRepos

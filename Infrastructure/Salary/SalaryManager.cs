@@ -1,7 +1,7 @@
 ﻿using Domain.Salary;
-using Infrastructure.Connector;
+using LegacyInfrastructure.Connector;
 
-namespace Infrastructure.Salary
+namespace LegacyInfrastructure.Salary
 {
     public class SalaryManager : GenConnector
     {

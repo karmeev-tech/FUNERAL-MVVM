@@ -1,6 +1,6 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
-using Infrastructure.Storage;
+using LegacyInfrastructure.Storage;
 using System;
 
 namespace FUNERALMVVM.Commands.Orders

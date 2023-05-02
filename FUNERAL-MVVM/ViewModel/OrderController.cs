@@ -1,7 +1,7 @@
 ﻿using Domain.Order;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Orders;
-using Infrastructure.Storage;
+using LegacyInfrastructure.Storage;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Documents;

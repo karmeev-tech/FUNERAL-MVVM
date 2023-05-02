@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Connector
+﻿namespace LegacyInfrastructure.Connector
 {
     public interface IConnect
     {
