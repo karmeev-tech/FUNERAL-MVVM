@@ -1,184 +1,111 @@
-﻿using Domain.Complect;
+﻿using Domain.Services.Entity;
 using FUNERAL_MVVM.Utility;
+using FuneralClient.Commands.Services;
+using FuneralClient.View.Windows;
 using FUNERALMVVM.Commands.Services;
-using FUNERALMVVM.View.Windows;
-using LegacyInfrastructure.Complect;
-using System;
+using Legacy.Infrastructure.Services;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace FUNERALMVVM.ViewModel
 {
     public class ServicesController : ViewModelBase
     {
-        private OrdersWindow _ordersWindow;
+        private ServicesWindow _ordersWindow;
 
-        #region хуйня
-        private string _cokolCount = "1";
-        private string _bordCount = "1";
-        private string _plitkaCount = "1";
-        private string _paroizolCount = "1";
-        private string _sandCount = "1";
-        private string _gruntCount = "1";
-        private string _granitCount = "1";
-        private string _s1 = string.Empty;
-        private string _s4 = string.Empty;
-        private string _s5 = string.Empty;
-        private string _s10 = string.Empty;
-        private string _s11 = string.Empty;
-        private string _s12 = string.Empty;
-        private string _s15 = string.Empty;
-        private string _exception = string.Empty;
-
-        #endregion
-
-        private readonly ComplectRepos _complectRepos = new();
-        private readonly List<ItemComplectEntity> _listComplect;
-        public ServicesController(OrdersWindow ordersWindow)
+        private readonly ServiceRepos _complectRepos = new();
+        public readonly List<Service> _listComplect;
+        private string _exception;
+        private ObservableCollection<string> _servicesName = new();
+        private ObservableCollection<string> _paramsNames = new();
+        private ObservableCollection<string> _paramsNames2 = new();
+        private ObservableCollection<Service> _services = new();
+        public ServicesController(ServicesWindow ordersWindow)
         {
             _ordersWindow = ordersWindow;
-            _listComplect = _complectRepos.GetItems();
-            s1 = _listComplect[5].Money.ToString();
-            s4 = _listComplect[6].Money.ToString();
-            s5 = _listComplect[7].Money.ToString();
-            s10 = _listComplect[8].Money.ToString();
-            s11 = _listComplect[9].Money.ToString();
-            s12 = _listComplect[10].Money.ToString();
-            s15 = _listComplect[11].Money.ToString();
-            //подтягиваем material
+            _listComplect = _complectRepos.GetServices();
+
+            List<string> names = _complectRepos.GetServicesByName();
+            var servicesNames = names.Distinct().ToList();
+
+            foreach (var item in servicesNames)
+            {
+                ServicesName.Add(item);
+            }
         }
 
-        public string s1
+        private string chooseService = string.Empty;
+        public string ChooseService 
         {
-            get => _s1; set
+            get
             {
-                _s1 = value;
-                OnPropertyChanged(nameof(s1));
-            }
-        }
-        public string s2 { get; set; } = "0";
-        public string s4
-        {
-            get => _s4; set
-            {
-                _s4 = value;
-                OnPropertyChanged(nameof(s4));
-            }
-        }
-        public string s5
-        {
-            get => _s5; set
-            {
-                _s5 = value;
-                OnPropertyChanged(nameof(s5));
-            }
-        }
-        public string s6 { get; set; } = "0";
-        public string s7 { get; set; } = "0";
-        public string s8 { get; set; } = "0";
-        public string s9 { get; set; } = "0";
-        public string s10
-        {
-            get => _s10; set
-            {
-                _s10 = value;
-                OnPropertyChanged(nameof(s10));
-            }
-        }
-        public string s11
-        {
-            get => _s11; set
-            {
-                _s11 = value;
-                OnPropertyChanged(nameof(s11));
-            }
-        }
-        public string s12
-        {
-            get => _s12; set
-            {
-                _s12 = value;
-                OnPropertyChanged(nameof(s12));
-            }
-        }
-        public string s15
-        {
-            get => _s15; set
-            {
-                _s15 = value;
-                OnPropertyChanged(nameof(s15));
-            }
-        }
-        public string s16 { get; set; } = "0";
-        public string s17 { get; set; } = "0";
-        public string Bord { get; set; } = string.Empty;
-        public string Plitka { get; set; } = string.Empty;
-        public string PlitkaOther { get; set; } = "другое";
-        public string Funeral { get; set; } = string.Empty;
-        public string Fences { get; set; } = string.Empty;
-        public string Tables { get; set; } = string.Empty;
-
-        /// <summary>
-        /// тута количество
-        /// </summary>
-        /// 
-
-        public string CokolCount
-        {
-            get => _cokolCount;
+                return chooseService;
+            } 
             set
             {
-                _cokolCount = value;
-                s1 = (Convert.ToInt32(s1) * Convert.ToInt32(CokolCount)).ToString();
+                chooseService = value;
+                if (chooseService != string.Empty)
+                {
+                    var paramsNames = _listComplect.Where(item => item.Name == chooseService).Select(item => item.Param1).ToList();
+
+                    ParamsNames = new();
+                    foreach (var item in paramsNames)
+                    {
+                        ParamsNames.Add(item);
+                    }
+
+                    paramsNames = _listComplect.Where(item => item.Name == chooseService).Select(item => item.Param2).ToList();
+
+                    ParamsNames2 = new();
+                    foreach (var item in paramsNames)
+                    {
+                        ParamsNames2.Add(item);
+                    }
+                }
             }
         }
-        public string BordCount
+        public string ChooseParam { get; set; }
+        public string ChooseParam2 { get; set; }
+
+        public ObservableCollection<string> ServicesName
         {
-            get => _bordCount;
+            get => _servicesName;
             set
             {
-                _bordCount = value;
-                s4 = (Convert.ToInt32(s4) * Convert.ToInt32(BordCount)).ToString();
+                _servicesName = value;
+                OnPropertyChanged(nameof(ServicesName));
             }
         }
-        public string PlitkaCount
+
+        public ObservableCollection<string> ParamsNames 
         {
-            get => _plitkaCount; set
+            get => _paramsNames;
+            set 
             {
-                _plitkaCount = value;
-                s5 = (Convert.ToInt32(s5) * Convert.ToInt32(PlitkaCount)).ToString();
+                _paramsNames = value;
+                OnPropertyChanged(nameof(ParamsNames));
+            } 
+        }
+
+        public ObservableCollection<string> ParamsNames2
+        {
+            get => _paramsNames2;
+            set
+            {
+                _paramsNames2 = value;
+                OnPropertyChanged(nameof(ParamsNames2));
             }
         }
-        public string ParoizolCount
+
+        public ObservableCollection<Service> Services
         {
-            get => _paroizolCount; set
+            get => _services;
+            set
             {
-                _paroizolCount = value;
-                s10 = (Convert.ToInt32(s10) * Convert.ToInt32(ParoizolCount)).ToString();
-            }
-        }
-        public string SandCount
-        {
-            get => _sandCount; set
-            {
-                _sandCount = value;
-                s11 = (Convert.ToInt32(s11) * Convert.ToInt32(SandCount)).ToString();
-            }
-        }
-        public string GruntCount
-        {
-            get => _gruntCount; set
-            {
-                _gruntCount = value;
-                s12 = (Convert.ToInt32(s12) * Convert.ToInt32(GruntCount)).ToString();
-            }
-        }
-        public string GranitCount
-        {
-            get => _granitCount; set
-            {
-                _granitCount = value;
-                s15 = (Convert.ToInt32(s15) * Convert.ToInt32(GranitCount)).ToString();
+                _services = value;
+                OnPropertyChanged(nameof(Services));
             }
         }
 
@@ -192,11 +119,20 @@ namespace FUNERALMVVM.ViewModel
         }
 
         public ICommand AddServCommand => new AddServCommand(this);
+        public ICommand ChooseServCommand => new AddServiceCommand(this);
 
-        private void ViewClosed()
+        public void ViewClosed()
         {
             _ordersWindow.Opacity = 0;
             _ordersWindow.Close();
+        }
+        public void DeleteItem(string itemName)
+        {
+            var newItems = Services.Where(x => x.Name == itemName).ToList();
+            foreach (var item in newItems)
+            {
+                Services.Remove(item);
+            }
         }
     }
 }

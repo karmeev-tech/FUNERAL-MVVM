@@ -9,8 +9,8 @@ namespace LegacyInfrastructure.Complect
     {
         public List<ItemComplectEntity> GetItems()
         {
-            Connect("MaterialDB");
-            SqlDataAdapter sqlDataAdapter = new("SELECT * FROM Material", _sqlConnection);
+            Connect("StorageDB");
+            SqlDataAdapter sqlDataAdapter = new("SELECT Name, Price, Count FROM Storage", _sqlConnection);
             DataSet ds = new();
             sqlDataAdapter.Fill(ds);
             ds.IsInitialized.ToString();
@@ -19,9 +19,9 @@ namespace LegacyInfrastructure.Complect
             {
                 items.Add(new ItemComplectEntity()
                 {
-                    Id = Convert.ToInt32(dr[0].ToString()),
-                    Name = dr[1].ToString(),
-                    Money = Convert.ToInt32(dr[2].ToString()),
+                    Name = dr[0].ToString(),
+                    Money = Convert.ToInt32(dr[1].ToString()),
+                    Count = Convert.ToInt32(dr[2].ToString()),
                 });
             }
             return items;

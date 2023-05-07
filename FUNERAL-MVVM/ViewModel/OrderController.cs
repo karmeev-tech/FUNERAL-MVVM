@@ -58,8 +58,6 @@ namespace FUNERALMVVM.ViewModel
         public ICommand GetServices => new GetServicesCommand(this);
         public ICommand AddComplect => new AddOrderComplectCommand(this);
         public ICommand GetComplect => new GetComplectCommand(this);
-        public ICommand AddDeadBody => new AddDeadsCommand();
-        public ICommand GetDeadBody => new GetDeadsCommand(this);
         public ICommand UpdateFunerals => new UpdateFuneralsCommand(this);
         public ObservableCollection<string> Funerals { get; set; } = new();
         //services

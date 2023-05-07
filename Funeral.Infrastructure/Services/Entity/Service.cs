@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FUNERALMVVM.ViewModel
+namespace Funeral.Infrastructure.Services.Entity
 {
-    internal class WarrantController
+    internal class Service
     {
     }
 }

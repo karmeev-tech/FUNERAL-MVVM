@@ -9,7 +9,7 @@
       Title="OrderPage">
 
     <Grid>
-        <Label Content="Категория памятника" HorizontalAlignment="Left" Margin="100,63,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <Label Content="Категория памятника" HorizontalAlignment="Left" Margin="95,63,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
         <Label Content="Размер памятника" HorizontalAlignment="Left" Margin="574,66,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
         <Label Content="Верхняя часть обелиска" HorizontalAlignment="Left" Margin="574,104,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
         <Label Content="Эпитафия" HorizontalAlignment="Left" Margin="578,208,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
@@ -18,13 +18,19 @@
         <Label Content="Адрес" HorizontalAlignment="Center" Margin="0,333,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
         <Label Content="Телефон" HorizontalAlignment="Left" Margin="582,377,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
         <Label Content="Наименование кладбища" HorizontalAlignment="Left" Margin="582,421,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <Label Content="Цена заказа" HorizontalAlignment="Left" Margin="740,664,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <Label Content="Предоплата" HorizontalAlignment="Left" Margin="740,708,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <Label Content="Цена заказа" HorizontalAlignment="Left" Margin="740,591,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <Label Content="Предоплата" HorizontalAlignment="Left" Margin="740,635,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
         <Label Content="What's Up/Telegram" HorizontalAlignment="Left" Margin="584,465,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
         <!--Основа-->
         <TextBox HorizontalAlignment="Left" Margin="876,70,0,0" TextWrapping="Wrap" Text="{Binding FuneralSize}" VerticalAlignment="Top" Width="226" Height="30" Panel.ZIndex="1"/>
         <TextBox HorizontalAlignment="Left" Margin="876,110,0,0" TextWrapping="Wrap" Text="{Binding UpDesign}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
         <TextBox HorizontalAlignment="Left" Margin="876,212,0,0" TextWrapping="Wrap" Text="{Binding Epitafia}" VerticalAlignment="Top" Width="226" Height="30" Panel.ZIndex="1"/>
+        <Label Content="Паспорт" HorizontalAlignment="Left" Margin="584,504,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="876,507,0,0" TextWrapping="Wrap" Text="{Binding ClientPassport}" VerticalAlignment="Top" Width="226" Height="30" Panel.ZIndex="1"/>
+        <Label Content="Нижняя часть обелиска" HorizontalAlignment="Left" Margin="574,138,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="876,144,0,0" TextWrapping="Wrap" Text="{Binding DownDesign}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
+        <Label Content="Прочее оформление" HorizontalAlignment="Left" Margin="576,174,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="876,180,0,0" TextWrapping="Wrap" Text="{Binding OtherDesign}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
         <!--Клиент-->
         <TextBox HorizontalAlignment="Left" Margin="876,295,0,0" TextWrapping="Wrap" Text="{Binding ClientFIO}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
         <TextBox HorizontalAlignment="Left" Margin="876,339,0,0" TextWrapping="Wrap" Text="{Binding ClientAdress}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
@@ -35,12 +41,14 @@
         <!--Услуги-->
 
         <!--Прайс-->
-        <TextBox HorizontalAlignment="Left" Margin="888,670,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Width="226" Height="28" IsReadOnly="True" Panel.ZIndex="1"/>
-        <TextBox HorizontalAlignment="Left" Margin="888,714,0,0" TextWrapping="Wrap" Text="{Binding Prepayment}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
+        <Label Content="Остаток" HorizontalAlignment="Left" Margin="740,680,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="888,686,0,0" TextWrapping="Wrap" Text="{Binding Prepayment}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="888,597,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Width="226" Height="28" IsReadOnly="True" Panel.ZIndex="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="888,641,0,0" TextWrapping="Wrap" Text="{Binding Prepayment}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
         <Rectangle Fill="White" HorizontalAlignment="Left" Height="800" Margin="68,34,0,0" VerticalAlignment="Top" Width="1080" RadiusX="10" RadiusY="10"/>
 
         <Button Command="{Binding AddOrder}" Content="Сформировать" 
-                HorizontalAlignment="Left" Margin="942,762,0,0" 
+                HorizontalAlignment="Left" Margin="937,737,0,0" 
                 VerticalAlignment="Top" Width="118" Height="40"
                 Background="#0C3C7C" 
                 Foreground="White" BorderBrush="{x:Null}" FontSize="10">
@@ -52,34 +60,72 @@
         </Button>
         <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="312,67,0,0" VerticalAlignment="Top" Width="226" Height="30"/>
 
-        <Label Content="Паспорт" HorizontalAlignment="Left" Margin="584,504,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <TextBox HorizontalAlignment="Left" Margin="876,507,0,0" TextWrapping="Wrap" Text="{Binding ClientPassport}" VerticalAlignment="Top" Width="226" Height="30" Panel.ZIndex="1"/>
-        <Label Content="Нижняя часть обелиска" HorizontalAlignment="Left" Margin="574,138,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <TextBox HorizontalAlignment="Left" Margin="876,144,0,0" TextWrapping="Wrap" Text="{Binding DownDesign}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
-        <Label Content="Прочее оформление" HorizontalAlignment="Left" Margin="576,174,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <TextBox HorizontalAlignment="Left" Margin="876,180,0,0" TextWrapping="Wrap" Text="{Binding OtherDesign}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
-        <Label Content="Модель №" HorizontalAlignment="Left" Margin="102,131,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="215,132,0,0" VerticalAlignment="Top" Width="96" Height="30"/>
-        <Label Content="Вид камня" HorizontalAlignment="Left" Margin="316,132,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="417,132,0,0" VerticalAlignment="Top" Width="112" Height="30"/>
-        <Label Content="Размер" HorizontalAlignment="Left" Margin="100,210,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70"/>
-        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="211,218,0,0" VerticalAlignment="Top" Width="96" Height="30"/>
-        <Label Content="Сечение" HorizontalAlignment="Left" Margin="314,218,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="409,218,0,0" VerticalAlignment="Top" Width="112" Height="30"/>
-        <Label Content="Стела" HorizontalAlignment="Left" Margin="100,180,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <Label Content="Размер" HorizontalAlignment="Left" Margin="100,289,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" RenderTransformOrigin="0.529,0.884"/>
-        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="213,290,0,0" VerticalAlignment="Top" Width="96" Height="30"/>
-        <Label Content="Сечение" HorizontalAlignment="Left" Margin="314,290,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="409,290,0,0" VerticalAlignment="Top" Width="112" Height="30"/>
-        <Label Content="Подставка" HorizontalAlignment="Left" Margin="97,257,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <Label Content="Размер" HorizontalAlignment="Left" Margin="100,387,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70"/>
-        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="213,388,0,0" VerticalAlignment="Top" Width="96" Height="30"/>
-        <Label Content="Сечение" HorizontalAlignment="Left" Margin="314,388,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="409,388,0,0" VerticalAlignment="Top" Width="112" Height="30"/>
-        <Label Content="Цветник" HorizontalAlignment="Left" Margin="99,343,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
-        <CheckBox Content="Без цветника" HorizontalAlignment="Left" Margin="215,355,0,0" VerticalAlignment="Top"/>
-        <Label Content="Полировка" HorizontalAlignment="Left" Margin="102,448,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="113"/>
-        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="215,452,0,0" VerticalAlignment="Top" Width="195" Height="30"/>
+        <Label Content="Модель №" HorizontalAlignment="Left" Margin="93,108,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="215,110,0,0" VerticalAlignment="Top" Width="96" Height="30"/>
+        <Label Content="Вид камня" HorizontalAlignment="Left" Margin="316,110,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="417,110,0,0" VerticalAlignment="Top" Width="112" Height="30"/>
+        <Label Content="Размер" HorizontalAlignment="Left" Margin="95,180,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70"/>
+        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="211,188,0,0" VerticalAlignment="Top" Width="96" Height="30"/>
+        <Label Content="Сечение" HorizontalAlignment="Left" Margin="316,188,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="94"/>
+        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="417,188,0,0" VerticalAlignment="Top" Width="112" Height="30"/>
+        <Label Content="Стела" HorizontalAlignment="Left" Margin="93,141,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <Label Content="Размер" HorizontalAlignment="Left" Margin="93,252,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" RenderTransformOrigin="0.529,0.884"/>
+        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="213,259,0,0" VerticalAlignment="Top" Width="94" Height="30"/>
+        <Label Content="Сечение" HorizontalAlignment="Left" Margin="314,259,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="417,259,0,0" VerticalAlignment="Top" Width="112" Height="30"/>
+        <Label Content="Подставка" HorizontalAlignment="Left" Margin="93,218,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <Label Content="Размер" HorizontalAlignment="Left" Margin="93,333,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70"/>
+        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="213,334,0,0" VerticalAlignment="Top" Width="96" Height="30"/>
+        <Label Content="Сечение" HorizontalAlignment="Left" Margin="314,334,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="417,334,0,0" VerticalAlignment="Top" Width="112" Height="30"/>
+        <Label Content="Цветник" HorizontalAlignment="Left" Margin="93,289,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1"/>
+        <CheckBox Content="Без цветника" HorizontalAlignment="Left" Margin="215,301,0,0" VerticalAlignment="Top"/>
+        <Label Content="Полировка" HorizontalAlignment="Left" Margin="95,379,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="103"/>
+        <ComboBox ItemsSource="{Binding Funerals}" Text="{Binding Funeral}" HorizontalAlignment="Left" Margin="215,383,0,0" VerticalAlignment="Top" Width="195" Height="30"/>
+        <CheckBox Content="без установки" HorizontalAlignment="Left" Margin="215,428,0,0" VerticalAlignment="Top"/>
+        <Label Content="Установка" HorizontalAlignment="Left" Margin="92,416,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="113"/>
+        <Label Content="Умершие" HorizontalAlignment="Left" Margin="92,465,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="113"/>
+        <Label Content="Ф.И.О" HorizontalAlignment="Left" Margin="95,514,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="113"/>
+        <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="95,553,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="137"/>
+        <Label Content="Дата смерти" HorizontalAlignment="Left" Margin="95,590,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="137"/>
+        <TextBox HorizontalAlignment="Left" Margin="239,517,0,0" TextWrapping="Wrap" Text="{Binding ClientFIO}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="239,556,0,0" TextWrapping="Wrap" Text="{Binding ClientFIO}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="239,594,0,0" TextWrapping="Wrap" Text="{Binding ClientFIO}" VerticalAlignment="Top" Width="226" Height="28" Panel.ZIndex="1"/>
+        <TextBox HorizontalAlignment="Left" Margin="95,635,0,0" TextWrapping="Wrap" Text="{Binding ClientFIO}" VerticalAlignment="Top" Width="370" Height="162" Panel.ZIndex="1"/>
+        <Button Command="{Binding AddOrder}" Content="Добавить" 
+            HorizontalAlignment="Left" Margin="239,462,0,0" 
+            VerticalAlignment="Top" Width="118" Height="40"
+            Background="#0C3C7C" 
+            Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <TextBox HorizontalAlignment="Left" Margin="352,421,0,0" TextWrapping="Wrap" Text="{Binding ClientFIO}" VerticalAlignment="Top" Width="113" Height="28" Panel.ZIndex="1"/>
+        <Button Command="{Binding AddComplect}" Content="Добавить товары" 
+            HorizontalAlignment="Left" Margin="596,631,0,0" 
+            VerticalAlignment="Top" Width="118" Height="40"
+            Background="#0C3C7C" 
+            Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Command="{Binding AddServices}" Content="Добавить услуги" 
+            HorizontalAlignment="Left" Margin="596,590,0,0" 
+            VerticalAlignment="Top" Width="118" Height="40"
+            Background="#0C3C7C" 
+            Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
 
     </Grid>

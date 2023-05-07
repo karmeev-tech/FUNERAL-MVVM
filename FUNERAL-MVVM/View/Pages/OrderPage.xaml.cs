@@ -13,6 +13,5 @@ namespace FUNERALMVVM.View.Pages
             DataContext = new OrderController();
             InitializeComponent();
         }
-
     }
 }

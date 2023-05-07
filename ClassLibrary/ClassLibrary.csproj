@@ -44,8 +44,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\BaseSalary.cs" />
-    <Compile Include="InitialInst.cs" />
     <Compile Include="PickManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

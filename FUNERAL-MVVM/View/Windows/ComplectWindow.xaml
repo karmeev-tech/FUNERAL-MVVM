@@ -1,0 +1,52 @@
+﻿<Window x:Class="FUNERALMVVM.View.Windows.KomplektWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FUNERALMVVM.View.Windows" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ComplectController}"
+        mc:Ignorable="d"
+        Title="KomplektWindow" Height="537" Width="717" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Height="533" VerticalAlignment="Top">
+        <Button Content="Добавить" 
+                Command="{Binding AddComplectCommand}"
+                HorizontalAlignment="Center" Margin="0,440,0,0" 
+                VerticalAlignment="Top" Width="82" Height="30" 
+                Background="#FF92ADCB" 
+                Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible"
+                  Margin="93,131,60,119">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path='Name'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Цена(за штуку)" Binding="{Binding Path='Money'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path='Count'}" IsReadOnly="False"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Click="Button_Click_1"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Выбрать" 
+            Command="{Binding AddItemCommand}"
+            HorizontalAlignment="Left" Margin="358,65,0,0" 
+            VerticalAlignment="Top" Width="82" Height="30" 
+            Background="#FF92ADCB" 
+            Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <ComboBox ItemsSource="{Binding ItemFromComplect}" Text="{Binding SelectItem}" HorizontalAlignment="Left" Margin="93,68,0,0" VerticalAlignment="Top" Width="236"/>
+    </Grid>
+</Window>

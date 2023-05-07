@@ -1,5 +1,5 @@
 ﻿using FUNERAL_MVVM.Utility;
-using FUNERALMVVM.View.Windows;
+using FuneralClient.View.Windows;
 using FUNERALMVVM.ViewModel;
 
 namespace FUNERALMVVM.Commands.Orders
@@ -15,7 +15,7 @@ namespace FUNERALMVVM.Commands.Orders
 
         public override void Execute(object parameter)
         {
-            OrdersWindow window = new();
+            ServicesWindow window = new();
             window.Show();
         }
     }
