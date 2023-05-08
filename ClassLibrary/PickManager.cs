@@ -41,17 +41,10 @@ namespace ClassLibrary
         }
 
         [Obsolete]
-        public string OpenManagerFileName(int modif)
+        public string OpenManagerFileName()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            if(modif == 2)
-            {
-                openFileDialog.Filter = "DOCX (*.docx)|*.docx";
-            }
-            else
-            {
-                openFileDialog.Filter = "DOCX (*.docx)|*.docx";
-            }
+            openFileDialog.Filter = "DOCX (*.docx)|*.docx";
             openFileDialog.ShowDialog();
             return openFileDialog.FileName;
         }

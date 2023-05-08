@@ -1,16 +1,17 @@
 ﻿using Domain.Complect;
+using Legacy.Infrastructure.Complect;
 using LegacyInfrastructure.Connector;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace LegacyInfrastructure.Complect
 {
-    public class ComplectRepos : GenConnector
+    public class ComplectRepos : GenConnector, IComplectRepos
     {
         public List<ItemComplectEntity> GetItems()
         {
             Connect("StorageDB");
-            SqlDataAdapter sqlDataAdapter = new("SELECT Name, Price, Count FROM Storage", _sqlConnection);
+            SqlDataAdapter sqlDataAdapter = new("SELECT Name, Price, Count, Procent FROM Storage", _sqlConnection);
             DataSet ds = new();
             sqlDataAdapter.Fill(ds);
             ds.IsInitialized.ToString();
@@ -22,6 +23,7 @@ namespace LegacyInfrastructure.Complect
                     Name = dr[0].ToString(),
                     Money = Convert.ToInt32(dr[1].ToString()),
                     Count = Convert.ToInt32(dr[2].ToString()),
+                    Procent = Convert.ToInt32(dr[3].ToString())
                 });
             }
             return items;

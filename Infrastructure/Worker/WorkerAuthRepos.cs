@@ -53,8 +53,8 @@ namespace LegacyInfrastructure.Worker
                 , _sqlConnection);
             command.Parameters.AddWithValue("Name", name);
 
-            DateTime dateTime = DateTime.Today;
-            command.Parameters.AddWithValue("Date", dateTime);
+            DateTime dateTime = DateTime.Now;
+            command.Parameters.AddWithValue("Date", dateTime.ToString());
             command.ExecuteNonQuery();
             Close();
         }
@@ -75,11 +75,10 @@ namespace LegacyInfrastructure.Worker
             Close();
             return name;
         }
-
         public string GetLastTimeFromJournalByName(string name)
         {
             Connect("LogDB");
-            SqlDataAdapter sqlDataAdapter = new("SELECT * FROM Logs", _sqlConnection);
+            SqlDataAdapter sqlDataAdapter = new("SELECT * FROM Logs WHERE Name = '" + name + "'", _sqlConnection);
             DataSet ds = new();
             sqlDataAdapter.Fill(ds);
             ds.IsInitialized.ToString();
