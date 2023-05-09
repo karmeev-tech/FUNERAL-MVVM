@@ -1,52 +1,41 @@
-﻿<Page x:Class="FUNERALMVVM.View.Pages.HeadStorage"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FUNERALMVVM.View.Pages" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:HeadStorageController}"
+      xmlns:local="clr-namespace:FUNERALMVVM.View.Pages"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" 
+      d:DataContext="{d:DesignInstance Type=viewmodel:HeadStorageController}" x:Class="FUNERALMVVM.View.Pages.HeadStorage"
       mc:Ignorable="d" 
       d:DesignHeight="857" d:DesignWidth="1219"
       Title="HeadStorage">
 
     <Grid>
-        <!--<DataGrid x:Name="ItemsGrid"
-                  ItemsSource="{Binding Items}" 
-                  Margin="92,39,91,90" Height="NaN" Width="NaN"/>-->
-        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible" Height="NaN" Margin="160,113,161,113" Width="NaN">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="104*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="683*"/>
+        </Grid.RowDefinitions>
+        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible"
+                  Margin="62,10,62,75" Height="NaN" Grid.Row="2" Width="NaN">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Название" Binding="{Binding Path='Name'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Категория" Binding="{Binding Path='Type'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Цена" Binding="{Binding Path='Price'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Цена (закупочная)" Binding="{Binding Path='ZakupPrice'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Цена (разница)" Binding="{Binding Path='Margin'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Форма обелиска" Binding="{Binding Path='OForm'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Форма тумбы" Binding="{Binding Path='TForm'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Форма гробницы" Binding="{Binding Path='GForm'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Цвет" Binding="{Binding Path='Color'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Полировка" Binding="{Binding Path='Polishing'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Прочее" Binding="{Binding Path='Other'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path='Name'}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path='Price'}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Цена(закупочная)" Binding="{Binding Path='ZakupPrice'}" IsReadOnly="False"/>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Path='Count'}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Процент" Binding="{Binding Path='Procent'}" IsReadOnly="False"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Удалить" Click="Button_Click"/>
+                            <Button Content="Удалить"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Обновить" 
-                Command="{Binding UpdateBase}"
-                HorizontalAlignment="Left" 
-                Margin="160,61,0,0" VerticalAlignment="Top" 
-                Width="91" Height="32" 
-                Background="#FF92ADCB" 
-                Foreground="White" BorderBrush="{x:Null}">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </Button.Resources>
-        </Button>
+        <Label Content="Обновить склад" Style="{StaticResource StyleLabel}" HorizontalAlignment="Left" Margin="54,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+
+        <ui:Button Command="{Binding UpdateBase}" Content="Обновить" Margin="252,21,0,0" Grid.Row="1" VerticalAlignment="Top" Width="102"/>
+
     </Grid>
 </Page>

@@ -1,15 +1,12 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
-using LegacyInfrastructure.Storage;
-using System.Collections.Generic;
-using System.Windows.Documents;
+using Shop;
 
 namespace FUNERALMVVM.Commands.HeadStorage
 {
     public class HeadStorageCommand : BaseCommands
     {
         private readonly HeadStorageController _headStorageController;
-        private readonly IShopRepos _shopRepos = new ShopRepos();
         public HeadStorageCommand(HeadStorageController headStorageController)
         {
             _headStorageController = headStorageController;
@@ -18,14 +15,18 @@ namespace FUNERALMVVM.Commands.HeadStorage
         public override void Execute(object parameter)
         {
             var items = _headStorageController.Items;
-            List<string> picLinks = _shopRepos.GetPickLinks();
-            int count = 0;
+            ShopProvider shopProvider = new();
             foreach (var item in items) 
             {
-                _shopRepos.UpdateDB(item, picLinks[count]);
-                count++;
+                shopProvider.UpdateItems(item);
             }
-            _headStorageController.Items = _shopRepos.GetItems();
+
+            _headStorageController.Items = new();
+            var resultItems = shopProvider.GetAllItems();
+            foreach (var item in resultItems)
+            {
+                _headStorageController.Items.Add(item);
+            }
         }
     }
 }

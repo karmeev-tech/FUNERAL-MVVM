@@ -1,4 +1,5 @@
 ﻿using ClassLibrary;
+using Domain.Shop;
 using LegacyInfrastructure.Connector;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -46,7 +47,7 @@ namespace LegacyInfrastructure.Storage
             }
         }
 
-        public void UpdateDB(ShopItem item, string pickLink)
+        public void UpdateDB(ShoppingItem item)
         {
             Connect("StorageDB");
             SqlCommand command = new(
@@ -58,24 +59,14 @@ namespace LegacyInfrastructure.Storage
 
             Connect("StorageDB");
             SqlCommand command2 = new(
-                "INSERT INTO [Storage] (Name, Type, Price, PickLink, ZakupPrice, OForm, TForm, GForm, Margin, Color, Polishing, Other, Count) " +
-                "VALUES (" +
-                "@Name, @Type, @Price, @PickLink, @ZakupPrice, @OForm, @TForm, @GForm, @Margin, @Color, @Polishing, @Other, @Count" +
-                ")"
+                "INSERT INTO [Storage] (Name, Price, ZakupPrice, Count, Procent) " +
+                "VALUES (@Name, @Price, @ZakupPrice, @Count, @Procent)"
                 , _sqlConnection);
             command2.Parameters.AddWithValue("Name", item.Name);
-            command2.Parameters.AddWithValue("Type", item.Type);
             command2.Parameters.AddWithValue("Price", item.Price);
-            command2.Parameters.AddWithValue("PickLink", pickLink);
             command2.Parameters.AddWithValue("ZakupPrice", item.ZakupPrice);
-            command2.Parameters.AddWithValue("OForm", item.OForm);
-            command2.Parameters.AddWithValue("TForm", item.TForm);
-            command2.Parameters.AddWithValue("GForm", item.GForm);
-            command2.Parameters.AddWithValue("Margin", item.Margin);
-            command2.Parameters.AddWithValue("Color", item.Color);
-            command2.Parameters.AddWithValue("Polishing", item.Polishing);
-            command2.Parameters.AddWithValue("Other", item.Other);
             command2.Parameters.AddWithValue("Count", item.Count);
+            command2.Parameters.AddWithValue("Procent", item.Procent);
             command2.ExecuteNonQuery();
             Close();
         }

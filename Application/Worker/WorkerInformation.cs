@@ -15,5 +15,14 @@ namespace Worker
         {
             return _workerRepos.GetLastTimeFromJournalByName(name);
         }
+        public List<string> GetWorkers()
+        {
+            return _workerRepos.GetWorkers();
+        }
+
+        public string GetWorkerRole(string name)
+        {
+            return _workerRepos.GetWorkerRole(name);
+        }
     }
 }

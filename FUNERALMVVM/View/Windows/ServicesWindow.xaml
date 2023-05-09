@@ -9,10 +9,7 @@
     <Grid Height="533" VerticalAlignment="Top">
         <Button Content="Добавить" 
                 Command="{Binding AddServCommand}"
-                HorizontalAlignment="Left" Margin="352,479,0,0" 
-                VerticalAlignment="Top" Width="82" Height="30" 
-                Background="#FF92ADCB" 
-                Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+                Style="{StaticResource StyleButton}" HorizontalAlignment="Center" Margin="0,471,0,0">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="10"/>
@@ -22,10 +19,7 @@
 
         <Button Content="Выбрать" 
             Command="{Binding ChooseServCommand}"
-            HorizontalAlignment="Left" Margin="643,22,0,0" 
-            VerticalAlignment="Top" Width="82" Height="30" 
-            Background="#FF92ADCB" 
-            Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+            Style="{StaticResource StyleButton}" Margin="0,23,53,0">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
@@ -51,10 +45,10 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <ComboBox ItemsSource="{Binding ServicesName}" Text="{Binding ChooseService}" HorizontalAlignment="Left" Margin="182,25,0,0" VerticalAlignment="Top" Width="135"/>
-        <ComboBox ItemsSource="{Binding ParamsNames}" Text="{Binding ChooseParam}" HorizontalAlignment="Left" Margin="486,45,0,0" VerticalAlignment="Top" Width="126"/>
-        <ComboBox ItemsSource="{Binding ParamsNames2}" Text="{Binding ChooseParam2}" HorizontalAlignment="Left" Margin="486,10,0,0" VerticalAlignment="Top" Width="126"/>
-        <Label Content="Наименование" HorizontalAlignment="Left" Margin="56,23,0,0" VerticalAlignment="Top"/>
-        <Label Content="Параметры" HorizontalAlignment="Left" Margin="393,25,0,0" VerticalAlignment="Top"/>
+        <ComboBox ItemsSource="{Binding ServicesName}" Text="{Binding ChooseService}" HorizontalAlignment="Left" Margin="182,21,0,0" VerticalAlignment="Top" Width="136" Background="#FF92ADCB" Height="36"/>
+        <ComboBox ItemsSource="{Binding ParamsNames}" Text="{Binding ChooseParam}" HorizontalAlignment="Left" Margin="434,43,0,0" VerticalAlignment="Top" Width="126" Height="34"/>
+        <ComboBox ItemsSource="{Binding ParamsNames2}" Text="{Binding ChooseParam2}" HorizontalAlignment="Left" Margin="434,7,0,0" VerticalAlignment="Top" Width="126" Height="34"/>
+        <Label Content="Наименование" HorizontalAlignment="Left" Margin="56,31,0,0" VerticalAlignment="Top"/>
+        <Label Content="Параметры" HorizontalAlignment="Left" Margin="354,33,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

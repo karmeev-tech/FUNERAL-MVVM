@@ -10,9 +10,17 @@
       Title="SellItemPage">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="397*"/>
+            <ColumnDefinition Width="83*"/>
+            <ColumnDefinition Width="88*"/>
+            <ColumnDefinition Width="517*"/>
+            <ColumnDefinition Width="45*"/>
+        </Grid.ColumnDefinitions>
 
         <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible"
-                  Margin="93,131,60,119">
+                  Margin="0,131,16,119" Grid.Column="1" Grid.ColumnSpan="4">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Path='Name'}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Цена(за штуку)" Binding="{Binding Path='Money'}" IsReadOnly="True"/>
@@ -26,26 +34,20 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
+
         <Button Content="Выбрать" 
             Command="{Binding AddItemCommand}"
-            HorizontalAlignment="Left" Margin="358,65,0,0" 
-            VerticalAlignment="Top" Width="82" Height="30" 
-            Background="#FF92ADCB" 
-            Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+            Style="{StaticResource StyleButton}" Margin="0,72,0,0" Grid.Column="2" Height="30" Width="82" HorizontalAlignment="Center">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <ComboBox ItemsSource="{Binding ItemFromComplect}" Text="{Binding SelectItem}" HorizontalAlignment="Left" Margin="93,68,0,0" VerticalAlignment="Top" Width="236"/>
+        <ComboBox ItemsSource="{Binding ItemFromComplect}" Text="{Binding SelectItem}" HorizontalAlignment="Left" Margin="0,68,0,0" VerticalAlignment="Top" Width="377" Height="37" Grid.Column="1" Background="#FF92ADCB"/>
         <Button Content="Продать" 
             Command="{Binding SellCommand}"
-            HorizontalAlignment="Left" Margin="454,65,0,0" 
-            VerticalAlignment="Top" Width="82" Height="30" 
-            Background="#FF92ADCB" 
-            Foreground="White" BorderBrush="{x:Null}" FontSize="10">
+            Style="{StaticResource StyleButton}" Margin="0,72,0,0" Grid.Column="3" Height="30" Width="82" HorizontalAlignment="Center">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>

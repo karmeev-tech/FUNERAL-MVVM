@@ -10,39 +10,44 @@
 
     <Grid>
         <Label Content="Добавить товар" HorizontalAlignment="Left" Margin="92,58,0,0" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" Panel.ZIndex="1"/>
-        <Label Content="Категория" HorizontalAlignment="Left" Margin="92,140,0,0" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="24" Panel.ZIndex="1"/>
-        <Label Content="Наименование" HorizontalAlignment="Left" Margin="642,135,0,0" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="24" Panel.ZIndex="1"/>
-        <Label Content="Цена (продажная)" HorizontalAlignment="Left" Margin="642,208,0,0" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="24" Panel.ZIndex="1"/>
+        <Label Content="Наименование" HorizontalAlignment="Left" Margin="93,140,0,0" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="24" Panel.ZIndex="1"/>
+        <Label Content="Цена (продажная)" HorizontalAlignment="Left" Margin="639,213,0,0" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="24" Panel.ZIndex="1"/>
         <Rectangle Height="247" Margin="62,43,61,0" 
                    Stroke="White" VerticalAlignment="Top" 
                    Fill="White" RadiusX="10" RadiusY="10"
                    />
         <Button Command ="{Binding AddItem}" Content="Добавить" 
-                HorizontalAlignment="Center" Margin="0,329,0,0" 
-                VerticalAlignment="Top" Width="260" Height="58" 
-                FontSize="24"
-                Background="#FF92ADCB" 
-                Foreground="White" BorderBrush="{x:Null}">
+                Style="{StaticResource StyleButton}" RenderTransformOrigin="0.463,0.533" HorizontalAlignment="Center" Margin="0,315,0,0">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <TextBox HorizontalAlignment="Left" Margin="886,145,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="226" Height="32"/>
-        <TextBox HorizontalAlignment="Left" Margin="886,218,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Width="226" Height="32"/>
+        <TextBox HorizontalAlignment="Left" Margin="327,144,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="226" Height="32">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+        <TextBox HorizontalAlignment="Left" Margin="888,216,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Width="226" Height="32">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
 
         <Label Content="{Binding Error}" HorizontalAlignment="Left" Margin="767,329,0,0" VerticalAlignment="Top" Foreground="#FFFB0000"/>
         <Label Content="Цена (закупочная)" HorizontalAlignment="Left" Margin="92,213,0,0" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="24" Panel.ZIndex="1"/>
-        <TextBox Text="{Binding ZakupPrice}" HorizontalAlignment="Left" Margin="327,218,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="272" Height="32"/>
-        <ComboBox Text="{Binding Type}"  HorizontalAlignment="Left" Margin="327,145,0,0" VerticalAlignment="Top" Width="272" Height="32">
-            <ComboBoxItem Content="Вертикаль"/>
-            <ComboBoxItem Content="Горизонталь"/>
-            <ComboBoxItem Content="Детям"/>
-            <ComboBoxItem Content="Кресты"/>
-            <ComboBoxItem Content="Мусульманские"/>
-            <ComboBoxItem Content="3D модели"/>
-        </ComboBox>
+        <TextBox Text="{Binding ZakupPrice}" HorizontalAlignment="Left" Margin="327,218,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="272" Height="32">
+            <TextBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
 
     </Grid>
 </Page>

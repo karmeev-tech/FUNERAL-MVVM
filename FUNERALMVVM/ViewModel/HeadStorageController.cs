@@ -1,22 +1,26 @@
-﻿using FUNERAL_MVVM.Utility;
+﻿using Domain.Shop;
+using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.HeadStorage;
-using LegacyInfrastructure.Storage;
+using Shop;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows.Input;
 
 namespace FUNERALMVVM.ViewModel
 {
     public class HeadStorageController : ViewModelBase
     {
-        private ObservableCollection<ShopItem> _items = new();
-        private readonly IShopRepos _shopRepos = new ShopRepos();
+        private ObservableCollection<ShoppingItem> _items = new();
         public HeadStorageController()
         {
-            Items = _shopRepos.GetItems();
+            ShopProvider shopProvider = new();
+            var shopItems = shopProvider.GetAllItems();
+            foreach (var item in shopItems)
+            {
+                Items.Add(item);
+            }
         }
 
-        public ObservableCollection<ShopItem> Items
+        public ObservableCollection<ShoppingItem> Items
         {
             get => _items;
             set

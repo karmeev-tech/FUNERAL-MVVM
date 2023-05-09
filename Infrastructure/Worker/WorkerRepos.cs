@@ -49,19 +49,30 @@ namespace LegacyInfrastructure.Worker
             return new UserWorker();
         }
 
-        public void GetWorkers()
+        public List<string> GetWorkers()
         {
             // connect to DB and return data
-            Connect("LogDB");
-            throw new NotImplementedException();
+            Connect("WorkerDB");
+            SqlDataAdapter sqlDataAdapter = new("SELECT Name FROM Worker", _sqlConnection);
+            DataSet ds = new();
+            sqlDataAdapter.Fill(ds);
+            ds.IsInitialized.ToString();
+            List<string> name = new();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                name.Add(dr["Name"].ToString());
+            }
+            sqlDataAdapter.Dispose();
+            Close();
+            return name;
         }
 
         public void AddWorker(UserWorker worker)
         {
             Connect("WorkerDB");
             SqlCommand command = new(
-                "INSERT INTO [Worker] (Name, Adress, Passport, Contacts, Credentials, Role, Password) " +
-                "VALUES (@Name, @Adress, @Passport, @Contacts, @Credentials, @Role, @Password)"
+                "INSERT INTO [Worker] (Name, Adress, Passport, Contacts, Credentials, Role, Status, Password) " +
+                "VALUES (@Name, @Adress, @Passport, @Contacts, @Credentials, @Role, @Status, @Password)"
                 , _sqlConnection);
             command.Parameters.AddWithValue("Name", worker.Name);
             command.Parameters.AddWithValue("Adress", worker.Adress);
@@ -69,14 +80,51 @@ namespace LegacyInfrastructure.Worker
             command.Parameters.AddWithValue("Contacts", worker.Contacts);
             command.Parameters.AddWithValue("Credentials", worker.Credentials);
             command.Parameters.AddWithValue("Role", worker.Role);
+            command.Parameters.AddWithValue("Status", worker.Status);
             command.Parameters.AddWithValue("Password", worker.Password);
             command.ExecuteNonQuery();
             Close();
         }
 
-        public void AddStatus()
+        public void DeleteWorker(int id)
         {
+            Connect("WorkerDB");
+            SqlCommand command = new("DELETE FROM Worker WHERE Id = " + id.ToString(), _sqlConnection);
+            command.ExecuteNonQuery();
+            Close();
+        }
 
+        public int GetWorkerById(string name)
+        {
+            Connect("WorkerDB");
+            SqlDataAdapter sqlDataAdapter = new("SELECT * FROM Worker WHERE Name = '" + name + "'", _sqlConnection);
+            DataSet ds = new();
+            sqlDataAdapter.Fill(ds);
+            ds.IsInitialized.ToString();
+            List<string> names = new();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                names.Add(dr["Id"].ToString());
+            }
+            sqlDataAdapter.Dispose();
+            Close();
+            return Convert.ToInt32(names[0]);
+        }
+        public string GetWorkerRole(string name)
+        {
+            Connect("WorkerDB");
+            SqlDataAdapter sqlDataAdapter = new("SELECT * FROM Worker WHERE Name = '" + name + "'", _sqlConnection);
+            DataSet ds = new();
+            sqlDataAdapter.Fill(ds);
+            ds.IsInitialized.ToString();
+            List<string> names = new();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                names.Add(dr["Role"].ToString());
+            }
+            sqlDataAdapter.Dispose();
+            Close();
+            return names[0];
         }
     }
 }

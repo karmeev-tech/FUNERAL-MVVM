@@ -3,7 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FUNERALMVVM.View.Pages" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:IssueController}"
+      xmlns:local="clr-namespace:FUNERALMVVM.View.Pages" 
+      xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" d:DataContext="{d:DesignInstance Type=viewmodel:IssueController}"
       mc:Ignorable="d" 
       d:DesignHeight="857" d:DesignWidth="1219"
       Title="IssuePage">
@@ -19,46 +21,82 @@
     </Page.Resources>
     <Grid>
         <Grid Margin="88,120,99,517" Panel.ZIndex="1">
-            <Label Content="Отправить заказ" HorizontalAlignment="Left" Margin="23,10,0,0" VerticalAlignment="Top" Foreground="Black" FontWeight="Bold" FontSize="32" Panel.ZIndex="1"/>
-            <Label Content="Цена" Margin="28,75,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="24" Panel.ZIndex="1" HorizontalAlignment="Left" Width="66"/>
-            <Label Content="Предоплата" HorizontalAlignment="Left" Margin="28,122,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="24" Panel.ZIndex="1"/>
-            <Label Content="Прикрепить бланк" Margin="0,115,202,0" VerticalAlignment="Top" Foreground="Black" FontSize="24" Panel.ZIndex="1" HorizontalAlignment="Right" Width="214"/>
-            <TextBox Text="{Binding Payment}" HorizontalAlignment="Left" Margin="196,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Height="32"/>
-            <TextBox Text="{Binding Prepayment}" HorizontalAlignment="Left" Margin="196,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Height="32"/>
-            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="161*"/>
+                <ColumnDefinition Width="183*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Отправить заказ" HorizontalAlignment="Left" 
+                   Margin="23,10,0,0" VerticalAlignment="Top" 
+                   Foreground="Black" FontWeight="Bold" FontSize="32" Panel.ZIndex="1" Height="53" Width="268"/>
+            <Label Content="Цена" Margin="28,81,0,0" 
+                   VerticalAlignment="Top" 
+                   Style="{StaticResource StyleLabel}" 
+                   Panel.ZIndex="1" HorizontalAlignment="Left" Width="66" Height="34"/>
+            <Label Content="Предоплата" HorizontalAlignment="Left" 
+                   Margin="28,129,0,0" VerticalAlignment="Top" 
+                   Style="{StaticResource StyleLabel}" 
+                   Panel.ZIndex="1" Height="34" Width="109"/>
+            <Label Content="Прикрепить бланк" Margin="0,132,325,0" 
+                   VerticalAlignment="Top" 
+                   Style="{StaticResource StyleLabel}" 
+                   Panel.ZIndex="1" HorizontalAlignment="Right" Width="214" Grid.Column="1" Height="34"/>
+            <ui:TextBox Text="{Binding Payment}" HorizontalAlignment="Left" Margin="196,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Height="38">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </ui:TextBox>
+            <ui:TextBox Text="{Binding Prepayment}" HorizontalAlignment="Left" Margin="196,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Height="42">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </ui:TextBox>
+
             <Button Content="Прикрепить" 
                 Command="{Binding GetOrd}" 
-                Margin="0,163,10,0" Style="{StaticResource TypeButton}" Width="113" Height="33">
+                Style="{StaticResource StyleButton}" Margin="0,169,151,0" Grid.Column="1" Height="30" Width="82">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Label Content="Прикрепить отчёт" Margin="0,154,206,0" VerticalAlignment="Top" Foreground="Black" FontSize="24" Panel.ZIndex="1" HorizontalAlignment="Right" Width="210"/>
+            <Label Content="Прикрепить отчёт" Margin="0,131,23,0" 
+                   VerticalAlignment="Top" 
+                   Style="{StaticResource StyleLabel}"  
+                   Panel.ZIndex="1" HorizontalAlignment="Right" Width="210" Grid.Column="1" Height="34"/>
             <Button Content="Прикрепить" 
             Command="{Binding GetScan}" 
-            Margin="0,124,10,0" Style="{StaticResource TypeButton}" Width="113" Height="33">
+            Style="{StaticResource StyleButton}" Margin="0,169,457,0" Grid.Column="1" Height="30" Width="82">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Label Content="Прикрепить Документ2" Margin="0,73,146,0" VerticalAlignment="Top" Foreground="Black" FontSize="24" Panel.ZIndex="1" HorizontalAlignment="Right" Width="270"/>
+            <Label Content="Прикрепить Документ2" Margin="0,49,-37,0" 
+                   VerticalAlignment="Top" 
+                   Style="{StaticResource StyleLabel}"  
+                   Panel.ZIndex="1" HorizontalAlignment="Right" Width="270" Grid.Column="1" Height="34"/>
             <Button Content="Прикрепить" 
                 Command="{Binding GetDock2}" 
-                Margin="0,80,10,0" Style="{StaticResource TypeButton}" Width="113" Height="32">
+                Style="{StaticResource StyleButton}" Margin="0,85,151,0" Grid.Column="1" Height="30" Width="82">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <Label Content="Прикрепить Документ1" Margin="0,33,147,0" VerticalAlignment="Top" Foreground="Black" FontSize="24" Panel.ZIndex="1" HorizontalAlignment="Right" Width="269"/>
+            <Label Content="Прикрепить Документ1" Margin="0,48,336,0" 
+                   VerticalAlignment="Top" 
+                   Style="{StaticResource StyleLabel}"  
+                   Panel.ZIndex="1" HorizontalAlignment="Right" Width="203" Grid.Column="1" Height="34"/>
             <Button Content="Прикрепить" 
                 Command="{Binding GetDock}" 
-                Margin="0,37,10,0" Style="{StaticResource TypeButton}" Width="113" Height="33">
+                Style="{StaticResource StyleButton}" Margin="0,85,457,0" Grid.Column="1" Height="30" Width="82">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
@@ -67,17 +105,17 @@
             </Button>
 
             <Label x:Name="Response" Content="{Binding Response}" HorizontalAlignment="Left" Margin="292,28,0,0" VerticalAlignment="Top" Width="180" Height="26" Foreground="#FF92ADCB"/>
-        </Grid>
-
-        <Grid Margin="414,367,387,0" Panel.ZIndex="1">
             <Button Command="{Binding Send}" 
                 Content="Отправить" 
-                Margin="0,79,0,370" Style="{StaticResource TypeButton}" FontSize="20" VerticalAlignment="Stretch" Width="156" HorizontalAlignment="Center">
+                HorizontalAlignment="Left" Margin="291,169,0,0" Height="30" Width="82">
                 <Button.Resources>
-                    <Style TargetType="Border">
+                    <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
+                <Button.Style>
+                    <StaticResource ResourceKey="StyleButton"/>
+                </Button.Style>
             </Button>
         </Grid>
 

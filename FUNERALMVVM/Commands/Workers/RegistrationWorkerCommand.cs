@@ -3,6 +3,7 @@ using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.View;
 using FUNERALMVVM.ViewModel;
 using LegacyInfrastructure.Worker;
+using Worker;
 
 namespace FUNERALMVVM.Commands.Workers
 {
@@ -20,14 +21,25 @@ namespace FUNERALMVVM.Commands.Workers
             UserWorker userWorker = new();
             userWorker.Name = _context.Name;
             userWorker.Adress = _context.Adress;
-            userWorker.Role = _context.Role;
-            userWorker.Password = _context.Password;
             userWorker.Passport = _context.Passport;
             userWorker.Contacts = _context.Contacts;
             userWorker.Credentials = _context.Credentials;
+            userWorker.Role = _context.Role;
+            userWorker.Status = _context.Status;
+            userWorker.Password = _context.Password;
+
             //добавить проверку на наличие такого юзера
-            WorkerRepos repos = new();
-            repos.AddWorker(userWorker);
+            WorkerProvider provider = new WorkerProvider();
+            var result = provider.AddWorker(userWorker);
+
+            if(result == "error")
+            {
+                return;
+            }
+            else
+            {
+                _context.Closing();
+            }
         }
     }
 }

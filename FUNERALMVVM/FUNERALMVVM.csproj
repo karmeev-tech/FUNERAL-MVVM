@@ -7,9 +7,17 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Remove="View\logo.jpeg" />
     <None Remove="View\logo2.jpeg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WPF-UI" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,16 +29,12 @@
 
   <ItemGroup>
     <Resource Include="View\logo.jpeg" />
-    <Resource Include="View\logo2.jpeg" />
+    <Resource Include="View\logo2.jpeg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="View\AddAuthWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="View\Pages\HeadStorage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\Pages\IssuePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

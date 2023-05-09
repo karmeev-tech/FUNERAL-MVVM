@@ -1,11 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using Domain.Shop;
+using System.Collections.ObjectModel;
 
 namespace LegacyInfrastructure.Storage
 {
     public interface IShopRepos
     {
         public string AddItemToDB(ShopItem item);
-        public void UpdateDB(ShopItem item, string pickLink);
+        public void UpdateDB(ShoppingItem item);
         public string IdentityCheck(ShopItem item);
         public List<string> GetItemNames();
         public ObservableCollection<ShopItem> GetItems();

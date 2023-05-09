@@ -1,4 +1,5 @@
-﻿using LegacyInfrastructure.Worker;
+﻿using Domain.Worker;
+using LegacyInfrastructure.Worker;
 
 namespace Worker
 {
@@ -27,6 +28,15 @@ namespace Worker
             }
 
             return "Ошибка авторизации";
+        }
+
+        public void AddWorker(UserWorker worker)
+        {
+            _workerRepos.AddWorker(worker);
+        }
+        public void DeleteWorker(int id)
+        {
+            _workerRepos?.DeleteWorker(id);
         }
     }
 }

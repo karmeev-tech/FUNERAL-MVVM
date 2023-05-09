@@ -18,10 +18,20 @@ namespace FUNERALMVVM.Commands.Workers
             WorkerProvider workerProvider = new();
             _controller.Response = workerProvider.Auth(_controller.Name, _controller.Password);
 
+            string role = workerProvider.GetWorkerRole(_controller.Name);
+
             if (_controller.Response is "ok")
             {
                 WorkWindow workWindow = new();
                 workWindow.Show();
+                if(role == "Сотрудник")
+                {
+                    workWindow.UploadDORD.IsEnabled = false;
+                    workWindow.StorageHead.IsEnabled = false;
+
+                    workWindow.UploadDORD.Content = "";
+                    workWindow.StorageHead.Content = "";
+                }
                 _controller._mainWindow.Close();
             }
         }

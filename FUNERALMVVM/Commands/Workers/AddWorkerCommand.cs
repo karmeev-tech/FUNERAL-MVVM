@@ -16,8 +16,6 @@ namespace FUNERALMVVM.Commands.Workers
 
         public override void Execute(object parameter)
         {
-            AddAuthWindow addAuthWindow = new();
-            addAuthWindow.Show();
         }
     }
 }

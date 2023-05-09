@@ -2,6 +2,7 @@
 using FUNERALMVVM.Commands.Workers;
 using LegacyInfrastructure.Worker;
 using System.Windows.Input;
+using Worker;
 
 namespace FUNERALMVVM.ViewModel
 {
@@ -14,10 +15,17 @@ namespace FUNERALMVVM.ViewModel
             //нужно обеспечение из журнала посещения последнее имя
             var worker = workerContext.GetLastFromJournal();
 
+            WorkerProvider workerProvider = new();
+
             WorkerMoney = "0";
             WorkerSalary = "0";
-            WorkerStatus = workerContext.GetLastRoleFromJournal(worker);
+            WorkerStatus = workerProvider.GetWorkerRole(worker);
             WorkerProcent = "0";
+
+            if(WorkerStatus == "Сотрудник")
+            {
+                IsEnabled = false;
+            }
         }
 
         private string _status = string.Empty;
@@ -33,10 +41,6 @@ namespace FUNERALMVVM.ViewModel
         public string WorkerMoney { get; set; }
         public string WorkerSalary { get; set; }
         public string WorkerProcent { get; set; }
-
-        #region COMMANDS
-        public ICommand AddCommand => new AddWorkerCommand(this);
-        public ICommand FireCommand => new FireWorkerCommand(this);
-        #endregion
+        public bool IsEnabled { get; set; } = true;
     }
 }

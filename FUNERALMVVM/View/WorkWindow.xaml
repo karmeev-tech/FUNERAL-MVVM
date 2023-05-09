@@ -7,53 +7,65 @@
         Title="Funeral" Height="982" Width="1512" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid Background="#FFDDDDDD">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="79*"/>
+            <ColumnDefinition Width="192*"/>
+            <ColumnDefinition Width="1224*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="48*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="34*"/>
-            <RowDefinition Height="34*"/>
-            <RowDefinition Height="228*"/>
-            <RowDefinition Height="23*"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="96*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="68*"/>
+            <RowDefinition Height="357*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="46*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
 
-        <Rectangle Stroke="Black" Fill="White" StrokeThickness="0" RadiusX="1" Panel.ZIndex="2" Grid.RowSpan="9">
+        <Rectangle Stroke="Black" Fill="White" StrokeThickness="0" RadiusX="1" Panel.ZIndex="2" Grid.RowSpan="11" Grid.ColumnSpan="3">
             <Rectangle.Effect>
                 <DropShadowEffect BlurRadius="70" Direction="-90"
                               RenderingBias="Quality" ShadowDepth="5" Opacity="0.5"/>
             </Rectangle.Effect>
         </Rectangle>
 
-        <Grid Grid.Column="1" Panel.ZIndex="1" Height="96" VerticalAlignment="Center">
-            <Rectangle Margin="0,0,-2,0" Fill="White" Panel.ZIndex="1" Height="96" VerticalAlignment="Center"/>
+        <Grid Grid.Column="3" Panel.ZIndex="1" Height="147" VerticalAlignment="Top" Margin="0,-51,0,0">
+            <Rectangle Margin="0,49,-2,0" Fill="White" Panel.ZIndex="1" Height="98" VerticalAlignment="Top"/>
         </Grid>
 
-        <RadioButton Content="Сотрудник" Grid.Row="5" VerticalAlignment="Center" Height="68"
+        <RadioButton Content="Сотрудник" Grid.Row="4" VerticalAlignment="Center" Height="68"
                      x:Name="Worker" 
-                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2"/>
+                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3" Margin="-2,0,2,0"/>
+
         <RadioButton Content="Продать товар" Grid.Row="3" VerticalAlignment="Center" Height="60"
                      x:Name="SellItem" 
-                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2"/>
-        <RadioButton Content="Главная" Grid.Row="7" VerticalAlignment="Center" Height="46"
+                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3"/>
+        <RadioButton Content="Главная" Grid.Row="9" VerticalAlignment="Center" Height="46"
                      x:Name="Head" 
-                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Margin="-5,0,0,0" IsChecked="True"/>
-        <RadioButton Content="Заказ" Grid.Row="1" VerticalAlignment="Center" Height="60"
-            x:Name="Order" 
-            Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Margin="-2,0,2,0"/>
+                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" IsChecked="True" Grid.ColumnSpan="3" Width="NaN"/>
+        <RadioButton Grid.Row="1" VerticalAlignment="Center" Height="60"
+                     Content="Заказ"
+                     x:Name="Order" 
+                     Style="{StaticResource MenuButtonTheme}" 
+                     Panel.ZIndex="2" 
+                     HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Grid.ColumnSpan="3"/>
         <RadioButton Content="Оформить" Grid.Row="2" VerticalAlignment="Center" Height="60"
             x:Name="SendOrder" 
-            Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2"/>
-        <RadioButton Content="Склад" Grid.Row="4" VerticalAlignment="Center" Height="60"
-            x:Name="Storage_Head" 
-            Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2"/>
-        
-        <Grid Grid.Column="1" Grid.RowSpan="9" Margin="0,83,0,0">
-            <Frame x:Name="WorkFrame" NavigationUIVisibility ="Hidden" Height="870" VerticalAlignment="Top">
+            Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3"/>
+
+        <RadioButton Content="Загрузить DORD" Grid.Row="7" VerticalAlignment="Center" Height="46"
+            x:Name="UploadDORD" 
+            Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3" Width="NaN"/>
+        <RadioButton Content="Склад" Grid.Row="8" VerticalAlignment="Center" Height="46"
+            x:Name="StorageHead" 
+            Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3" Width="NaN"/>
+
+        <Grid Grid.Column="3" Grid.RowSpan="11" Margin="0,96,0,0" Height="NaN">
+            <Frame x:Name="WorkFrame" NavigationUIVisibility ="Hidden" Margin="0,-6,0,-7">
                 <Frame.Style>
                     <Style TargetType="Frame">
                         <Style.Triggers>
@@ -72,15 +84,18 @@
                             <DataTrigger Binding="{Binding ElementName=SendOrder, Path=IsChecked}" Value="True">
                                 <Setter Property="Source" Value="/View/Pages/IssuePage.xaml"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding ElementName=Storage_Head, Path=IsChecked}" Value="True">
+                            <DataTrigger Binding="{Binding ElementName=StorageHead, Path=IsChecked}" Value="True">
                                 <Setter Property="Source" Value="/View/Pages/HeadStorage.xaml"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=UploadDORD, Path=IsChecked}" Value="True">
+                                <Setter Property="Source" Value="/View/Pages/DORDPage.xaml"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
                 </Frame.Style>
             </Frame>
         </Grid>
-        <Image HorizontalAlignment="Center" Height="68" VerticalAlignment="Top" Width="180" Source="/View/logo.jpeg" Panel.ZIndex="2" Margin="0,16,0,0"/>
+        <Image Source="/View/logo.jpeg" Panel.ZIndex="2" Margin="27,32,43,5" Grid.Column="1" Grid.ColumnSpan="2"/>
 
 
     </Grid>

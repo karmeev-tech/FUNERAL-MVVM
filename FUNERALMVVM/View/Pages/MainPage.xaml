@@ -27,7 +27,7 @@
             <Label Content="{Binding UserName}" HorizontalAlignment="Left" Margin="423,65,0,0" VerticalAlignment="Top" FontSize="24" Foreground="#FFA1A1A1"/>
 
             <Button Command="{Binding SendCommand}" Content="Сформировать отчёт" 
-                Style="{StaticResource TypeButton}" Margin="127,227,0,14" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="158">
+                Margin="82,168,0,0" VerticalAlignment="Top" Width="168" Height="46">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -35,8 +35,7 @@
                 </Button.Resources>
             </Button>
             <Button Command="{Binding GetCommand}" Content="Загрузить отчёт" 
-                Margin="310,227,0,14" 
-                Style="{StaticResource TypeButton}" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="158">
+                Margin="292,168,0,0" VerticalAlignment="Top" Width="158" Height="45">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -46,18 +45,7 @@
             </Button>
         </Grid>
 
-        <Grid Margin="0,291,0,0">
-            <DataGrid ItemsSource="{Binding BossTable}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible"
-                  Margin="127,22,127,53">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Path='ManagerName'}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Type" Binding="{Binding Path='StartWorkTime'}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Price" Binding="{Binding Path='EndWorkTime'}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="ZakupPrice" Binding="{Binding Path='Salary'}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="OForm" Binding="{Binding Path='Money'}" IsReadOnly="True"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+        <Grid Margin="0,291,0,0"/>
 
     </Grid>
 </Page>

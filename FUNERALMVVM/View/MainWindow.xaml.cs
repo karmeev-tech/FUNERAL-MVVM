@@ -15,11 +15,17 @@ namespace FUNERAL_MVVM
             _authentication = new(this);
             DataContext = _authentication;
             InitializeComponent();
+            textPassword.Password = new("password");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
            _authentication.Password = textPassword.Password;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
