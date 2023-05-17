@@ -1,6 +1,6 @@
 ﻿using FUNERAL_MVVM.Utility;
-using FUNERALMVVM.ViewModel;
-using Worker;
+using FUNERALMVVM.ViewModel.Workers;
+using Worker.EF;
 
 namespace FUNERALMVVM.Commands.Workers
 {
@@ -15,8 +15,7 @@ namespace FUNERALMVVM.Commands.Workers
 
         public override void Execute(object parameter)
         {
-            WorkerProvider workerProvider = new();
-            workerProvider.DeleteWorker(_context.SelectedWorker);
+            WorkerConnector.DeleteWorker(_context.SelectedWorker);
             _context.Closing();
         }
     }

@@ -25,11 +25,18 @@ namespace FuneralClient.Commands.Complect
                 List<ItemComplectEntity> result = new List<ItemComplectEntity>();
                 foreach (var item in _complectController.Items)
                 {
-                    result.Add(item);
+                    result.Add(new ItemComplectEntity()
+                    {
+                        Name = item.Name,
+                        Money = item.Price,
+                        Count = item.Count,
+                        Procent = item.Procent,
+                    });
                 }
 
                 string fileName = ".docs\\json\\ComplectFuneralDoc.json";
                 AddDocument(result, fileName);
+                _complectController.Response = "good";
             }
             catch (Exception ex)
             {

@@ -1,9 +1,8 @@
-﻿using Domain.Worker;
-using FUNERAL_MVVM.Utility;
-using FUNERALMVVM.View;
-using FUNERALMVVM.ViewModel;
-using LegacyInfrastructure.Worker;
-using Worker;
+﻿using FUNERAL_MVVM.Utility;
+using FUNERALMVVM.ViewModel.Workers;
+using Infrastructure.Model.Storage;
+using Infrastructure.Model.Worker;
+using Worker.EF;
 
 namespace FUNERALMVVM.Commands.Workers
 {
@@ -18,21 +17,23 @@ namespace FUNERALMVVM.Commands.Workers
 
         public override void Execute(object parameter)
         {
-            UserWorker userWorker = new();
+            StorageEntity storageEntity = new() { Name = _context.Status};     
+            WorkerEntity userWorker = new();
             userWorker.Name = _context.Name;
             userWorker.Adress = _context.Adress;
             userWorker.Passport = _context.Passport;
             userWorker.Contacts = _context.Contacts;
             userWorker.Credentials = _context.Credentials;
             userWorker.Role = _context.Role;
-            userWorker.Status = _context.Status;
+            userWorker.ShopName = storageEntity;
             userWorker.Password = _context.Password;
 
-            //добавить проверку на наличие такого юзера
-            WorkerProvider provider = new WorkerProvider();
-            var result = provider.AddWorker(userWorker);
+            WorkerConnector workerConnector = new WorkerConnector();
+            var result = workerConnector.AddWorker(userWorker);
+            //WorkerProvider provider = new WorkerProvider();
+            //var result = provider.AddWorker(userWorker);
 
-            if(result == "error")
+            if (result == "error")
             {
                 return;
             }

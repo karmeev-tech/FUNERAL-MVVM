@@ -79,5 +79,44 @@ namespace ORDCreator
                 zip.Save(zipPath);
             }
         }
+
+        public void UnZip(string basePath, string workPath)
+        {
+            File.Move(basePath, workPath + "\\send.zip");
+            using (ZipFile zip = ZipFile.Read(workPath + "\\send.zip"))
+            {
+                zip.ExtractAll(workPath);
+            }
+            File.Delete(workPath + "\\send.zip");
+        }
+
+        public static void UnZipXord(string basePath, string workspacePath, 
+                              string randomName)
+        {
+            File.Move(basePath, workspacePath + @"\" + randomName + ".zip");
+            using (ZipFile zip = ZipFile.Read(workspacePath + @"\" + randomName + ".zip"))
+            {
+                zip.ExtractAll(workspacePath);
+            }
+            File.Delete(workspacePath + @"\" + randomName + ".zip");
+        }
+
+        public static void UnZipOrd(string basePath, string workspacePath)
+        {
+            File.Move(basePath, workspacePath + @"\meta.zip");
+
+            try
+            {
+                using (ZipFile zip = ZipFile.Read(workspacePath + "\\meta.zip"))
+                {
+                    zip.ExtractAll(workspacePath);
+                }
+            }
+            catch
+            {
+                File.Delete(workspacePath + @"\meta.zip");
+                return;
+            }
+        }
     }
 }

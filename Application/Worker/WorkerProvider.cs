@@ -1,6 +1,6 @@
-﻿using Domain.Worker;
+﻿using Domain.Dord;
+using Domain.Worker;
 using LegacyInfrastructure.Worker;
-using System.Security.Cryptography.X509Certificates;
 
 namespace Worker
 {
@@ -55,6 +55,10 @@ namespace Worker
         public string GetWorkerRole(string name)
         {
             return new WorkerInformation(_workerRepos).GetWorkerRole(name);
+        }
+        public DordEntity GetDordWorkerInformation(string jsonLink)
+        {
+            return new WorkerInformation(_workerRepos).GetDordWorkerInformation(jsonLink);
         }
     }
 }

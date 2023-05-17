@@ -1,7 +1,9 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.View;
 using FUNERALMVVM.ViewModel;
+using LegacyInfrastructure.Worker;
 using Worker;
+using Worker.EF;
 
 namespace FUNERALMVVM.Commands.Workers
 {
@@ -15,10 +17,12 @@ namespace FUNERALMVVM.Commands.Workers
 
         public override void Execute(object parameter)
         {
-            WorkerProvider workerProvider = new();
-            _controller.Response = workerProvider.Auth(_controller.Name, _controller.Password);
+            _controller.Response = WorkerConnector.Auth(_controller.Name, _controller.Password);
 
-            string role = workerProvider.GetWorkerRole(_controller.Name);
+            string role = WorkerConnector.GetWorkerRole(_controller.Name);
+
+            WorkerRepos workerRepos = new WorkerRepos();
+            workerRepos.SendToJournal(_controller.Name);
 
             if (_controller.Response is "ok")
             {

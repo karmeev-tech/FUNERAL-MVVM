@@ -7,5 +7,7 @@
         public string DownPart { get; set; }
         public string Other { get; set; }
         public string Epitafia { get; set; }
+        public string Type { get; set; }
+        public string Color { get; set; }
     }
 }

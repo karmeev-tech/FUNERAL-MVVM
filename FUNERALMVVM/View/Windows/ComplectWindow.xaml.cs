@@ -1,5 +1,7 @@
 ﻿using Domain.Complect;
+using FUNERALMVVM.View.Pages;
 using FUNERALMVVM.ViewModel;
+using Infrastructure.Model.Storage;
 using LegacyInfrastructure.Storage;
 using System;
 using System.Windows;
@@ -13,20 +15,21 @@ namespace FUNERALMVVM.View.Windows
     public partial class KomplektWindow : Window
     {
         private readonly ComplectController _complectController;
-        public KomplektWindow()
+        public KomplektWindow(OrderPage orderPage)
         {
-            _complectController = new ComplectController(this);
+            _complectController = new ComplectController(this, orderPage);
             DataContext = _complectController;
             InitializeComponent();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                ItemComplectEntity dataRowView = (ItemComplectEntity)((Button)e.Source).DataContext;
+                StorageItemEntity dataRowView = (StorageItemEntity)((Button)e.Source).DataContext;
                 string name = dataRowView.Name;
-                _complectController.DeleteItem(name);
+                int count = dataRowView.Count;
+                _complectController.DeleteItem(name, count);
             }
             catch (Exception ex)
             {

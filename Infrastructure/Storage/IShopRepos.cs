@@ -13,5 +13,7 @@ namespace LegacyInfrastructure.Storage
         public List<string> GetPickLinks();
         public void DeleteInDB(string name);
         public void DeleteInWorkspace(string name);
+
+        public void UpdateItemInDB(string name, int count);
     }
 }

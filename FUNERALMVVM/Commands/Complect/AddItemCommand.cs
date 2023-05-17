@@ -1,6 +1,7 @@
 ﻿using Domain.Complect;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
+using Infrastructure.Model.Storage;
 using System.Linq;
 
 namespace FuneralClient.Commands.Complect
@@ -18,10 +19,10 @@ namespace FuneralClient.Commands.Complect
         {
             var entity = _complectController.ComplectStorage
                 .Where(x => x.Name == _complectController.SelectItem);
-            ItemComplectEntity itemComplectEntity = new()
+            StorageItemEntity itemComplectEntity = new()
             {
                 Name = _complectController.SelectItem,
-                Money = entity.ToList()[0].Money,
+                Price = entity.ToList()[0].Price,
                 Count = entity.ToList()[0].Count,
                 Procent = entity.ToList()[0].Procent,
             };

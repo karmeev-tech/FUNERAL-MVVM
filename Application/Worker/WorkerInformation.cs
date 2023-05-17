@@ -1,4 +1,5 @@
-﻿using LegacyInfrastructure.Worker;
+﻿using Domain.Dord;
+using LegacyInfrastructure.Worker;
 
 namespace Worker
 {
@@ -23,6 +24,11 @@ namespace Worker
         public string GetWorkerRole(string name)
         {
             return _workerRepos.GetWorkerRole(name);
+        }
+
+        public DordEntity GetDordWorkerInformation(string jsonLink)
+        {
+            return new DordEntity();
         }
     }
 }

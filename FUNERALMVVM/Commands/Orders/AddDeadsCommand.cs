@@ -1,5 +1,10 @@
-﻿using FUNERAL_MVVM.Utility;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using FUNERAL_MVVM.Utility;
+using FUNERALMVVM.Model.Order;
 using FUNERALMVVM.ViewModel;
+using System;
+using System.Globalization;
+using System.Windows;
 
 namespace FUNERALMVVM.Commands.Orders
 {
@@ -14,38 +19,59 @@ namespace FUNERALMVVM.Commands.Orders
 
         public override void Execute(object parameter)
         {
-            if (_orderController.BirthDeads == null || _orderController.FIOdeads == null || _orderController.DeathDeads == null)
+            if (ErrorInput(_orderController.BirthDeads, _orderController.DeathDeads) != 2)
                 return;
-            if (ErrorInput(_orderController.BirthDeads, _orderController.FIOdeads, _orderController.DeathDeads) != 3)
-                return;
+            var birth = _orderController.BirthDeads;
+            if (birth.Contains("/"))
+            {
+                birth = birth.Replace("/", ".");
+            }
+            var dead = _orderController.DeathDeads;
+            if (dead.Contains("/"))
+            {
+                dead = dead.Replace("/", ".");
+            }
+
+            DeadModel deadModel = new() 
+            { 
+                Name = _orderController.Name,
+                LastName = _orderController.LastName,
+                ThirdName = _orderController.ThirdName,
+                Life = birth,
+                Death = dead,
+            };
+
+            _orderController.Name = string.Empty;
+            _orderController.LastName = string.Empty;
+            _orderController.ThirdName = string.Empty;
+            _orderController.BirthDeads = string.Empty;
+            _orderController.DeathDeads = string.Empty;
 
             if (_orderController._deadboydCount < 4)
             {
                 _orderController._deadboydCount++;
-                _orderController.Deadbody += _orderController.FIOdeads + " " + _orderController.BirthDeads + " " + _orderController.DeathDeads + "\n";
-                _orderController._deadsCollection.Add(_orderController.FIOdeads + " " + _orderController.BirthDeads + " " + _orderController.DeathDeads + "\n");
-                _orderController.BirthDeads = string.Empty;
-                _orderController.FIOdeads = string.Empty;
-                _orderController.DeathDeads = string.Empty;
-            }
-            else
-            {
-                _orderController.BirthDeads = string.Empty;
-                _orderController.FIOdeads = string.Empty;
-                _orderController.DeathDeads = string.Empty;
+                _orderController.Deadbody += deadModel.GetDead() + "\n";
+                _orderController._deadsCollection.Add(deadModel.GetDead() + "\n");
+                _orderController._deadModels.Add(deadModel);
             }
         }
 
-        private int ErrorInput(string birth, string fio, string death)
+        private static int ErrorInput(string birth, string death)
         {
-            int counter = 0;
-            if (birth.Replace(" ", "") != "" && birth.Length == 10)
-                counter++;
-            if (death.Replace(" ","") != "" && death.Length == 10)
-                counter++;
-            if (fio.Replace(" ", "") != "")
-                counter++;
-            return counter;
+            try
+            {
+                string dateString = birth.Replace(".","/");
+                string format = "dd/MM/yyyy";
+                DateTime dateTime = DateTime.ParseExact(dateString, format, CultureInfo.InvariantCulture);
+                dateString = death.Replace(".", "/");
+                dateTime = DateTime.ParseExact(dateString, format, CultureInfo.InvariantCulture);
+            }
+            catch
+            {
+                MessageBox.Show("Дата введена неверно");
+                return -1;
+            }
+            return 2;
         }
     }
 }

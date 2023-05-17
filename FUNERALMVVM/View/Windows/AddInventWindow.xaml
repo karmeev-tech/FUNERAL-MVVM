@@ -1,0 +1,49 @@
+﻿<Window x:Class="FUNERALMVVM.View.Windows.AddInventWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:invent="clr-namespace:FUNERALMVVM.ViewModel.Invent" d:DataContext="{d:DesignInstance Type=invent:InventVM}"
+        mc:Ignorable="d"
+        Title="AddInventWindow" Height="537" Width="717" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible"
+                  Margin="81,101,81,48" Height="NaN" Width="NaN">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path='Name'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Цена" Binding="{Binding Path='Price'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Закупочная цена" Binding="{Binding Path='ZakupPrice'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path='Count'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Процент" Binding="{Binding Path='Procent'}" IsReadOnly="True"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить" Click="Button_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Command="{Binding Update}" Content="Загрузить" 
+            Style="{StaticResource StyleButton}" Margin="189,40,0,0" Width="82" HorizontalAlignment="Left" Height="40">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Button Command="{Binding Upload}" Content="Добавить" 
+            Margin="81,40,0,0" Width="82" HorizontalAlignment="Left" Height="40">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <StaticResource ResourceKey="StyleButton"/>
+            </Button.Style>
+        </Button>
+    </Grid>
+</Window>

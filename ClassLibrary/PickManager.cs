@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.IO;
+using System.Windows;
 
 namespace ClassLibrary
 {
@@ -56,6 +57,36 @@ namespace ClassLibrary
             openFileDialog.Filter = "ORD (*.ord)|*.ord";
             openFileDialog.ShowDialog();
             return openFileDialog.FileName;
+        }
+
+        [Obsolete]
+        public string OpenManagerFileNameDord()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "DORD (*.dord)|*.dord";
+            openFileDialog.ShowDialog();
+            return openFileDialog.FileName;
+        }
+
+        [Obsolete]
+        public string OpenManagerFileNameJson()
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "JSON (*.json)|*.json";
+            openFileDialog.ShowDialog();
+            return openFileDialog.FileName;
+        }
+
+        [Obsolete]
+        public string OpenManagerDir()
+        {
+            SaveFileDialog openFileDialog = new SaveFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string directoryPath = Path.GetDirectoryName(openFileDialog.FileName);
+                return directoryPath;
+            }
+            return string.Empty;
         }
 
         public void Remove(string path)

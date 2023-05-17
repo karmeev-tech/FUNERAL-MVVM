@@ -3,6 +3,7 @@ using FUNERALMVVM.ViewModel;
 using System.Windows;
 using System;
 using System.Windows.Controls;
+using Infrastructure.Model.Storage;
 
 namespace FUNERALMVVM.View.Pages
 {
@@ -23,7 +24,7 @@ namespace FUNERALMVVM.View.Pages
         {
             try
             {
-                ItemComplectEntity dataRowView = (ItemComplectEntity)((Button)e.Source).DataContext;
+                StorageItemEntity dataRowView = (StorageItemEntity)((Button)e.Source).DataContext;
                 string name = dataRowView.Name;
                 _controller.DeleteItem(name);
             }

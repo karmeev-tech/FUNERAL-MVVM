@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FUNERALMVVM.View.Windows"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:DeleteWorkersVM}" x:Class="FUNERALMVVM.View.Windows.DeleteWorkerWindow"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel.Workers" d:DataContext="{d:DesignInstance Type=viewmodel:DeleteWorkersVM}" x:Class="FUNERALMVVM.View.Windows.DeleteWorkerWindow"
         mc:Ignorable="d"
         Title="DeleteWorkerWindow" Height="222" Width="659" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <ui:Button Command="{Binding Delete}" Content="Удалить" HorizontalAlignment="Left" Margin="466,79,0,0" VerticalAlignment="Top" Width="121"/>
-        <ComboBox ItemsSource="{Binding workers}" SelectedItem="{Binding SelectedWorker}" HorizontalAlignment="Left" Margin="70,79,0,0" VerticalAlignment="Top" Width="260"/>
+        <ComboBox ItemsSource="{Binding Workers}" SelectedItem="{Binding SelectedWorker}" HorizontalAlignment="Left" Margin="70,79,0,0" VerticalAlignment="Top" Width="260"/>
 
     </Grid>
 </Window>

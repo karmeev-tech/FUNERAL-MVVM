@@ -22,44 +22,18 @@ namespace FUNERALMVVM.Commands.Issue
 
         public override void Execute(object parameter)
         {
-            if (_controller.Payment == string.Empty || _controller.Prepayment == string.Empty)
+            var managerName = _repos.GetLastFromJournal();
+            BaseIssueEntity issue = new()
             {
-                _controller.Response = "Введено неверное число";
-                return;
-            }
-
-            try
-            {
-                Convert.ToInt32(_controller.Payment);
-                Convert.ToInt32(_controller.Prepayment);
-            }
-            catch(FormatException)
-            {
-                _controller.Response = "Введено неверное число";
-                return;
-            }
-
-            if (_controller._scanLink == string.Empty || _controller._dockLink == string.Empty 
-                || _controller._dock2Link == string.Empty || _controller._ord == string.Empty
-                || _controller.Payment == string.Empty || _controller.Prepayment == string.Empty)
-            {
-                _controller.Response = "Прикрепите скан/отчёт";
-            }
-            else
-            {
-                var managerName = _repos.GetLastFromJournal();
-                BaseIssueEntity issue = new()
-                {
-                    Payment = int.Parse(_controller.Payment),
-                    Prepayment = int.Parse(_controller.Prepayment),
-                    ScanPath = _controller._scanLink, //место откуда мы кидаем сканы на босс пк
-                    DockPath = _controller._dockLink, //место откуда мы кидаем отчёт на босс пк
-                    Dock2Path = _controller._dock2Link,
-                    OrdPath = _controller._ord,
-                    ManagerName = managerName
-                };
-                SendIssue(issue);
-            }
+                Payment = int.Parse(_controller.Payment),
+                Prepayment = int.Parse(_controller.Prepayment),
+                ScanPath = _controller._scanLink, //место откуда мы кидаем сканы на босс пк
+                DockPath = _controller._dockLink, //место откуда мы кидаем отчёт на босс пк
+                Dock2Path = _controller._dock2Link,
+                OrdPath = _controller._ord,
+                ManagerName = managerName
+            };
+            SendIssue(issue);
         }
 
         public async void SendIssue(BaseIssueEntity issue)
@@ -76,7 +50,6 @@ namespace FUNERALMVVM.Commands.Issue
                 });
                 await createStream2.DisposeAsync();
 
-                Provider provider = new();
                 Provider.IssueTransferring(jsonpath);
 
                 _controller.Response = "Заявка принята";

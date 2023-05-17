@@ -34,5 +34,6 @@
             <Rectangle Fill="#FFF2F2F2" HorizontalAlignment="Left" Width="365" Grid.RowSpan="6" Height="NaN"/>
         </Grid>
         <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Удалить сотрудника" HorizontalAlignment="Left" Margin="89,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="187" Click="Button_Click2" Height="35"/>
+        <ui:Button Panel.ZIndex="1" Content="Загрузить ордер" Margin="89,0,0,0" Grid.Row="4" Width="187" Click="Button_Click2" Height="35"/>
     </Grid>
 </Page>

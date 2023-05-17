@@ -1,9 +1,12 @@
-﻿using Domain.Services.Entity;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
+using Domain.Services.Entity;
 using FUNERAL_MVVM.Utility;
 using FuneralClient.Commands.Services;
 using FuneralClient.View.Windows;
 using FUNERALMVVM.Commands.Services;
+using FUNERALMVVM.View.Pages;
 using Legacy.Infrastructure.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -22,7 +25,8 @@ namespace FUNERALMVVM.ViewModel
         private ObservableCollection<string> _paramsNames = new();
         private ObservableCollection<string> _paramsNames2 = new();
         private ObservableCollection<Service> _services = new();
-        public ServicesController(ServicesWindow ordersWindow)
+        private OrderPage _orderPage;
+        public ServicesController(ServicesWindow ordersWindow, OrderPage orderPage)
         {
             _ordersWindow = ordersWindow;
             _listComplect = _complectRepos.GetServices();
@@ -34,6 +38,7 @@ namespace FUNERALMVVM.ViewModel
             {
                 ServicesName.Add(item);
             }
+            _orderPage = orderPage;
         }
 
         private string chooseService = string.Empty;
@@ -54,14 +59,6 @@ namespace FUNERALMVVM.ViewModel
                     foreach (var item in paramsNames)
                     {
                         ParamsNames.Add(item);
-                    }
-
-                    paramsNames = _listComplect.Where(item => item.Name == chooseService).Select(item => item.Param2).ToList();
-
-                    ParamsNames2 = new();
-                    foreach (var item in paramsNames)
-                    {
-                        ParamsNames2.Add(item);
                     }
                 }
             }
@@ -123,16 +120,21 @@ namespace FUNERALMVVM.ViewModel
 
         public void ViewClosed()
         {
+            var price = 0;
+            foreach (var item in Services)
+            {
+                price += item.Money * item.Count;
+            }
+            var result = Convert.ToInt32(_orderPage.tb13.Text) + price;
+            _orderPage.tb13.Text = result.ToString();
+
             _ordersWindow.Opacity = 0;
             _ordersWindow.Close();
         }
         public void DeleteItem(string itemName)
         {
-            var newItems = Services.Where(x => x.Name == itemName).ToList();
-            foreach (var item in newItems)
-            {
-                Services.Remove(item);
-            }
+            var newItems = Services.Where(x => x.Name == itemName).Last();
+            Services.Remove(newItems);
         }
     }
 }

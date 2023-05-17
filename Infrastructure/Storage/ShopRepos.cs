@@ -203,5 +203,62 @@ namespace LegacyInfrastructure.Storage
             sqlDataAdapter.Dispose();
             Close();
         }
+
+        public void UpdateItemInDB(string name, int count)
+        {
+            int baseCount = GetItemCount(name);
+            baseCount = baseCount - count;
+
+            int id = GetItemId(name);
+
+            Connect("StorageDB");
+            SqlCommand command = new(
+                "UPDATE [Storage] SET Count = " + baseCount.ToString() + " WHERE Id = " + id  
+                , _sqlConnection);
+            command.ExecuteNonQuery();
+            Close();
+        }
+
+        public int GetItemCount(string name)
+        {
+            Connect("StorageDB");
+            int count = 0;
+            SqlDataAdapter sqlDataAdapter = new("SELECT * FROM Storage", _sqlConnection);
+            DataSet ds = new();
+            sqlDataAdapter.Fill(ds);
+            ds.IsInitialized.ToString();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                if(name == dr[1].ToString())
+                {
+                    count = Convert.ToInt32(dr[4].ToString());
+                }
+            }
+            sqlDataAdapter.Dispose();
+            Close();
+            return count;
+        }
+
+        public int GetItemId(string name)
+        {
+            Connect("StorageDB");
+            int id = 0;
+            SqlDataAdapter sqlDataAdapter = new("SELECT * FROM Storage", _sqlConnection);
+            DataSet ds = new();
+            sqlDataAdapter.Fill(ds);
+            ds.IsInitialized.ToString();
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                if (name == dr[1].ToString())
+                {
+                    id = Convert.ToInt32(dr[0].ToString());
+                }
+            }
+            sqlDataAdapter.Dispose();
+            Close();
+            return id;
+        }
+
+
     }
 }

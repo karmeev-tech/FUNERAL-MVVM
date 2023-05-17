@@ -64,30 +64,31 @@ namespace OrderManager
 
         public void CreateBlank(
                       int modifier,
-                      string name,
-                      string adress,
-                      string komplekt,
-                      string price,
-                      string prepayment,
-                      string phonenumber,
-                      string orderAdress,
-                      string deliverAdress,
-                      string today,
-                      string obelisk,
-                      string tumba,
-                      string grob,
-                      string color,
+                      List<DeadModel> entities,
+                      string typeblank,
+                      string obeliskForm,
+                      string tumbaForm,
+                      string grobForm,
+                      string funColor,
                       string polish,
                       string other,
-                      string uppart,
-                      string downpart,
-                      string otherofform,
-                      string materialfuneral,
-                      List<DeadEntity> entities,
+                      string upFuneral,
+                      string downFuneral,
+                      string otherFuneral,
                       string epitafia,
-                      string instal,
-                      string remainder,
-                      string typeblank)
+                      string todayDate,
+                      string createDate,
+                      string clientFIO,
+                      string clientAdress,
+                      string clientPhone,
+                      string clientFuneral,
+                      string clientDelivery,
+                      string clientInstal,
+                      string clientPrice,
+                      string clientPrepayment,
+                      string clientRe,
+                      string funeralMaterial,
+                      string funeralNumber)
         {
             string loadPath = "";
             switch (modifier)
@@ -109,75 +110,80 @@ namespace OrderManager
 
             File.Copy(loadPath, savePath, true);
 
-            DocCreator(loadPath, savePath, "CLIENTNAME", name);
-            DocCreator(loadPath, savePath, "ADRESS", adress);
-            DocCreator(loadPath, savePath, "COMPLEKT", komplekt);
-            DocCreator(loadPath, savePath, "CADRES", adress);
-            DocCreator(loadPath, savePath, "PRICE", price);
-            DocCreator(loadPath, savePath, "PREDOPLATA", prepayment);
-            DocCreator(loadPath, savePath, "WHATSUP", phonenumber);
+            DocCreator(loadPath, savePath, "сёдня", todayDate);
+            DocCreator(loadPath, savePath, "зара", createDate);
 
-            DocCreator(loadPath, savePath, "DADR", deliverAdress);
-            DocCreator(loadPath, savePath, "TODAYDATE", today);
-            DocCreator(loadPath, savePath, "FORMOBELISK", obelisk);
-            DocCreator(loadPath, savePath, "FORMTUMBA", tumba);
-            DocCreator(loadPath, savePath, "FORMGROB", grob);
-            DocCreator(loadPath, savePath, "COLOR", color);
-            DocCreator(loadPath, savePath, "POLISH", polish);
+            DocCreator(loadPath, savePath, "фоб", obeliskForm);
+            DocCreator(loadPath, savePath, "фт", tumbaForm);
+            DocCreator(loadPath, savePath, "фг", grobForm);
+            DocCreator(loadPath, savePath, "цп", funColor);
+            DocCreator(loadPath, savePath, "полир", polish);
+            DocCreator(loadPath, savePath, "проч", other);
 
-            DocCreator(loadPath, savePath, "OTHER", other);
-            DocCreator(loadPath, savePath, "UPPART", uppart);
-            DocCreator(loadPath, savePath, "DOWNPART", downpart);
-            DocCreator(loadPath, savePath, "OFFORM", otherofform);
-            DocCreator(loadPath, savePath, "FUNERALMATERIAL", materialfuneral);
-            DocCreator(loadPath, savePath, "EPIT", epitafia);
-            DocCreator(loadPath, savePath, "INSTAL", instal);
-            DocCreator(loadPath, savePath, "OSTIK", remainder);
+            DocCreator(loadPath, savePath, "вчб", upFuneral);
+            DocCreator(loadPath, savePath, "нчб", downFuneral);
+            DocCreator(loadPath, savePath, "поф", otherFuneral);
+
+            DocCreator(loadPath, savePath, "эпия", epitafia);
+
+            DocCreator(loadPath, savePath, "клиф", clientFIO);
+            DocCreator(loadPath, savePath, "клиа", clientAdress);
+            DocCreator(loadPath, savePath, "клт", clientPhone);
+            DocCreator(loadPath, savePath, "клд", clientFuneral);
+            DocCreator(loadPath, savePath, "дс", clientDelivery);
+            DocCreator(loadPath, savePath, "уст", clientInstal);
+            DocCreator(loadPath, savePath, "цз", clientPrice);
+            DocCreator(loadPath, savePath, "пред", clientPrepayment);
+            DocCreator(loadPath, savePath, "токст", clientRe);
+
+            DocCreator(loadPath, savePath, "фунмат", funeralMaterial);
+            DocCreator(loadPath, savePath, "нмбр", funeralNumber);
+
             switch (modifier)
             {
                 case 1:
-                    DocCreator(loadPath, savePath, "DO", entities[0].DeadFIO);
-                    DocCreator(loadPath, savePath, "DMO", entities[0].DeadBirth);
-                    DocCreator(loadPath, savePath, "VIZO", entities[0].DeadDie);
+                    DocCreator(loadPath, savePath, "фиод", entities[0].Name + " " + entities[0].ThirdName + " " + entities[0].LastName + " ");
+                    DocCreator(loadPath, savePath, "чмгрд", entities[0].Life);
+                    DocCreator(loadPath, savePath, "чмгсд", entities[0].Death);
                     break;
                 case 2:
-                    DocCreator(loadPath, savePath, "DO", entities[0].DeadFIO);
-                    DocCreator(loadPath, savePath, "DMO", entities[0].DeadBirth);
-                    DocCreator(loadPath, savePath, "VIZO", entities[0].DeadDie);
+                    DocCreator(loadPath, savePath, "фиод", entities[0].Name + " " + entities[0].ThirdName + " " + entities[0].LastName + " ");
+                    DocCreator(loadPath, savePath, "чмгрд", entities[0].Life);
+                    DocCreator(loadPath, savePath, "чмгсд", entities[0].Death);
 
-                    DocCreator(loadPath, savePath, "TXO", entities[1].DeadFIO);
-                    DocCreator(loadPath, savePath, "TMI", entities[1].DeadBirth);
-                    DocCreator(loadPath, savePath, "TIHO", entities[1].DeadDie);
+                    DocCreator(loadPath, savePath, "TXO", entities[1].Name);
+                    DocCreator(loadPath, savePath, "TMI", entities[1].Life);
+                    DocCreator(loadPath, savePath, "TIHO", entities[1].Death);
                     break;
                 case 3:
-                    DocCreator(loadPath, savePath, "DO", entities[0].DeadFIO);
-                    DocCreator(loadPath, savePath, "DMO", entities[0].DeadBirth);
-                    DocCreator(loadPath, savePath, "VIZO", entities[0].DeadDie);
+                    DocCreator(loadPath, savePath, "фиод", entities[0].Name + " " + entities[0].ThirdName + " " + entities[0].LastName + " ");
+                    DocCreator(loadPath, savePath, "чмгрд", entities[0].Life);
+                    DocCreator(loadPath, savePath, "чмгсд", entities[0].Death);
 
-                    DocCreator(loadPath, savePath, "TXO", entities[1].DeadFIO);
-                    DocCreator(loadPath, savePath, "TMI", entities[1].DeadBirth);
-                    DocCreator(loadPath, savePath, "TIHO", entities[1].DeadDie);
+                    DocCreator(loadPath, savePath, "TXO", entities[1].Name);
+                    DocCreator(loadPath, savePath, "TMI", entities[1].Life);
+                    DocCreator(loadPath, savePath, "TIHO", entities[1].Death);
 
-                    DocCreator(loadPath, savePath, "THR", entities[2].DeadFIO);
-                    DocCreator(loadPath, savePath, "THMR", entities[2].DeadBirth);
-                    DocCreator(loadPath, savePath, "THIMI", entities[2].DeadDie);
+                    DocCreator(loadPath, savePath, "THR", entities[2].Name);
+                    DocCreator(loadPath, savePath, "THMR", entities[2].Life);
+                    DocCreator(loadPath, savePath, "THIMI", entities[2].Death);
                     break;
                 case 4:
-                    DocCreator(loadPath, savePath, "DO", entities[0].DeadFIO);
-                    DocCreator(loadPath, savePath, "DMO", entities[0].DeadBirth);
-                    DocCreator(loadPath, savePath, "VIZO", entities[0].DeadDie);
+                    DocCreator(loadPath, savePath, "фиод", entities[0].Name + " " + entities[0].ThirdName + " " + entities[0].LastName + " ");
+                    DocCreator(loadPath, savePath, "чмгрд", entities[0].Life);
+                    DocCreator(loadPath, savePath, "чмгсд", entities[0].Death);
 
-                    DocCreator(loadPath, savePath, "TXO", entities[1].DeadFIO);
-                    DocCreator(loadPath, savePath, "TMI", entities[1].DeadBirth);
-                    DocCreator(loadPath, savePath, "TIHO", entities[1].DeadDie);
+                    DocCreator(loadPath, savePath, "ф2иод", entities[1].Name + " " + entities[1].ThirdName + " " + entities[1].LastName + " ");
+                    DocCreator(loadPath, savePath, "ч2мгрд", entities[1].Life);
+                    DocCreator(loadPath, savePath, "ч2мгсд", entities[1].Death);
 
-                    DocCreator(loadPath, savePath, "THR", entities[2].DeadFIO);
-                    DocCreator(loadPath, savePath, "THMR", entities[2].DeadBirth);
-                    DocCreator(loadPath, savePath, "THIMI", entities[2].DeadDie);
+                    DocCreator(loadPath, savePath, "3дои", entities[2].Name + " " + entities[2].ThirdName + " " + entities[2].LastName + " ");
+                    DocCreator(loadPath, savePath, "3чрд", entities[2].Life);
+                    DocCreator(loadPath, savePath, "3рсд", entities[2].Death);
 
-                    DocCreator(loadPath, savePath, "FL", entities[3].DeadFIO);
-                    DocCreator(loadPath, savePath, "PB", entities[3].DeadBirth);
-                    DocCreator(loadPath, savePath, "VLF", entities[3].DeadDie);
+                    DocCreator(loadPath, savePath, "чи4к", entities[3].Name + " " + entities[3].ThirdName + " " + entities[3].LastName + " ");
+                    DocCreator(loadPath, savePath, "4фати", entities[3].Life);
+                    DocCreator(loadPath, savePath, "таф4", entities[3].Death);
                     break;
             }
         }

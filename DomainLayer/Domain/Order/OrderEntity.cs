@@ -10,7 +10,7 @@ namespace Domain.Order
         public StandEntity Stand { get; set; }
         public FlowershedEntity Flowershed { get; set; }
         public string Polishing { get; set; }    
-        public string Deadass { get; set; }
+        public List<DeadModel> Deadass { get; set; }
         public int DeadassCount { get; set; }
         public InstalEntity Instal { get; set; }
         public FuneralEntity Funeral { get; set; }

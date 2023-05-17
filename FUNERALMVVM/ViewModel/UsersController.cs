@@ -5,6 +5,7 @@ using LegacyInfrastructure.Worker;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Worker.EF;
 
 namespace FUNERALMVVM.ViewModel
 {
@@ -19,9 +20,8 @@ namespace FUNERALMVVM.ViewModel
         public UsersController()
         {
             WorkerRepos workerRepos = new WorkerRepos();
-
             UserName = workerRepos.GetLastFromJournal();
-            Role = workerRepos.GetLastRoleFromJournal(UserName);
+            Role = WorkerConnector.GetWorkerRole(UserName);
         }
 
         public string UserName { get => _userName; set { _userName = value; OnPropertyChanged(nameof(UserName)); } } // это manager name

@@ -8,17 +8,20 @@
         mc:Ignorable="d"
         Title="AddWorkersWindow"
         Height="509" Width="639" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid GotFocus="Grid_GotFocus">
 
-        <ui:TextBox Text="{Binding Name}"  HorizontalAlignment="Left" Margin="26,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40"/>
-        <ui:TextBox Text="{Binding Adress}"  HorizontalAlignment="Left" Margin="26,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40"/>
-        <ui:TextBox Text="{Binding Passport}"  HorizontalAlignment="Left" Margin="26,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40"/>
-        <ui:TextBox Text="{Binding Contacts}"  HorizontalAlignment="Left" Margin="26,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40"/>
-        <ui:TextBox Text="{Binding Credentials}"  HorizontalAlignment="Left" Margin="26,214,0,0" TextWrapping="Wrap" Width="153" Height="40" VerticalAlignment="Top"/>
-        <ui:TextBox Text="{Binding Role}"  HorizontalAlignment="Left" Margin="26,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40"/>
-        <ui:TextBox Text="{Binding Status}"  HorizontalAlignment="Left" Margin="26,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40"/>
-        <ui:TextBox Text="{Binding Password}"  HorizontalAlignment="Left" Margin="26,349,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40"/>
-        <ui:Button Command="{Binding AddWorker}" Content="Добавить" Margin="0,406,0,0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+        <ui:TextBox x:Name="tb1" Text="{Binding Name}"  HorizontalAlignment="Left" Margin="26,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40" Background="#B3FFFFFF" Foreground="#E4989898" GotFocus="tbGotFocus"/>
+        <ui:TextBox x:Name="tb2" Text="{Binding Adress}"  HorizontalAlignment="Left" Margin="26,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40" GotFocus="tbGotFocus" Background="#B3FFFFFF" Foreground="#E4989898"/>
+        <ui:TextBox x:Name="tb3" Text="{Binding Passport}"  HorizontalAlignment="Left" Margin="26,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40" GotFocus="tbGotFocus" Background="#B3FFFFFF" Foreground="#E4989898"/>
+        <ui:TextBox x:Name="tb4" Text="{Binding Contacts}"  HorizontalAlignment="Left" Margin="26,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40" GotFocus="tbGotFocus" Background="#B3FFFFFF" Foreground="#E4989898"/>
+        <ui:TextBox x:Name="tb5" Text="{Binding Credentials}"  HorizontalAlignment="Left" Margin="26,214,0,0" TextWrapping="Wrap" Width="153" Height="40" VerticalAlignment="Top" GotFocus="tbGotFocus" Background="#B3FFFFFF" Foreground="#E4989898"/>
+        <ComboBox x:Name="tb7" SelectedItem="{Binding Role}" HorizontalAlignment="Left" Margin="26,257,0,0" VerticalAlignment="Top" Width="87">
+            <ComboBoxItem Content="Сотрудник"/>
+            <ComboBoxItem Content="admin"/>
+        </ComboBox>
+        <ui:TextBox x:Name="tb8" Text="{Binding Password}"  HorizontalAlignment="Left" Margin="26,349,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153" Height="40" GotFocus="tbGotFocus" Background="#B3FFFFFF" Foreground="#E4989898"/>
+        <ui:Button x:Name="AddButton" Command="{Binding AddWorker}" Content="Добавить" Margin="0,406,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" IsEnabled="False"/>
+        <ComboBox x:Name="tb9" ItemsSource="{Binding Shops}" SelectedItem="{Binding Status}" HorizontalAlignment="Left" Margin="26,304,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

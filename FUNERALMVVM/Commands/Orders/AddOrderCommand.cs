@@ -1,9 +1,7 @@
-﻿using Domain.Complect;
+﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
 using Domain.Order;
-using Domain.Services.Entity;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
-using LegacyInfrastructure.Order;
 using OrderManager;
 using System;
 using System.Collections.Generic;
@@ -25,6 +23,24 @@ namespace FUNERALMVVM.Commands.Orders
         public override void Execute(object parameter)
         {
             DateTime dateTime = DateTime.Now;
+
+            var deads = new List<Domain.Order.DeadModel>();
+
+            foreach (var item in _orderController._deadModels)
+            {
+                deads.Add
+                    (
+                    new Domain.Order.DeadModel()
+                    {
+                        Name = item.Name,
+                        LastName = item.LastName,
+                        ThirdName = item.ThirdName,
+                        Life = item.Life,
+                        Death = item.Death,
+                    }
+                );
+            }
+
             OrderEntity orderEntity = new()
             {
                 Base = new Domain.Order.Config.FuneralBaseEntity()
@@ -51,7 +67,7 @@ namespace FUNERALMVVM.Commands.Orders
                     NoInstal = _orderController.FlowerIndicate
                 },
                 Polishing = _orderController.PolishingColor,
-                Deadass = _orderController.Deadbody,
+                Deadass = deads,
                 DeadassCount = _orderController._deadboydCount,
                 Instal = new Domain.Order.Config.InstalEntity()
                 {
@@ -65,15 +81,22 @@ namespace FUNERALMVVM.Commands.Orders
                     DownPart = _orderController.DownDesign,
                     Other = _orderController.OtherDesign,
                     Epitafia = _orderController.Epitafia,
+                    Type = _orderController.Type,
+                    Color = _orderController.Color,
                 },
                 ClientOrder = new Domain.Order.Config.ClientOrderEntity()
                 {
-                    FIO = _orderController.ClientFIO,
+                    Name = _orderController.ClientName,
+                    LastName = _orderController.ClientLastName,
+                    ThirdName = _orderController.ClientThirdName,
                     Adress = _orderController.ClientAdress,
                     Passport = _orderController.ClientPassport,
                     Phone = _orderController.ClientNumber,
                     Cemetry = _orderController.ClientFuneral,
-                    Telegram = _orderController.ClientSocial
+                    Telegram = _orderController.ClientSocial,
+                    DeliveryPlace = _orderController.ClientDelivery,
+                    DateToday = dateTime.ToString(),
+                    DateCreation = _orderController.CreateFuneralDate
                 },
                 Price = _orderController.Price,
                 Prepayment = _orderController.Prepayment,
@@ -82,6 +105,7 @@ namespace FUNERALMVVM.Commands.Orders
             string fileName = ".docs\\json\\OrderDoc.json";
             AddJson(orderEntity, fileName);
             AddDocs();
+            _orderController.Response = "Успешно";
         }
         public async void AddDocs()
         {

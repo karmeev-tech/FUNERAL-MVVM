@@ -1,6 +1,7 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
-using Shop;
+using Shop.EF;
+using System.Linq;
 
 namespace FUNERALMVVM.Commands.HeadStorage
 {
@@ -14,19 +15,14 @@ namespace FUNERALMVVM.Commands.HeadStorage
 
         public override void Execute(object parameter)
         {
-            var items = _headStorageController.Items;
-            ShopProvider shopProvider = new();
-            foreach (var item in items) 
+            var items = _headStorageController.Items.ToList();
+            ShopConnector shopConnector = new();
+            if (_headStorageController.ShopName == string.Empty)
             {
-                shopProvider.UpdateItems(item);
+                _headStorageController.Response = "Выберите имя магазина";
+                return;
             }
-
-            _headStorageController.Items = new();
-            var resultItems = shopProvider.GetAllItems();
-            foreach (var item in resultItems)
-            {
-                _headStorageController.Items.Add(item);
-            }
+            shopConnector.UpdateDB(items,_headStorageController.ShopName);
         }
     }
 }

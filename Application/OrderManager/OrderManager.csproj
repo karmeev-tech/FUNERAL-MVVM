@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;dbg</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DomainLayer\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Legacy.Infrastructure.csproj" />
     <ProjectReference Include="..\ORDCreator\ORDCreator.csproj" />
   </ItemGroup>
 

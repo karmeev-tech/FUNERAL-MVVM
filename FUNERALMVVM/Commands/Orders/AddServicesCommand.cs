@@ -15,7 +15,7 @@ namespace FUNERALMVVM.Commands.Orders
 
         public override void Execute(object parameter)
         {
-            ServicesWindow window = new();
+            ServicesWindow window = new(_orderController._orderPage);
             window.Show();
         }
     }

@@ -105,12 +105,12 @@
                   Margin="93,131,60,119" Background="White" Foreground="Black">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Path='Name'}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Цена(за штуку)" Binding="{Binding Path='Money'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Цена(за штуку)" Binding="{Binding Path='Price'}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Path='Count'}" IsReadOnly="False"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Удалить" Click="Button_Click_1"/>
+                            <Button Content="Удалить" Click="Button_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

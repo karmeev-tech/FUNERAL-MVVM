@@ -1,0 +1,16 @@
+﻿<Window x:Class="FUNERALMVVM.View.Windows.NewShopWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:local="clr-namespace:FUNERALMVVM.View.Windows" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:NewShopController}"
+        mc:Ignorable="d"
+        Title="NewShopWindow" Height="222" Width="659" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ui:Button Command="{Binding AddBaseShop}" Content="Добавить" HorizontalAlignment="Left" Margin="466,79,0,0" VerticalAlignment="Top" Width="121"/>
+
+        <Label Content="{Binding Response}" HorizontalAlignment="Left" Margin="512,126,0,0" VerticalAlignment="Top"/>
+        <ui:TextBox  Text="{Binding NameShop}" HorizontalAlignment="Left" Margin="84,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="35"/>
+    </Grid>
+</Window>

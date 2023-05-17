@@ -1,5 +1,6 @@
 ﻿using Domain.Complect;
 using Domain.Services.Entity;
+using FUNERALMVVM.View.Pages;
 using FUNERALMVVM.ViewModel;
 using System;
 using System.Windows;
@@ -13,9 +14,9 @@ namespace FuneralClient.View.Windows
     public partial class ServicesWindow : Window
     {
         private readonly ServicesController _servicesController;
-        public ServicesWindow()
+        public ServicesWindow(OrderPage orderPage)
         {
-            _servicesController = new(this);
+            _servicesController = new(this, orderPage);
             DataContext = _servicesController;
             InitializeComponent();
         }

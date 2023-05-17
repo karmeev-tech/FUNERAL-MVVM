@@ -28,7 +28,7 @@ namespace FUNERALMVVM.Commands.Shop
             try
             {
                 string fileName = @".workspace\issue\send\iord\item.json";
-                AddDocument(_sellController.ItemsPack, fileName);
+                //AddDocument(_sellController.ItemsPack, fileName);
             }
             catch (Exception ex)
             {

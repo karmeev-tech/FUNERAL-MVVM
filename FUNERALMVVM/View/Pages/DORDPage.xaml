@@ -4,7 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FUNERALMVVM.View.Pages"
-      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FUNERALMVVM.View.Pages.DORDPage"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" 
+      d:DataContext="{d:DesignInstance Type=viewmodel:DORDController}" x:Class="FUNERALMVVM.View.Pages.DORDPage"
       mc:Ignorable="d" 
       d:DesignHeight="857" d:DesignWidth="1219"
       Title="DORDPage">
@@ -12,23 +13,87 @@
     <Grid>
         <Grid Height="NaN" Margin="0,104,0,673">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="39*"/>
-                <ColumnDefinition Width="1115*"/>
-                <ColumnDefinition Width="39*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="571*"/>
+                <ColumnDefinition Width="568*"/>
+                <ColumnDefinition Width="40*"/>
             </Grid.ColumnDefinitions>
-            <Label Style="{StaticResource StyleLabel}" Content="Рабочая область (ссылка на папку)" HorizontalAlignment="Left" Margin="19,0,0,0" VerticalAlignment="Center" Width="299" Height="32" Grid.Column="1"/>
+            <Label Style="{StaticResource StyleLabel}" Content="Рабочая область (ссылка на папку)" HorizontalAlignment="Left" Margin="19,24,0,0" Width="299" Grid.Column="1" Height="32" VerticalAlignment="Top"/>
 
-            <ui:TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBox" Width="467" Margin="331,0,0,0" Grid.Column="1"/>
-            <ui:Button Content="Загрузить" Margin="803,0,0,0" Width="130" Grid.Column="1"/>
+            <ui:TextBox Text="{Binding LinkToFolder}" HorizontalAlignment="Left" TextWrapping="Wrap" Width="239" Margin="331,22,0,0" Grid.Column="1" VerticalAlignment="Top" Height="35"/>
+            <ui:Button Command="{Binding GetDord}" Content="Загрузить" Margin="28,27,0,0" Width="130" Grid.Column="2" VerticalAlignment="Top" Height="32"/>
+            <ui:Button Command="{Binding GetOrder}" Content="Принять" Margin="173,27,0,0" Width="130" Grid.Column="2" VerticalAlignment="Top" Height="32"/>
+            <Label Content="{Binding Response}" HorizontalAlignment="Left" Margin="503,33,0,0" VerticalAlignment="Top" Grid.Column="2"/>
 
         </Grid>
         <Grid Height="NaN" Margin="0,189,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="165*"/>
+                <RowDefinition Height="169*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="608*"/>
                 <ColumnDefinition Width="611*"/>
             </Grid.ColumnDefinitions>
-            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="28,42,28,70"/>
-            <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="30,42,29,70" Grid.Column="1"/>
+            <DataGrid ItemsSource="{Binding Order}"  Margin="28,42,28,22" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Категория" Binding="{Binding Path='CategoryFuneral'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Path='ModelFuneral'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Камень" Binding="{Binding Path='Rock'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Looks" Binding="{Binding Path='Looks'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Стоимость" Binding="{Binding Path='Price'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Предоплата" Binding="{Binding Path='Prepayment'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Зарплата" Binding="{Binding Path='Remainder'}" IsReadOnly="False"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Удалить" Click="Button_Click"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid ItemsSource="{Binding WorkerEntities}" Margin="28,16,28,79" Grid.Row="1" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя работника" Binding="{Binding Path='ManagerName'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Начало рабочего дня" Binding="{Binding Path='StartWorkTime'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Конец рабочего дня" Binding="{Binding Path='EndWorkTime'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Денег получено" Binding="{Binding Path='Money'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Оклад" Binding="{Binding Path='Oklad'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Зарплата" Binding="{Binding Path='Salary'}" IsReadOnly="False"/>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Удалить" Click="Button_Click_1"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid ItemsSource="{Binding Items}" Margin="30,42,29,22" Grid.Column="1" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Наименование товара" Binding="{Binding Path='Name'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Стоимость" Binding="{Binding Path='Price'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Продажи(количество*стоимость)" Binding="{Binding Path='ZakupPrice'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Path='Count'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Процент (работнику)" Binding="{Binding Path='Procent'}" IsReadOnly="False"/>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Удалить" Click="Button_Click_2"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid ItemsSource="{Binding Issues}" Margin="30,16,29,79" Grid.Column="1" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible" Grid.Row="1">
+                <DataGrid.Columns >
+                    <DataGridTextColumn Header="Имя сотрудника" Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Зарплата (общая, на данный момент)" Binding="{Binding Money}" IsReadOnly="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
 
     </Grid>

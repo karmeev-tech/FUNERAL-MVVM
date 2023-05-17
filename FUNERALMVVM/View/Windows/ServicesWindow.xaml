@@ -19,7 +19,7 @@
 
         <Button Content="Выбрать" 
             Command="{Binding ChooseServCommand}"
-            Style="{StaticResource StyleButton}" Margin="0,23,53,0">
+            Style="{StaticResource StyleButton}" Margin="0,31,51,0">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10"/>
@@ -34,7 +34,6 @@
                 <DataGridTextColumn Header="Параметр" Binding="{Binding Path='Param1'}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Цена" Binding="{Binding Path='Money'}" IsReadOnly="False"/>
                 <DataGridTextColumn Header="Количество" Binding="{Binding Path='Count'}" IsReadOnly="False"/>
-                <DataGridTextColumn Header="Параметр 2" Binding="{Binding Path='Param2'}" IsReadOnly="True"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -46,8 +45,7 @@
         </DataGrid>
 
         <ComboBox ItemsSource="{Binding ServicesName}" Text="{Binding ChooseService}" HorizontalAlignment="Left" Margin="182,21,0,0" VerticalAlignment="Top" Width="136" Background="#FF92ADCB" Height="36"/>
-        <ComboBox ItemsSource="{Binding ParamsNames}" Text="{Binding ChooseParam}" HorizontalAlignment="Left" Margin="434,43,0,0" VerticalAlignment="Top" Width="126" Height="34"/>
-        <ComboBox ItemsSource="{Binding ParamsNames2}" Text="{Binding ChooseParam2}" HorizontalAlignment="Left" Margin="434,7,0,0" VerticalAlignment="Top" Width="126" Height="34"/>
+        <ComboBox ItemsSource="{Binding ParamsNames}" Text="{Binding ChooseParam}" HorizontalAlignment="Left" Margin="435,24,0,0" VerticalAlignment="Top" Width="126" Height="34"/>
         <Label Content="Наименование" HorizontalAlignment="Left" Margin="56,31,0,0" VerticalAlignment="Top"/>
         <Label Content="Параметры" HorizontalAlignment="Left" Margin="354,33,0,0" VerticalAlignment="Top"/>
     </Grid>
