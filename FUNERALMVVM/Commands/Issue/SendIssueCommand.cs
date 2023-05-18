@@ -6,6 +6,12 @@ using OrderManager;
 using System.IO;
 using System.Text.Json;
 using System;
+using Infrastructure.Model.ComplexMongo;
+using Domain.Complect;
+using Domain.Order;
+using Domain.Services.Entity;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FUNERALMVVM.Commands.Issue
 {
@@ -22,37 +28,28 @@ namespace FUNERALMVVM.Commands.Issue
 
         public override void Execute(object parameter)
         {
-            var managerName = _repos.GetLastFromJournal();
-            BaseIssueEntity issue = new()
-            {
-                Payment = int.Parse(_controller.Payment),
-                Prepayment = int.Parse(_controller.Prepayment),
-                ScanPath = _controller._scanLink, //место откуда мы кидаем сканы на босс пк
-                DockPath = _controller._dockLink, //место откуда мы кидаем отчёт на босс пк
-                Dock2Path = _controller._dock2Link,
-                OrdPath = _controller._ord,
-                ManagerName = managerName
-            };
-            SendIssue(issue);
+            string number = _controller.Payment;
+
+            //нам уже к этому моменту нужен жсончик
+
+            SendIssue(number);
         }
 
-        public async void SendIssue(BaseIssueEntity issue)
+        public async void SendIssue(string number)
         {
             try
             {
-                Directory.CreateDirectory(@".workspace\issue\send\Transfer");
-                string jsonpath = @".workspace\issue\send\Transfer\pocket147252.json";
+                var result = Provider.GetStates().Where(x => x.Id == Convert.ToInt32(number));
 
-                using FileStream createStream2 = File.Create(jsonpath);
-                await JsonSerializer.SerializeAsync(createStream2, issue, new JsonSerializerOptions
+                if(result.Any()) 
                 {
-                    WriteIndented = true
-                });
-                await createStream2.DisposeAsync();
+                    _controller.Response = "Заявка принята";
+                }
+                else
+                {
+                    _controller.Response = "Ошибка";
 
-                Provider.IssueTransferring(jsonpath);
-
-                _controller.Response = "Заявка принята";
+                }
             }
             catch(Exception)
             {

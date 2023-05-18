@@ -3,9 +3,12 @@ using Domain.Complect;
 using Domain.Issue;
 using Domain.Order;
 using Domain.Services.Entity;
+using Infrastructure.Context;
+using Infrastructure.Model.ComplexMongo;
 using LegacyInfrastructure.Worker;
 using ORDCreator;
 using System.Text.Json;
+using Worker;
 
 namespace OrderManager
 {
@@ -52,7 +55,19 @@ namespace OrderManager
 
             OrderCreator manager = new();
 
-            manager.CreateDoc("1",
+            var sending = new Provider().SendOrder(
+                new StateEntity()
+                {
+                    Time = DateTime.Now,
+                    Order = order,
+                    Complect = complect,
+                    Services = services,
+                    //StartWorkTime = new WorkerProvider().GetLastTimeFromJournalByName(new WorkerRepos().GetLastFromJournal()),
+                    //EndWorkTime = DateTime.Now.ToString(),
+                }
+                );
+
+            manager.CreateDoc(sending.Id.ToString(),
                 order.ClientOrder.Name,
                 order.ClientOrder.Passport,
                 order.ClientOrder.Adress,
@@ -62,7 +77,7 @@ namespace OrderManager
                 order.Prepayment,
                 order.ClientOrder.Phone);
 
-            manager.CreateFuneralDock("1",
+            manager.CreateFuneralDock(sending.Id.ToString(),
                 order.ClientOrder.Name,
                 order.ClientOrder.Passport,
                 order.ClientOrder.Adress,
@@ -165,33 +180,33 @@ namespace OrderManager
 
             BaseIssueEntity issue = JsonSerializer.Deserialize<BaseIssueEntity>(json);
 
-            string[] transfer = new[]
-            {
-                @".workspace\issue\send\Transfer\completefiles\doc1.docx",
-                @".workspace\issue\send\Transfer\completefiles\doc2.docx",
-                @".workspace\issue\send\Transfer\completefiles\doc3.docx",
-                @".workspace\issue\send\Transfer\basefiles\generatedoc1.docx",
-                @".workspace\issue\send\Transfer\basefiles\generatedoc2.docx",
-                @".workspace\issue\send\Transfer\basefiles\generatedoc3.docx",
-                @".workspace\issue\send\Transfer\meta\meta.ord"
-            };
+            //string[] transfer = new[]
+            //{
+            //    @".workspace\issue\send\Transfer\completefiles\doc1.docx",
+            //    @".workspace\issue\send\Transfer\completefiles\doc2.docx",
+            //    @".workspace\issue\send\Transfer\completefiles\doc3.docx",
+            //    @".workspace\issue\send\Transfer\basefiles\generatedoc1.docx",
+            //    @".workspace\issue\send\Transfer\basefiles\generatedoc2.docx",
+            //    @".workspace\issue\send\Transfer\basefiles\generatedoc3.docx",
+            //    @".workspace\issue\send\Transfer\meta\meta.ord"
+            //};
 
-            Directory.CreateDirectory(@".workspace\issue\send\Transfer\basefiles");
-            Directory.CreateDirectory(@".workspace\issue\send\Transfer\completefiles");
-            Directory.CreateDirectory(@".workspace\issue\send\Transfer\meta");
+            //Directory.CreateDirectory(@".workspace\issue\send\Transfer\basefiles");
+            //Directory.CreateDirectory(@".workspace\issue\send\Transfer\completefiles");
+            //Directory.CreateDirectory(@".workspace\issue\send\Transfer\meta");
 
-            File.Copy(issue.DockPath, transfer[0]);
-            File.Copy(issue.Dock2Path, transfer[1]);
-            File.Copy(issue.ScanPath, transfer[2]);
+            //File.Copy(issue.DockPath, transfer[0]);
+            //File.Copy(issue.Dock2Path, transfer[1]);
+            //File.Copy(issue.ScanPath, transfer[2]);
 
-            File.Copy(Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedDock.docx", transfer[3]);
-            File.Copy(Directory.GetCurrentDirectory() + @"\.docs\CreateFuneralDock.docx", transfer[4]);
-            File.Copy(Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedFuneralBlank.docx", transfer[5]);
+            //File.Copy(Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedDock.docx", transfer[3]);
+            //File.Copy(Directory.GetCurrentDirectory() + @"\.docs\CreateFuneralDock.docx", transfer[4]);
+            //File.Copy(Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedFuneralBlank.docx", transfer[5]);
 
-            File.Copy(issue.OrdPath, transfer[6]);
+            //File.Copy(issue.OrdPath, transfer[6]);
 
-            XordTransfer xordTransfer = new();
-            xordTransfer.CreateTransfer(@".workspace\issue\send\Transfer", @".workspace\issue\send");
+            //XordTransfer xordTransfer = new();
+            //xordTransfer.CreateTransfer(@".workspace\issue\send\Transfer", @".workspace\issue\send");
         }
         public static void GeneralIssueTransferring()
         {
@@ -234,6 +249,34 @@ namespace OrderManager
                 Directory.Delete(dir, true);
                 Directory.CreateDirectory(dir);
             }
+        }
+
+        public StateEntity SendOrder(StateEntity stateEntity)
+        {
+            StateEntity result;
+            using (var db = new StateContext())
+            {
+                db.State.Add(stateEntity);
+
+                result = db.State.Last();
+                db.SaveChanges();
+            }
+            return result;
+        }
+
+        public static List<StateEntity> GetStates()
+        {
+            List<StateEntity> result;
+            using (var db = new StateContext())
+            {
+                var query = from b in db.State
+                            where b.Time.Day == DateTime.Now.Day && b.Time.Day == DateTime.Now.Month && b.Time.Year == DateTime.Now.Year
+                            select b;
+
+                result = db.State.ToList();
+                db.SaveChanges();
+            }
+            return result;
         }
     }
 }

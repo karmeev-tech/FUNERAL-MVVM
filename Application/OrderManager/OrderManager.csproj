@@ -13,8 +13,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DomainLayer\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\Funeral.Infrastructure\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Legacy.Infrastructure.csproj" />
     <ProjectReference Include="..\ORDCreator\ORDCreator.csproj" />
+    <ProjectReference Include="..\Worker\Worker.csproj" />
   </ItemGroup>
 
 </Project>

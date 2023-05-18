@@ -17,7 +17,7 @@ namespace FUNERALMVVM.ViewModel
         /// Оплата
         /// </summary>
         public string Payment { get; set; } = string.Empty;
-        public string Prepayment { get; set; } = string.Empty;
+        public string Prepayment { get; set; } = "";
 
         private string _response = string.Empty;
         public string Response 

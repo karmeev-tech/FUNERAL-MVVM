@@ -59,6 +59,14 @@ namespace Worker.EF
                 db.Workers.Remove(query.First());
                 db.SaveChanges();
             }
+
+            using(var db = new IssueContext())
+            {
+                var query = from b in db.IssueMoney
+                            where b.Name == name
+                            select b;
+                db.IssueMoney.Remove(query.First());
+            }
         }
 
         public static string GetWorkerRole(string name)

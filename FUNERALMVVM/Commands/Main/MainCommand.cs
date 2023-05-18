@@ -1,6 +1,7 @@
 ﻿using Domain.GeneralOrder;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
+using Infrastructure.Model.ComplexMongo;
 using OrderManager;
 using System;
 using System.IO;
@@ -20,12 +21,7 @@ namespace FUNERALMVVM.Commands.Main
 
         public override void Execute(object parameter)
         {
-            if (!Directory.Exists(@".workspace\issue\send\iord") ||
-                !Directory.Exists(@".workspace\issue\send\json"))
-            {
-                Directory.CreateDirectory(@".workspace\issue\send\iord");
-                Directory.CreateDirectory(@".workspace\issue\send\json");
-            }
+            var requestSecond = new StateEntity();
             var request = new DordMeta()
             {
                 ManagerName = _controller.UserName,
