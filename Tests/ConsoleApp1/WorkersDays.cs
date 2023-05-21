@@ -6,7 +6,7 @@ namespace ConsoleApp1
     {
         public static void DoJob()
         {
-            Provider.CreateOrder();
+           // Provider.CreateOrder();
         }
     }
 }

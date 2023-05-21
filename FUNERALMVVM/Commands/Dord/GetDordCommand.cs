@@ -3,10 +3,14 @@ using ClassLibrary;
 using Domain.Dord;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
+using Infrastructure.Model.ComplexMongo;
 using Infrastructure.Model.Storage;
+using MongoDB.Driver.Linq;
 using Shop.EF;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace FUNERALMVVM.Commands.Dord
 {
@@ -21,92 +25,75 @@ namespace FUNERALMVVM.Commands.Dord
 
         public override void Execute(object parameter)
         {
-            PickManager pickManager = new PickManager();
-            _dORDController.LinkToFolder = pickManager.OpenManagerDir();
-            if (_dORDController.LinkToFolder == string.Empty)
-            {
-                _dORDController.LinkToFolder = "Укажите ссылку на папку";
-                return;
-            }
-            pickManager = new PickManager();
+            var pickManager = new PickManager();
 
             var bossFolder = _dORDController.LinkToFolder;
             var dordFile = pickManager.OpenManagerFileNameDord();
-            var result = BossProvider.GetFiles(dordFile, bossFolder);
 
-            foreach (var item in result.iord.ShopItems)
+            if(dordFile == string.Empty )
             {
-                StorageEntity storageEntity = new();
-                storageEntity.Name = ShopConnector.GetUserStorage(result.meta.ManagerName);
-                _dORDController.Items.Add(
-                    new()
-                    {
-                        Name = item.Name,
-                        Price = item.Price,
-                        ZakupPrice = item.Price * item.Count,
-                        Count = item.Count,
-                        Procent = item.Procent,
-                        ShopName = storageEntity
-                    }) ;
+                _dORDController.LinkToFolder = "Укажите ссылку на dord файл";
+                return;
             }
 
-            foreach (var item in result.ord)
+            FinalOrderManager.GetDord(bossFolder, dordFile);
+            List<StorageItemEntity> items = FinalOrderManager.GetJsonItems();
+            List<StateEntity> orders = FinalOrderManager.GetJsonOrders();
+
+            foreach(StateEntity item in orders)
             {
-                _dORDController.Order.Add(new()
+                OrderDord orderDord = new OrderDord()
                 {
                     CategoryFuneral = item.Order.Base.CategoryFuneral,
                     ModelFuneral = item.Order.Base.ModelFuneral,
                     Rock = item.Order.Base.Rock,
-                    Looks = item.Order.Base.Looks,
                     Price = item.Order.Price,
                     Prepayment = item.Order.Prepayment,
                     Remainder = item.Order.Remainder,
-                });
+                };
+                _dORDController.Order.Add(orderDord);
             }
-            int salary = SalaryCount(_dORDController.Items, _dORDController.Order);
-            int money = MoneyCount(_dORDController.Items, _dORDController.Order);
-            _dORDController.WorkerEntities.Add(new()
+
+            _dORDController.Items = new(items);
+
+            // zp
+            int money = 0;
+            int allMoney = 0;
+            var orderMoney = _dORDController.Order.Select(x => x.Price);
+
+            foreach (var item in _dORDController.Items)
             {
-                ManagerName = result.meta.ManagerName,
-                EndWorkTime = result.meta.EndWorkTime,
-                StartWorkTime = result.meta.StartWorkTime,
-                Money = money.ToString(),
-                Salary = salary.ToString(),
+                item.ZakupPrice = item.Price * item.Count;
+            }
+            //_dORDController.Items = new(sie);
+            var itemsMoney = _dORDController.Items.Select(x => x.Price / 100 * x.Procent * x.Count);
+
+            foreach(var item in orderMoney)
+            {
+                money += Convert.ToInt32(item);
+                allMoney += Convert.ToInt32(item);
+            }
+            foreach (var item in itemsMoney)
+            {
+                money += item;
+            }
+
+            itemsMoney = _dORDController.Items.Select(x => x.ZakupPrice);
+            foreach (var item in itemsMoney)
+            {
+                allMoney += item;
+            }
+
+            //оклад на зп
+            money += 1000;
+
+            _dORDController.WorkerEntities.Add(new DordEntity()
+            {
+                ManagerName = orders.Select(x => x.ManagerName).First(),
+                Money = allMoney.ToString(),
                 Oklad = "1000",
+                Salary = money.ToString(),
             });
-        }
-
-        private int SalaryCount(ObservableCollection<StorageItemEntity> items,
-            ObservableCollection<OrderDord> order)
-        {
-            int money = 0;
-            foreach (var item in items)
-            {
-                money += item.Price / 100 * item.Procent;
-            }
-            foreach (var item in order)
-            {
-                //30 процентов тут это чистый хардкод
-                money += Convert.ToInt32(item.Price) / 100 * 30;
-            }
-            //тут ещё плюсуем оклад
-            return money + 1000;
-        }
-
-        private int MoneyCount(ObservableCollection<StorageItemEntity> items,
-            ObservableCollection<OrderDord> order)
-        {
-            int money = 0;
-            foreach (var item in items)
-            {
-                money += item.Price;
-            }
-            foreach (var item in order)
-            {
-                money += Convert.ToInt32(item.Price);
-            }
-
-            return money;
         }
     }
 }

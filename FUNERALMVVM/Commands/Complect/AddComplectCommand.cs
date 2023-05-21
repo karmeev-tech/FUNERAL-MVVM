@@ -4,6 +4,7 @@ using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Text.Json;
 
@@ -12,10 +13,12 @@ namespace FuneralClient.Commands.Complect
     public class AddComplectCommand : BaseCommands
     {
         private readonly ComplectController _complectController;
+        private string _pathToDocs;
 
         public AddComplectCommand(ComplectController servicesController)
         {
             _complectController = servicesController;
+            _pathToDocs = ConfigurationManager.AppSettings["ProgramWorkspaceDocs"];
         }
 
         public override void Execute(object parameter)
@@ -34,7 +37,7 @@ namespace FuneralClient.Commands.Complect
                     });
                 }
 
-                string fileName = ".docs\\json\\ComplectFuneralDoc.json";
+                string fileName = _pathToDocs + "\\json\\ComplectFuneralDoc.json";
                 AddDocument(result, fileName);
                 _complectController.Response = "good";
             }

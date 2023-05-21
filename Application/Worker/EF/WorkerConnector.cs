@@ -1,15 +1,17 @@
-﻿using Domain.Order;
-using Infrastructure.Context.Issue;
+﻿using Infrastructure.Context.Issue;
+using Infrastructure.Context.Salary;
+using Infrastructure.Context.State;
 using Infrastructure.Context.Worker;
+using Infrastructure.Model.ComplexMongo;
 using Infrastructure.Model.Issue;
-using Infrastructure.Model.Storage;
+using Infrastructure.Model.Salary;
 using Infrastructure.Model.Worker;
 
 namespace Worker.EF
 {
     public class WorkerConnector
     {
-        public string AddWorker(WorkerEntity workerEntity)
+        public static void AddWorker(WorkerEntity workerEntity)
         {
             using (var db = new WorkerContext())
             {
@@ -20,7 +22,7 @@ namespace Worker.EF
 
                 if (query.Any())
                 {
-                    return "error";
+                    return;
                 }
 
                 db.Workers.Add(workerEntity);
@@ -35,12 +37,11 @@ namespace Worker.EF
                             select b;
                 if (query.Any())
                 {
-                    return "error";
+                    return;
                 }
                 db.IssueMoney.Add(new IssueEntity() { Name = workerEntity.Name , Money = 0});
                 db.SaveChanges();
             }
-            return "ok";
         }
 
         public static void DeleteWorker(string name)
@@ -58,14 +59,6 @@ namespace Worker.EF
 
                 db.Workers.Remove(query.First());
                 db.SaveChanges();
-            }
-
-            using(var db = new IssueContext())
-            {
-                var query = from b in db.IssueMoney
-                            where b.Name == name
-                            select b;
-                db.IssueMoney.Remove(query.First());
             }
         }
 
@@ -111,19 +104,61 @@ namespace Worker.EF
             {
                 var query = from b in db.Workers
                             where b.Name == name
-                            select b.ShopName.Name;
+                            select b.ShopName;
                 
                 return query.First();
             }
         }
 
-        public static List<string> GetWorkers()
+        public static List<WorkerEntity> GetWorkers()
         {
             using (var db = new WorkerContext())
             {
                 var query = from b in db.Workers
-                            select b.Name;
+                            select b;
                 return query.ToList();
+            }
+        }
+
+        public static List<SalaryEntity> GetAllSalary()
+        {
+            List<SalaryEntity> result = new();
+            using(var db = new SalaryContext())
+            {
+                result = db.IssueMoney.ToList();
+
+            }
+            return result;
+        }
+
+        public static StateEntity GetState(int id)
+        {
+            using (var db = new StateContext())
+            {
+                var query = from b in db.State
+                            where b.Id == id
+                            select b;
+
+                if(query.Any())
+                {
+                    return query.First();
+                }
+
+                return new StateEntity();
+            }
+        }
+
+        public static void UpdateAllWorkers(List<WorkerEntity> workers)
+        {
+            using (var db = new WorkerContext())
+            {
+                db.Workers.RemoveRange(db.Workers.ToList());
+                db.SaveChanges();
+                foreach (var workerEntity in workers)
+                {
+                    db.Workers.Add(workerEntity);
+                }
+                db.SaveChanges();
             }
         }
     }

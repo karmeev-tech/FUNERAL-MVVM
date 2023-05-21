@@ -1,6 +1,7 @@
 ﻿using BossInstruments;
 using ClassLibrary;
 using FUNERAL_MVVM.Utility;
+using FUNERALMVVM.View.Windows;
 using Infrastructure.Model.Storage;
 using Shop.EF;
 using System.Collections.ObjectModel;
@@ -12,6 +13,12 @@ namespace FUNERALMVVM.ViewModel.Invent
     public class InventVM : ViewModelBase
     {
         private ObservableCollection<StorageItemEntity> _items;
+        public AddInventWindow _inventWindow;
+
+        public InventVM(AddInventWindow inventWindow)
+        {
+            _inventWindow = inventWindow;
+        }
 
         public ObservableCollection<StorageItemEntity> Items
         {
@@ -66,8 +73,9 @@ namespace FUNERALMVVM.ViewModel.Invent
         public override void Execute(object parameter)
         {
             var items = _vm.Items.ToList();
-            var shopName = items.Select(x => x.ShopName.Name).First();
+            var shopName = items.Select(x => x.ShopName).First();
             ShopConnector.InventUpdate(items, shopName);
+            _vm._inventWindow.Close();
         }
     }
 }

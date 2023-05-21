@@ -6,6 +6,7 @@ namespace OrderManager
 {
     public class OrderCreator
     {
+        public string Workspace { get; set; }
         public void CreateDoc(string number,
                       string name,
                       string passport,
@@ -17,8 +18,8 @@ namespace OrderManager
                       string phonenumber)
         {
             // Path to a loadable document.
-            string loadPath = Directory.GetCurrentDirectory() + @"\.docs\CreateDock.docx";
-            string savePath = Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedDock.docx";
+            string loadPath = Workspace + @"\.docs\CreateDock.docx";
+            string savePath = Workspace + @"\.workspace\docs\ReplacedDock.docx";
 
             File.Copy(loadPath, savePath, true);
 
@@ -46,14 +47,14 @@ namespace OrderManager
                               string phonenumber,
                               string orderAdress)
         {
-            string loadPath = Directory.GetCurrentDirectory() + @"\.docs\CreateFuneralDock.docx";
-            string savePath = Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedFuneralDock.docx";
+            string loadPath = Workspace + @"\.docs\CreateFuneralDock.docx";
+            string savePath = Workspace + @"\.workspace\docs\ReplacedFuneralDock.docx";
 
             File.Copy(loadPath, savePath, true);
 
-            DocCreator(loadPath, savePath, "NUMBER", number);
-            DocCreator(loadPath, savePath, "CLIENTNAME", name);
-            DocCreator(loadPath, savePath, "PASSPORT", passport);
+            DocCreator(loadPath, savePath, "NUMB", number);
+            DocCreator(loadPath, savePath, "CLM", name);
+            DocCreator(loadPath, savePath, "PASS", passport);
             DocCreator(loadPath, savePath, "ADRESS", adress);
             DocCreator(loadPath, savePath, "COMPLEKT", komplekt);
             DocCreator(loadPath, savePath, "CLIENTADRESS", orderAdress);
@@ -63,50 +64,31 @@ namespace OrderManager
         }
 
         public void CreateBlank(
-                      int modifier,
-                      List<DeadModel> entities,
-                      string typeblank,
-                      string obeliskForm,
-                      string tumbaForm,
-                      string grobForm,
-                      string funColor,
-                      string polish,
-                      string other,
-                      string upFuneral,
-                      string downFuneral,
-                      string otherFuneral,
-                      string epitafia,
-                      string todayDate,
-                      string createDate,
-                      string clientFIO,
-                      string clientAdress,
-                      string clientPhone,
-                      string clientFuneral,
-                      string clientDelivery,
-                      string clientInstal,
-                      string clientPrice,
-                      string clientPrepayment,
-                      string clientRe,
-                      string funeralMaterial,
-                      string funeralNumber)
+                      int modifier, List<DeadModel> entities, string typeblank, string obeliskForm, string tumbaForm,
+                      string grobForm, string funColor, string polish, string other, string upFuneral, string downFuneral,
+                      string otherFuneral, string epitafia, string todayDate, string createDate, string clientFIO,
+                      string clientAdress, string clientPhone, string clientFuneral, string clientDelivery,
+                      string clientInstal, string clientPrice,  string clientPrepayment, string clientRe,
+                      string funeralMaterial, string funeralNumber
+            )
         {
             string loadPath = "";
             switch (modifier)
             {
                 case 1:
-                    loadPath = Directory.GetCurrentDirectory() + @"\.docs\blanks\" + typeblank + "blank1.docx";
+                    loadPath = Workspace + @"\.docs\blanks\" + typeblank + "blank1.docx";
                     break;
                 case 2:
-                    loadPath = Directory.GetCurrentDirectory() + @"\.docs\blanks\" + typeblank + "blank2.docx";
+                    loadPath = Workspace + @"\.docs\blanks\" + typeblank + "blank2.docx";
                     break;
                 case 3:
-                    loadPath = Directory.GetCurrentDirectory() + @"\.docs\blanks\" + typeblank + "blank3.docx";
+                    loadPath = Workspace + @"\.docs\blanks\" + typeblank + "blank3.docx";
                     break;
                 case 4:
-                    loadPath = Directory.GetCurrentDirectory() + @"\.docs\blanks\" + typeblank + "blank4.docx";
+                    loadPath = Workspace + @"\.docs\blanks\" + typeblank + "blank4.docx";
                     break;
             }
-            string savePath = Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedFuneralBlank.docx";
+            string savePath = Workspace + @"\.workspace\docs\ReplacedFuneralBlank.docx";
 
             File.Copy(loadPath, savePath, true);
 

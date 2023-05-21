@@ -5,11 +5,12 @@ namespace Domain.Order
 {
     public class OrderEntity
     {
+        public int Id { get; set; }
         public FuneralBaseEntity Base { get; set; }
         public StelaEntity Stela { get; set; }
         public StandEntity Stand { get; set; }
         public FlowershedEntity Flowershed { get; set; }
-        public string Polishing { get; set; }    
+        public string Polishing { get; set; }
         public List<DeadModel> Deadass { get; set; }
         public int DeadassCount { get; set; }
         public InstalEntity Instal { get; set; }

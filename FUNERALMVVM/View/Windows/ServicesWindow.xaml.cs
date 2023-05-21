@@ -1,7 +1,7 @@
 ﻿using Domain.Complect;
 using Domain.Services.Entity;
 using FUNERALMVVM.View.Pages;
-using FUNERALMVVM.ViewModel;
+using FUNERALMVVM.ViewModel.Shop;
 using System;
 using System.Windows;
 using System.Windows.Controls;

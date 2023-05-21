@@ -39,7 +39,13 @@
 
         <RadioButton Content="Сотрудник" Grid.Row="4" VerticalAlignment="Center" Height="68"
                      x:Name="Worker" 
-                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3" Margin="-2,0,2,0"/>
+                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3" Margin="-2,0,2,0">
+        </RadioButton>
+
+        <RadioButton Content="Ордер" Grid.Row="5" VerticalAlignment="Center" Height="68"
+                     x:Name="OrderRequest" 
+                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3">
+        </RadioButton>
 
         <RadioButton Content="Продать товар" Grid.Row="3" VerticalAlignment="Center" Height="60"
                      x:Name="SellItem" 
@@ -89,6 +95,9 @@
                             </DataTrigger>
                             <DataTrigger Binding="{Binding ElementName=UploadDORD, Path=IsChecked}" Value="True">
                                 <Setter Property="Source" Value="/View/Pages/DORDPage.xaml"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=OrderRequest, Path=IsChecked}" Value="True">
+                                <Setter Property="Source" Value="/View/Pages/OrderRequestPage.xaml"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>

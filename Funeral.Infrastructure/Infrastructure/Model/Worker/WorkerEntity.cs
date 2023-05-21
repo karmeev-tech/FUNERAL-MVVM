@@ -11,7 +11,7 @@ namespace Infrastructure.Model.Worker
         public string Contacts { get; set; }
         public string Credentials { get; set; }
         public string Role { get; set; } = "Сотрудник";
-        public StorageEntity ShopName { get; set; }
+        public string ShopName { get; set; }
         public string Password { get; set; } = string.Empty;
     }
 }

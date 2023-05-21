@@ -1,9 +1,10 @@
 ﻿using Domain.Services;
 using Domain.Services.Entity;
 using FUNERAL_MVVM.Utility;
-using FUNERALMVVM.ViewModel;
+using FUNERALMVVM.ViewModel.Shop;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Text.Json;
 
@@ -25,7 +26,7 @@ namespace FUNERALMVVM.Commands.Services
             {
                 serv.Add(item);
             }
-            string fileName = ".docs\\json\\ServicesDoc.json";
+            string fileName = ConfigurationManager.AppSettings["ProgramWorkspaceDocs"] + "\\json\\ServicesDoc.json";
             AddDocument(serv, fileName);
             _servicesController.ViewClosed();
         }

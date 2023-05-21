@@ -1,6 +1,8 @@
 ﻿using Domain.Complect;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
+using Infrastructure.Mongo;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,31 +21,28 @@ namespace FUNERALMVVM.Commands.Shop
 
         public override void Execute(object parameter)
         {
-            if (!Directory.Exists(@".workspace\issue\send\iord") ||
-                !Directory.Exists(@".workspace\issue\send\json"))
+            if (!Directory.Exists(@".workspace\issue\send\json"))
             {
-                Directory.CreateDirectory(@".workspace\issue\send\iord");
                 Directory.CreateDirectory(@".workspace\issue\send\json");
+                //string json = JsonConvert.SerializeObject(_sellController.ItemsPack);
             }
             try
             {
-                string fileName = @".workspace\issue\send\iord\item.json";
+
+                foreach (var path in _sellController.ItemsPack)
+                {
+                    path.Id = MongoItems.GetUniqueId();
+                    path.ShopName = _sellController._shopName;
+                    MongoItems.ConnectAndAddFile(path);
+                }
+                _sellController.Response = "Успешно";
+                //string fileName = @".workspace\issue\send\iord\item.json";
                 //AddDocument(_sellController.ItemsPack, fileName);
             }
             catch (Exception ex)
             {
                 _sellController.Response = "Ошибка";
             }
-        }
-
-        public async void AddDocument(List<ItemComplectEntity> complect, string fileName)
-        {
-            using FileStream createStream = File.Create(fileName);
-            await JsonSerializer.SerializeAsync(createStream, complect, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-            await createStream.DisposeAsync();
         }
     }
 }

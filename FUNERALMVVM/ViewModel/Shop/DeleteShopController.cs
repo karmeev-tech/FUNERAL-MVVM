@@ -16,7 +16,6 @@ namespace FUNERALMVVM.ViewModel.Shop
         public DeleteShopController(HeadStorageController headStorageController)
         {
             _headStorageController = headStorageController;
-            ShopConnector shopConnector = new();
             Shops = new(ShopConnector.GetShops());
         }
 

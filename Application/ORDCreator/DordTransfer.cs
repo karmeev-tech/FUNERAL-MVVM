@@ -5,7 +5,7 @@
         public void CreateTransfer(string transferPath)
         {
             Zipper zipper = new();
-            zipper.CreateDordFile(transferPath);
+            //zipper.CreateDordFile(transferPath);
             Directory.Delete(transferPath, true);
         }
     }

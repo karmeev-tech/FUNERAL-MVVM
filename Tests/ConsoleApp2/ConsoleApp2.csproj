@@ -9,6 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Application\BossInstruments\BossInstruments.csproj" />
+    <ProjectReference Include="..\..\Application\ConfigBoss\ConfigBoss.csproj" />
     <ProjectReference Include="..\..\Application\OrderManager\OrderManager.csproj" />
   </ItemGroup>
 

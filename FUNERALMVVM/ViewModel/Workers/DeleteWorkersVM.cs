@@ -2,6 +2,7 @@
 using FUNERALMVVM.Commands.Workers;
 using FUNERALMVVM.View.Windows;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Worker;
 using Worker.EF;
@@ -16,7 +17,7 @@ namespace FUNERALMVVM.ViewModel.Workers
         public DeleteWorkersVM(DeleteWorkerWindow deleteWorker)
         {
             DeleteWorker = deleteWorker;
-            foreach (string workerName in WorkerConnector.GetWorkers())
+            foreach (string workerName in WorkerConnector.GetWorkers().Select(x => x.Name))
             {
                 Workers.Add(workerName);
             }

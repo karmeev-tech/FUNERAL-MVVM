@@ -1,10 +1,7 @@
-﻿using Domain.Complect;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Shop;
-using FUNERALMVVM.View.Windows;
 using Infrastructure.Model.Storage;
 using LegacyInfrastructure.Worker;
-using Shop;
 using Shop.EF;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,6 +19,7 @@ namespace FUNERALMVVM.ViewModel
             string userLog = repos.GetLastFromJournal();
 
             string shopname = WorkerConnector.GetWorkerShop(userLog);
+            _shopName = shopname;
             var items = ShopConnector.GetStorageItems(shopname);
             ComplectStorage = items;
 
@@ -30,6 +28,9 @@ namespace FUNERALMVVM.ViewModel
                 _itemFromComplect.Add(item.Name);
             }
         }
+
+        public string _shopName = "";
+
         private ObservableCollection<string> _itemFromComplect = new();
         public List<StorageItemEntity> ComplectStorage { get; set; }
 
@@ -62,7 +63,7 @@ namespace FUNERALMVVM.ViewModel
         public ICommand AddItemCommand => new AddShopItemCommand(this);
         public ICommand SellCommand => new AddSellCommand(this);
 
-        private string _response = string.Empty;
+        private string _response = "";
 
         public string Response
         {
@@ -70,7 +71,7 @@ namespace FUNERALMVVM.ViewModel
             set
             {
                 _response = value;
-                OnPropertyChanged(Response);
+                OnPropertyChanged(nameof(Response));
             }
         }
 

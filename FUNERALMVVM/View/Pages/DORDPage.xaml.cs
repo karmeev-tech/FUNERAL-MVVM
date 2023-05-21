@@ -1,6 +1,7 @@
 ﻿using Domain.Dord;
 using Domain.Shop;
 using FUNERALMVVM.ViewModel;
+using Infrastructure.Model.Storage;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,7 +52,7 @@ namespace FUNERALMVVM.View.Pages
         {
             try
             {
-                ShoppingItem dataRowView = (ShoppingItem)((Button)e.Source).DataContext;
+                StorageItemEntity dataRowView = (StorageItemEntity)((Button)e.Source).DataContext;
                 string name = dataRowView.Name;
                 _dORDController.DeleteItem(name);
             }

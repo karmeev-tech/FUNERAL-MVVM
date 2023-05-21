@@ -163,21 +163,21 @@
 
                 <!--Прайс-->
                 <Label Content="Остаток" HorizontalAlignment="Left" Margin="156,734,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="65" Grid.Row="1"/>
-                <TextBox x:Name="tb12" HorizontalAlignment="Left" Margin="292,734,0,0" TextWrapping="Wrap" Text="{Binding Remainder}" Foreground="#E4797979" VerticalAlignment="Top" Width="226" Height="35" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1" GotFocus="tb12_GotFocus">
+                <TextBox x:Name="tb12" HorizontalAlignment="Left" Margin="292,734,0,0" TextWrapping="Wrap" Text="{Binding Remainder}" Foreground="#E4797979" VerticalAlignment="Top" Width="159" Height="35" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1" GotFocus="tb12_GotFocus">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <TextBox x:Name="tb13" HorizontalAlignment="Left" Margin="292,650,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Width="226" Height="35" IsReadOnly="False" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1" Foreground="#E4797979" GotFocus="tb13_GotFocus">
+                <TextBox x:Name="tb13" HorizontalAlignment="Left" Margin="292,650,0,0" TextWrapping="Wrap" Text="{Binding Price}" VerticalAlignment="Top" Width="159" Height="35" IsReadOnly="False" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1" Foreground="#E4797979" GotFocus="tb13_GotFocus">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <TextBox x:Name="tb14" HorizontalAlignment="Left" Margin="292,692,0,0" TextWrapping="Wrap" Text="{Binding Prepayment}" VerticalAlignment="Top" Width="226" Height="37" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
+                <TextBox x:Name="tb14" HorizontalAlignment="Left" Margin="292,692,0,0" TextWrapping="Wrap" Text="{Binding Prepayment}" VerticalAlignment="Top" Width="159" Height="37" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -186,7 +186,7 @@
                 </TextBox>
 
                 <Button x:Name="FormingButton" Command="{Binding AddOrder}" Content="Сформировать" 
-                Style="{StaticResource StyleButton}" Margin="157,849,0,0" Width="113" HorizontalAlignment="Left" Grid.Column="3" IsEnabled="False" Height="42" Grid.Row="1">
+                Style="{StaticResource StyleButton}" Margin="467,719,0,0" Width="120" HorizontalAlignment="Left" Grid.Column="3" IsEnabled="False" Height="50" Grid.Row="1">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -217,8 +217,8 @@
                 <Label Content="Подставка" HorizontalAlignment="Left" Margin="1,177,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="86" Grid.Row="1"/>
                 <Label Content="Размер" HorizontalAlignment="Left" Margin="1,295,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" Grid.Column="2" Height="28" Grid.Row="1"/>
                 <ComboBox x:Name="tb22" ItemsSource="{Binding FloralWidth}" Text="{Binding FlowerSize}" HorizontalAlignment="Left" Margin="101,292,0,0" VerticalAlignment="Top" Width="96" Height="36" Grid.Column="2" Grid.Row="1"/>
-                <Label Content="Сечение" HorizontalAlignment="Left" Margin="232,294,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="70" Grid.Row="1"/>
-                <ComboBox x:Name="tb23" ItemsSource="{Binding FloralSection}" Text="{Binding FlowerSection}" HorizontalAlignment="Left" Margin="315,292,0,0" VerticalAlignment="Top" Width="120" Height="38" Grid.Column="2" Grid.Row="1"/>
+                <Label Content="Сечение" HorizontalAlignment="Left" Margin="232,294,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="70" Grid.Row="1" Visibility="Hidden"/>
+                <ComboBox x:Name="tb23" ItemsSource="{Binding FloralSection}" Text="{Binding FlowerSection}" HorizontalAlignment="Left" Margin="315,292,0,0" VerticalAlignment="Top" Width="120" Height="38" Grid.Column="2" Grid.Row="1" Visibility="Hidden"/>
                 <Label Content="Цветник" HorizontalAlignment="Left" Margin="0,253,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="69" Grid.Row="1"/>
                 <Label Content="Полировка" HorizontalAlignment="Left" Margin="1,332,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="103" Grid.Column="2" Height="28" Grid.Row="1"/>
                 <ComboBox x:Name="tb24" ItemsSource="{Binding PolishingColors}" Text="{Binding PolishingColor}" HorizontalAlignment="Left" Margin="101,330,0,0" VerticalAlignment="Top" Width="126" Height="38" Grid.Column="2" Grid.Row="1"/>
@@ -319,7 +319,7 @@
                     </Button.Resources>
                 </Button>
                 <Button Command="{Binding AddComplect}" Content="Добавить товары" 
-            Style="{StaticResource StyleButton}" Margin="0,698,0,0" Width="120" HorizontalAlignment="Left" Grid.Column="3" Height="50" Grid.Row="1">
+            Style="{StaticResource StyleButton}" Margin="0,668,0,0" Width="120" HorizontalAlignment="Left" Grid.Column="3" Height="50" Grid.Row="1">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -327,7 +327,7 @@
                     </Button.Resources>
                 </Button>
                 <Button Command="{Binding AddServices}" Content="Добавить услуги" 
-                    Style="{StaticResource StyleButton}" Margin="0,620,0,0" Width="120" HorizontalAlignment="Left" Grid.Column="3" Height="46" Grid.Row="1">
+                    Style="{StaticResource StyleButton}" Margin="1,603,0,0" Width="120" HorizontalAlignment="Left" Grid.Column="3" Height="46" Grid.Row="1">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -341,7 +341,7 @@
                     <ComboBoxItem Content="plates"/>
                 </ComboBox>
                 <Label Content="Тип бланка" HorizontalAlignment="Left" Margin="156,606,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="93" Grid.Row="1"/>
-                
+
                 <!--Reponse-->
                 <Label Grid.Column="3" Content="{Binding Response}" HorizontalAlignment="Center" Margin="0,861,0,0" Grid.Row="1" VerticalAlignment="Top"/>
             </Grid>

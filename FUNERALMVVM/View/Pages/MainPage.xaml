@@ -34,15 +34,6 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Command="{Binding GetCommand}" Content="Загрузить отчёт" 
-                Margin="292,168,0,0" VerticalAlignment="Top" Width="158" Height="45">
-                <Button.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-
-            </Button>
         </Grid>
 
         <Grid Margin="0,291,0,0"/>

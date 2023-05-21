@@ -1,11 +1,7 @@
 ﻿using BossInstruments;
-using DocumentFormat.OpenXml.Spreadsheet;
 using FUNERAL_MVVM.Utility;
-using FuneralClient.Commands.Complect;
 using Infrastructure.Model.Storage;
-using LegacyInfrastructure.Storage;
 using Shop.EF;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -133,7 +129,7 @@ namespace FUNERALMVVM.ViewModel.Shop
             var items = _orderRequestVM.Items.ToList();
             foreach (var item in items)
             {
-                item.ShopName = ShopConnector.GetShop(_orderRequestVM.ShopName);
+                item.ShopName = ShopConnector.GetShop(_orderRequestVM.ShopName).Name;
             }
             BossProvider.SendInvent(items);
         }

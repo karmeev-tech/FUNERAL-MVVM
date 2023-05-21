@@ -14,9 +14,11 @@ namespace FUNERALMVVM.View.Pages
     /// </summary>
     public partial class OrderPage : Page
     {
+        public OrderController _orderController;
         public OrderPage()
         {
-            DataContext = new OrderController(this);
+            _orderController = new OrderController(this);
+            DataContext = _orderController;
             InitializeComponent();
             FormingButton.Opacity = 0.4;
         }

@@ -1,4 +1,6 @@
-﻿using OrderManager;
+﻿using BossInstruments;
+using OrderManager;
+using System.Configuration;
 
 namespace FUNERALMVVM.Portal
 {
@@ -6,7 +8,7 @@ namespace FUNERALMVVM.Portal
     {
         public static void DoJob()
         {
-            Provider.CreateOrder();
+            //Provider.CreateOrder();
         }
     }
 }

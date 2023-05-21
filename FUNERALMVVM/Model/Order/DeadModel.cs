@@ -4,6 +4,7 @@ namespace FUNERALMVVM.Model.Order
 {
     public class DeadModel
     {
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string ThirdName { get; set; } = string.Empty;

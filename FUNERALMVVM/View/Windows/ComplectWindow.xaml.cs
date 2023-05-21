@@ -1,8 +1,6 @@
-﻿using Domain.Complect;
-using FUNERALMVVM.View.Pages;
+﻿using FUNERALMVVM.View.Pages;
 using FUNERALMVVM.ViewModel;
 using Infrastructure.Model.Storage;
-using LegacyInfrastructure.Storage;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,9 +12,11 @@ namespace FUNERALMVVM.View.Windows
     /// </summary>
     public partial class KomplektWindow : Window
     {
-        private readonly ComplectController _complectController;
+        public readonly ComplectController _complectController;
+        public OrderPage _orderPage;
         public KomplektWindow(OrderPage orderPage)
         {
+            _orderPage = orderPage;
             _complectController = new ComplectController(this, orderPage);
             DataContext = _complectController;
             InitializeComponent();

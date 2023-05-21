@@ -89,6 +89,7 @@ namespace FUNERALMVVM.ViewModel
                 price += item.Price * item.Count;
             }
             var result = Convert.ToInt32(_orderPage.tb13.Text) + price;
+            _komplektWindow._orderPage._orderController.FuneralPrice = result;
             _orderPage.tb13.Text = result.ToString();
             _komplektWindow.Opacity = 0;
             _komplektWindow.Close();

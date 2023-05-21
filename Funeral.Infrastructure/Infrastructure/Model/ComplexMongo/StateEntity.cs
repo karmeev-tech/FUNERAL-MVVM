@@ -1,15 +1,17 @@
-﻿using Domain.Complect;
-using Domain.Order;
-using Domain.Services.Entity;
+﻿using Domain.Order;
+using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Model.ComplexMongo
 {
     public class StateEntity
     {
+        [BsonId] 
         public int Id { get; set; }
-        public DateTime Time { get; set; }
-        public OrderEntity Order { get; set; } = new();
-        public List<ItemComplectEntity> Complect { get; set; } = new();
-        public List<Service> Services { get; set; } = new();
+        public string Time { get; set; }
+        public string ManagerName { get; set; }
+        public OrderEntity Order { get; set; }
+        public ItemsEntity Complect { get; set; }
+        public ComplexServiceEntity Services { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using FUNERALMVVM.View;
 using FUNERALMVVM.ViewModel;
+using System.Diagnostics;
 using System.Windows;
 
 namespace FUNERAL_MVVM
@@ -25,6 +26,10 @@ namespace FUNERAL_MVVM
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            //Process process = new Process();
+            //process.StartInfo.FileName = "net.exe";
+            //process.StartInfo.Arguments = "stop MongoDB";
+            //process.Start();
             Close();
         }
     }

@@ -1,10 +1,10 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using Domain.Complect;
+﻿using Domain.Complect;
 using Domain.Issue;
 using Domain.Order;
 using Domain.Services.Entity;
-using Infrastructure.Context;
+using Infrastructure.Context.State;
 using Infrastructure.Model.ComplexMongo;
+using Infrastructure.Mongo;
 using LegacyInfrastructure.Worker;
 using ORDCreator;
 using System.Text.Json;
@@ -18,66 +18,75 @@ namespace OrderManager
         public static string _managerName = new WorkerRepos().GetLastFromJournal();
         public static string _dateNow = DateTime.Now.ToString();
         public static string _numberDb = string.Empty;
-        public static void CreateOrder()
+        public static void CreateOrder(string workspaceDocs, string workspaceJson, string programWorkspace)
         {
-            Provider.Clean();
+            Provider.Clean(workspaceDocs);
             if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет"))
             {
                 Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет", true);
             }
 
             string json = "";
-            using (StreamReader r = new StreamReader(".docs\\json\\OrderDoc.json"))
+            using (StreamReader r = new StreamReader(workspaceJson + "\\OrderDoc.json"))
             {
                 json = r.ReadToEnd();
             }
 
             string json2 = "";
-            using (StreamReader r = new StreamReader(".docs\\json\\ComplectFuneralDoc.json"))
+            var compservPath = workspaceJson + "\\ComplectFuneralDoc.json";
+            if (File.Exists(compservPath) == true)
             {
-                json2 = r.ReadToEnd();
+                using (StreamReader r = new StreamReader(workspaceJson + "\\ComplectFuneralDoc.json"))
+                    json2 = r.ReadToEnd();
             }
 
+            compservPath = workspaceJson + "\\ServicesDoc.json";
             string json3 = "";
-            using (StreamReader r = new StreamReader(".docs\\json\\ServicesDoc.json"))
+            if (File.Exists(compservPath) == true)
             {
-                json3 = r.ReadToEnd();
+                using (StreamReader r = new StreamReader(workspaceJson + "\\ServicesDoc.json"))
+                    json3 = r.ReadToEnd();
             }
 
-            OrderEntity order =
-            JsonSerializer.Deserialize<OrderEntity>(json);
 
-            List<ItemComplectEntity> complect =
-            JsonSerializer.Deserialize<List<ItemComplectEntity>>(json2);
+            OrderEntity order = JsonSerializer.Deserialize<OrderEntity>(json);
 
-            List<Service> services =
-            JsonSerializer.Deserialize<List<Service>>(json3);
+            List<ItemComplectEntity> complect = new();
+            if(json2!="")
+            {
+                complect = JsonSerializer.Deserialize<List<ItemComplectEntity>>(json2);
+            }
+
+            List<Service> services = new();
+            if(json3!="")
+            {
+                services = JsonSerializer.Deserialize<List<Service>>(json3);
+            }
 
             OrderCreator manager = new();
+            manager.Workspace = programWorkspace;
+            var entity = new StateEntity()
+            {
+                Id = MongoFuneral.GetUniqueId(),
+                ManagerName = new WorkerRepos().GetLastFromJournal(),
+                Time = DateTime.Now.ToString(),
+                Order = order,
+                Complect = new ItemsEntity { Id = 0, Complect = complect },
+                Services = new ComplexServiceEntity { Id = 0, Services = services },
+            };
+            MongoFuneral.ConnectAndAddFile(entity);
 
-            var sending = new Provider().SendOrder(
-                new StateEntity()
-                {
-                    Time = DateTime.Now,
-                    Order = order,
-                    Complect = complect,
-                    Services = services,
-                    //StartWorkTime = new WorkerProvider().GetLastTimeFromJournalByName(new WorkerRepos().GetLastFromJournal()),
-                    //EndWorkTime = DateTime.Now.ToString(),
-                }
-                );
-
-            manager.CreateDoc(sending.Id.ToString(),
+            manager.CreateDoc(entity.Id.ToString(),
                 order.ClientOrder.Name,
                 order.ClientOrder.Passport,
                 order.ClientOrder.Adress,
                 GetServicesByName(services),
-                GetServicesPrice(services),
+                GetServicesPrice(services, complect),
                 order.Price,
                 order.Prepayment,
                 order.ClientOrder.Phone);
 
-            manager.CreateFuneralDock(sending.Id.ToString(),
+            manager.CreateFuneralDock(entity.Id.ToString(),
                 order.ClientOrder.Name,
                 order.ClientOrder.Passport,
                 order.ClientOrder.Adress,
@@ -99,7 +108,7 @@ namespace OrderManager
                 order.Base.Looks,
                 "Размер: " + order.Stela.Size + " Сечение: " + order.Stela.Section,
                 "Размер: " + order.Stand.Size + " Сечение: " + order.Stand.Section,
-                order.Flowershed.NoInstal == "False" ? "Размер: " + order.Flowershed.Size + " Сечение: " + order.Flowershed.Section : "без цветника",
+                order.Flowershed.NoInstal == "False" ? "Размер: " + order.Flowershed.Size : "без цветника",
                 order.Funeral.Color,
                 order.Polishing,
                 "",
@@ -122,25 +131,35 @@ namespace OrderManager
                 order.Base.ModelFuneral
                 );
 
-            DocumentTransferring();
+            DocumentTransferring(workspaceDocs, programWorkspace);
         }
         private static string GetServicesByName(List<Service> services)
         {
             string result = string.Empty;
             foreach (Service service in services)
             {
-                result += service.Name + " (" + service.Param1 + ", " + service.Param2 + ")\n";
+                result += service.Name + ",\n";
             }
             return result;
         }
-        private static string GetServicesPrice(List<Service> services)
+        private static string GetServicesPrice(List<Service> services, List<ItemComplectEntity> complect)
         {
             int result = 0;
             foreach (Service service in services)
             {
                 result += service.Money;
             }
+            result += GetFunPrice(complect);
             return result.ToString();
+        }
+        private static int GetFunPrice(List<ItemComplectEntity> complect)
+        {
+            int result = 0;
+            foreach (ItemComplectEntity service in complect)
+            {
+                result += service.Money;
+            }
+            return result;
         }
         private static string GetComplectNames(List<ItemComplectEntity> items)
         {
@@ -151,132 +170,43 @@ namespace OrderManager
             }
             return result;
         }
-        private static List<DeadEntity> DeadassPersons(string deadass)
-        {
-            List<DeadEntity> entities = new();
-            var items = deadass.Split('\n').ToList();
-            items.RemoveAt(items.Count-1);
-            foreach (var item in items)
-            {
-                var person = item.Split(' ');
-                entities.Add(new DeadEntity()
-                {
-                    DeadFIO = person[0],
-                    DeadBirth = person[1],
-                    DeadDie = person[2]
-                });
-            }
-            return entities;
-        }
 
         // TRANSFERRING
-        public static void IssueTransferring(string path)
-        {
-            string json = "";
-            using (StreamReader r = new StreamReader(path))
-            {
-                json = r.ReadToEnd();
-            }
-
-            BaseIssueEntity issue = JsonSerializer.Deserialize<BaseIssueEntity>(json);
-
-            //string[] transfer = new[]
-            //{
-            //    @".workspace\issue\send\Transfer\completefiles\doc1.docx",
-            //    @".workspace\issue\send\Transfer\completefiles\doc2.docx",
-            //    @".workspace\issue\send\Transfer\completefiles\doc3.docx",
-            //    @".workspace\issue\send\Transfer\basefiles\generatedoc1.docx",
-            //    @".workspace\issue\send\Transfer\basefiles\generatedoc2.docx",
-            //    @".workspace\issue\send\Transfer\basefiles\generatedoc3.docx",
-            //    @".workspace\issue\send\Transfer\meta\meta.ord"
-            //};
-
-            //Directory.CreateDirectory(@".workspace\issue\send\Transfer\basefiles");
-            //Directory.CreateDirectory(@".workspace\issue\send\Transfer\completefiles");
-            //Directory.CreateDirectory(@".workspace\issue\send\Transfer\meta");
-
-            //File.Copy(issue.DockPath, transfer[0]);
-            //File.Copy(issue.Dock2Path, transfer[1]);
-            //File.Copy(issue.ScanPath, transfer[2]);
-
-            //File.Copy(Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedDock.docx", transfer[3]);
-            //File.Copy(Directory.GetCurrentDirectory() + @"\.docs\CreateFuneralDock.docx", transfer[4]);
-            //File.Copy(Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedFuneralBlank.docx", transfer[5]);
-
-            //File.Copy(issue.OrdPath, transfer[6]);
-
-            //XordTransfer xordTransfer = new();
-            //xordTransfer.CreateTransfer(@".workspace\issue\send\Transfer", @".workspace\issue\send");
-        }
-        public static void GeneralIssueTransferring()
-        {
-            DordTransfer dordTransfer = new DordTransfer();
-            dordTransfer.CreateTransfer(@".workspace\issue\send");
-        }
-        private static void DocumentTransferring()
+        private static void DocumentTransferring(string workspaceDocs,string programWorkspace)
         {
             var time = DateTime.Now.ToString(); 
             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет");
-            File.Copy(Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedDock.docx", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\Документ1.docx");
-            File.Copy(Directory.GetCurrentDirectory() + @"\.docs\CreateFuneralDock.docx", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\Документ2.docx");
-            File.Copy(Directory.GetCurrentDirectory() + @"\.workspace\docs\ReplacedFuneralBlank.docx", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\Бланк.docx");
+            File.Copy(programWorkspace + @"\.workspace\docs\ReplacedDock.docx", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc1.docx");
+            File.Copy(programWorkspace + @"\.workspace\docs\ReplacedFuneralDock.docx", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc2.docx");
+            File.Copy(programWorkspace + @"\.workspace\docs\ReplacedFuneralBlank.docx", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\blank.docx");
 
-            if (Directory.Exists("C:\\ProgramData\\KarmeevTech\\Funeral"))
+            if (Directory.Exists(workspaceDocs))
             {
-                var dir = "C:\\ProgramData\\KarmeevTech\\Funeral\\docs" + Provider._managerName + "-" + time.Replace(" ", "-").Replace(":", "-") + " " + Provider._numberDb + @"\" ;
+                var dir = workspaceDocs + "\\" + Provider._managerName + "-" + time.Replace(" ", "-").Replace(":", "-") + " " + Provider._numberDb + @"\" ;
                 Directory.CreateDirectory(dir);
-                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\Документ1.docx", dir + "Документ1.docx", false);
-                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\Документ2.docx", dir + "Документ2.docx",false);
-                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\Бланк.docx", dir + "Бланк.docx", false);
+                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc1.docx", dir + "doc1.docx", false);
+                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc2.docx", dir + "doc2.docx",false);
+                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\blank.docx", dir + "blank.docx", false);
             }
             else
             {
-                Directory.CreateDirectory("C:\\ProgramData\\KarmeevTech\\Funeral");
-                var dir = "C:\\ProgramData\\KarmeevTech\\Funeral\\docs" + Provider._managerName + "-" + Provider._dateNow + "-" + Provider._numberDb;
+                Directory.CreateDirectory(workspaceDocs);
+                var dir = workspaceDocs + "\\" + Provider._managerName + "-" + time.Replace(" ", "-").Replace(":", "-") + "-" + Provider._numberDb;
                 Directory.CreateDirectory(dir);
+                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc1.docx", dir + "\\doc1.docx", false);
+                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc2.docx", dir + "\\doc2.docx", false);
+                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\blank.docx", dir + "\\blank.docx", false);
             }
-
-            OrdTransfer transfer = new();
-            transfer.CreateTransfer();
         }
-
-        public static void Clean()
+        public static void Clean(string path)
         {
-            var dir = @"C:\ProgramData\KarmeevTech\Funeral\";
+            var dir = path;
 
             if (DateTime.Now.Day == 1)
             {
                 Directory.Delete(dir, true);
                 Directory.CreateDirectory(dir);
             }
-        }
-
-        public StateEntity SendOrder(StateEntity stateEntity)
-        {
-            StateEntity result;
-            using (var db = new StateContext())
-            {
-                db.State.Add(stateEntity);
-
-                result = db.State.Last();
-                db.SaveChanges();
-            }
-            return result;
-        }
-
-        public static List<StateEntity> GetStates()
-        {
-            List<StateEntity> result;
-            using (var db = new StateContext())
-            {
-                var query = from b in db.State
-                            where b.Time.Day == DateTime.Now.Day && b.Time.Day == DateTime.Now.Month && b.Time.Year == DateTime.Now.Year
-                            select b;
-
-                result = db.State.ToList();
-                db.SaveChanges();
-            }
-            return result;
         }
     }
 }

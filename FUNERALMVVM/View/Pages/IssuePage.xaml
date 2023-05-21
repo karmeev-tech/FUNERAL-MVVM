@@ -28,46 +28,21 @@
             <Label Content="Отправить заказ" HorizontalAlignment="Left" 
                    Margin="23,10,0,0" VerticalAlignment="Top" 
                    Foreground="Black" FontWeight="Bold" FontSize="32" Panel.ZIndex="1" Height="53" Width="268"/>
-            <Label Content="Цена" Margin="28,81,0,0" 
+            <Label Content="Номер" Margin="28,81,0,0" 
                    VerticalAlignment="Top" 
                    Style="{StaticResource StyleLabel}" 
                    Panel.ZIndex="1" HorizontalAlignment="Left" Width="66" Height="34"/>
-            <Label Content="Предоплата" HorizontalAlignment="Left" 
-                   Margin="28,129,0,0" VerticalAlignment="Top" 
-                   Style="{StaticResource StyleLabel}" 
-                   Panel.ZIndex="1" Height="34" Width="109"/>
             <Label Content="Прикрепить бланк" Margin="0,132,325,0" 
                    VerticalAlignment="Top" 
                    Style="{StaticResource StyleLabel}" 
                    Panel.ZIndex="1" HorizontalAlignment="Right" Width="214" Grid.Column="1" Height="34"/>
-            <ui:TextBox Text="{Binding Payment}" HorizontalAlignment="Left" Margin="196,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Height="38">
+            <ui:TextBox Text="{Binding Payment}" HorizontalAlignment="Left" Margin="126,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116" Height="38">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </TextBox.Resources>
             </ui:TextBox>
-            <ui:TextBox Text="{Binding Prepayment}" HorizontalAlignment="Left" Margin="196,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Height="42">
-                <TextBox.Resources>
-                    <Style TargetType="{x:Type Border}">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </TextBox.Resources>
-            </ui:TextBox>
-
-            <Button Content="Прикрепить" 
-                Command="{Binding GetOrd}" 
-                Style="{StaticResource StyleButton}" Margin="0,169,151,0" Grid.Column="1" Height="30" Width="82">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Label Content="Прикрепить отчёт" Margin="0,131,23,0" 
-                   VerticalAlignment="Top" 
-                   Style="{StaticResource StyleLabel}"  
-                   Panel.ZIndex="1" HorizontalAlignment="Right" Width="210" Grid.Column="1" Height="34"/>
             <Button Content="Прикрепить" 
             Command="{Binding GetScan}" 
             Style="{StaticResource StyleButton}" Margin="0,169,457,0" Grid.Column="1" Height="30" Width="82">
@@ -107,7 +82,7 @@
             <Label x:Name="Response" Content="{Binding Response}" HorizontalAlignment="Left" Margin="292,28,0,0" VerticalAlignment="Top" Width="180" Height="26" Foreground="#FF92ADCB"/>
             <Button Command="{Binding Send}" 
                 Content="Отправить" 
-                HorizontalAlignment="Left" Margin="291,169,0,0" Height="30" Width="82">
+                HorizontalAlignment="Left" Margin="262,85,0,0" Height="30" Width="82">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="5"/>

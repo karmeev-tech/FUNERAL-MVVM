@@ -2,6 +2,7 @@
 {
     public class FuneralEntity
     {
+        public int Id { get; set; }
         public string Size { get; set; }
         public string UpPart { get; set; }
         public string DownPart { get; set; }

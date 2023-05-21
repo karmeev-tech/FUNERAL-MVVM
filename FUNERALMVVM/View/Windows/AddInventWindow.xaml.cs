@@ -14,7 +14,7 @@ namespace FUNERALMVVM.View.Windows
         private InventVM _inventVM;
         public AddInventWindow()
         {
-            _inventVM = new InventVM();
+            _inventVM = new InventVM(this);
             DataContext = _inventVM;
             InitializeComponent();
         }

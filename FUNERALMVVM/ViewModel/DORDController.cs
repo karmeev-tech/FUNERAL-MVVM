@@ -3,6 +3,7 @@ using Domain.Dord;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Dord;
 using Infrastructure.Model.Issue;
+using Infrastructure.Model.Salary;
 using Infrastructure.Model.Storage;
 using IssueProvider;
 using System.Collections.ObjectModel;
@@ -18,11 +19,11 @@ namespace FUNERALMVVM.ViewModel
         private ObservableCollection<DordEntity> _workerEntities = new();
         private ObservableCollection<OrderDord> _order = new();
         private string _response = string.Empty;
-        private ObservableCollection<IssueEntity> _issues;
+        private ObservableCollection<SalaryEntity> _issues;
 
         public DORDController()
         {
-            Issues = new ObservableCollection<IssueEntity>(IssueCenter.GetAllFromDB());
+            Issues = new ObservableCollection<SalaryEntity>(IssueCenter.GetAllFromDB());
         }
 
         public ObservableCollection<DordEntity> WorkerEntities
@@ -53,7 +54,7 @@ namespace FUNERALMVVM.ViewModel
             }
         }
 
-        public ObservableCollection<IssueEntity> Issues { get => _issues; 
+        public ObservableCollection<SalaryEntity> Issues { get => _issues; 
             set { _issues = value; OnPropertyChanged(nameof(Issues)); } 
         }
 
@@ -81,11 +82,8 @@ namespace FUNERALMVVM.ViewModel
         public string ShopName { get; set; } = string.Empty;
         public void DeleteItem(string itemName)
         {
-            var newItems = Items.Where(x => x.Name == itemName).ToList();
-            foreach (var item in newItems)
-            {
-                Items.Remove(item);
-            }
+            var item = Items.Where(x => x.Name == itemName).ToList().Last();
+            Items.Remove(item);
         }
 
         public void DeleteDord(string itemName)
@@ -97,8 +95,7 @@ namespace FUNERALMVVM.ViewModel
 
         public void DeleteOrder(string itemName)
         {
-            var newItems = Order.Where(x => x.ModelFuneral == itemName)
-                                         .Last();
+            var newItems = Order.Where(x => x.ModelFuneral == itemName).Last();
             Order.Remove(newItems);
         }
     }
@@ -114,14 +111,21 @@ namespace FUNERALMVVM.ViewModel
 
         public override void Execute(object parameter)
         {
-            //BossProvider.SendToDB(
-            //    _dORDController.WorkerEntities.ToList(),
-            //    _dORDController.Items.ToList(),
-            //    _dORDController.Order.ToList());
+            try
+            {
+                DordMetaFormalizer.UpdateWithDord(
+                _dORDController.WorkerEntities.ToList(),
+                _dORDController.Items.ToList(),
+                //_dORDController.Order.ToList(),
+                _dORDController.Issues.ToList()
+                );
 
-            IssueCenter.UpdateDB(_dORDController.Issues.ToList());
-
-            _dORDController.Response = "Принято";
+                _dORDController.Response = "Принято";
+            }
+            catch
+            {
+                _dORDController.Response = "Ошибка";
+            }
         }
     }
 }

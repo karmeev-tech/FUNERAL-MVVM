@@ -1,11 +1,15 @@
 ﻿using Infrastructure.Model.Storage;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace Infrastructure.Context.Storage
 {
     public class StorageContext : DbContext
     {
         public DbSet<StorageItemEntity> StorageItems { get; set; }
-        public DbSet<StorageEntity> Storages { get; set; }
+
+        public string DbPath { get => ConfigurationManager.AppSettings["StorageDB"]; }
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        => options.UseSqlite($"Data Source={DbPath}");
     }
 }

@@ -1,5 +1,5 @@
 ﻿using FUNERALMVVM.View.Windows;
-using FUNERALMVVM.ViewModel;
+using FUNERALMVVM.ViewModel.Workers;
 using LegacyInfrastructure.Worker;
 using System.Windows.Controls;
 
@@ -26,6 +26,22 @@ namespace FUNERALMVVM.View.Pages
         private void Button_Click2(object sender, System.Windows.RoutedEventArgs e)
         {
             DeleteWorkerWindow deleteWorkersWindow = new DeleteWorkerWindow();
+            deleteWorkersWindow.Show();
+        }
+
+        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ConfigBoss.Head.MakeGeneralConfigFile();
+        }
+
+        private void Button_Click_2(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ConfigBoss.Head.Upload();
+        }
+
+        private void UploadOrder(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AddInventWindow deleteWorkersWindow = new AddInventWindow();
             deleteWorkersWindow.Show();
         }
     }

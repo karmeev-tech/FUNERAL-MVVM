@@ -1,6 +1,6 @@
 ﻿using Domain.Services.Entity;
 using FUNERAL_MVVM.Utility;
-using FUNERALMVVM.ViewModel;
+using FUNERALMVVM.ViewModel.Shop;
 using System;
 using System.Linq;
 

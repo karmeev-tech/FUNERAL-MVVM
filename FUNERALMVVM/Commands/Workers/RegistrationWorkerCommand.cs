@@ -2,6 +2,8 @@
 using FUNERALMVVM.ViewModel.Workers;
 using Infrastructure.Model.Storage;
 using Infrastructure.Model.Worker;
+using IssueProvider;
+using System;
 using Worker.EF;
 
 namespace FUNERALMVVM.Commands.Workers
@@ -25,21 +27,18 @@ namespace FUNERALMVVM.Commands.Workers
             userWorker.Contacts = _context.Contacts;
             userWorker.Credentials = _context.Credentials;
             userWorker.Role = _context.Role;
-            userWorker.ShopName = storageEntity;
+            userWorker.ShopName = storageEntity.Name;
             userWorker.Password = _context.Password;
 
-            WorkerConnector workerConnector = new WorkerConnector();
-            var result = workerConnector.AddWorker(userWorker);
-            //WorkerProvider provider = new WorkerProvider();
-            //var result = provider.AddWorker(userWorker);
-
-            if (result == "error")
+            try
+            {
+                WorkerConnector.AddWorker(userWorker);
+                IssueCenter.AddWorkerSalary(userWorker.Name);
+                _context.Closing();
+            }
+            catch(Exception ex) 
             {
                 return;
-            }
-            else
-            {
-                _context.Closing();
             }
         }
     }

@@ -14,31 +14,6 @@ namespace BossInstruments
         private static IShopRepos _shopRepos = new ShopRepos();
         private static SalaryManager _salaryManager = new();
 
-        public static (IordEntity iord, DordMeta meta, List<OrdEntity> ord) 
-            GetFiles(string dordFile, string bossFolder)
-        {
-            Zipper zipper = new();
-            zipper.UnZip(dordFile, bossFolder);
-
-            IordEntity iord = IordFormalizer.GetJson(Directory.GetFiles(bossFolder + @"\iord"));
-
-            DordMeta meta = DordMetaFormalizer.GetJson(bossFolder + @"\json\request.json");
-
-            var gendocsDir = bossFolder + @"\gendocs";
-            var scandocsDir = bossFolder + @"\scandocs";
-
-            List<OrdEntity> ord = XordFormalizer.GetJson(
-                Directory.GetFiles(bossFolder + @"\xord"),
-                bossFolder,
-                gendocsDir, scandocsDir, "manager");
-
-            Directory.Delete(bossFolder + @"\iord", true);
-            Directory.Delete(bossFolder + @"\json", true);
-            Directory.Delete(bossFolder + @"\xord", true);
-
-            return (iord: iord, meta: meta, ord: ord);
-        }
-
         public static void SendToDB(
             List<DordEntity> worker, 
             List<StorageItemEntity> items, 

@@ -26,8 +26,7 @@ namespace LegacyInfrastructure.Connector
 
         private static string InitialInst(string name)
         {
-            ConnectionStringSettings c = ConfigurationManager.ConnectionStrings[name];
-            return c.ConnectionString.Replace("{path}", AppDomain.CurrentDomain.BaseDirectory);
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
     }
 }

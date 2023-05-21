@@ -2,7 +2,6 @@
 using FUNERALMVVM.Commands.Orders;
 using FUNERALMVVM.Model.Order;
 using FUNERALMVVM.View.Pages;
-using LegacyInfrastructure.Storage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

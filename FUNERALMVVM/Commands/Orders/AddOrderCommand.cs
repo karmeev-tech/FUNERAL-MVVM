@@ -1,10 +1,10 @@
-﻿using DocumentFormat.OpenXml.Office2010.ExcelAc;
-using Domain.Order;
+﻿using Domain.Order;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
 using OrderManager;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -102,7 +102,7 @@ namespace FUNERALMVVM.Commands.Orders
                 Prepayment = _orderController.Prepayment,
                 Remainder = _orderController.Remainder,
             };
-            string fileName = ".docs\\json\\OrderDoc.json";
+            string fileName = ConfigurationManager.AppSettings["ProgramWorkspaceDocs"] + "\\json\\OrderDoc.json";
             AddJson(orderEntity, fileName);
             AddDocs();
             _orderController.Response = "Успешно";
@@ -112,7 +112,9 @@ namespace FUNERALMVVM.Commands.Orders
             await Task.Run(() =>
             {
                 Provider prod = new();
-                Provider.CreateOrder();
+                Provider.CreateOrder(ConfigurationManager.AppSettings["GenerateDocs"], 
+                    ConfigurationManager.AppSettings["ProgramWorkspaceDocs"] + "\\json",
+                    ConfigurationManager.AppSettings["ProgramWorkspace"]);
             });
         }
 

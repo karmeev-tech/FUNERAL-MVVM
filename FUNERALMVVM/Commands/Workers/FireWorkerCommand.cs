@@ -1,22 +1,31 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel.Workers;
+using IssueProvider;
 using Worker.EF;
 
 namespace FUNERALMVVM.Commands.Workers
 {
     internal class FireWorkerCommand : BaseCommands
     {
-        private readonly DeleteWorkersVM _context;
+        private readonly DeleteWorkersVM _vm;
 
-        public FireWorkerCommand(DeleteWorkersVM context)
+        public FireWorkerCommand(DeleteWorkersVM vm)
         {
-            _context = context;
+            _vm = vm;
         }
 
         public override void Execute(object parameter)
         {
-            WorkerConnector.DeleteWorker(_context.SelectedWorker);
-            _context.Closing();
+            try
+            {
+                WorkerConnector.DeleteWorker(_vm.SelectedWorker);
+                IssueCenter.DeleteSalary(_vm.SelectedWorker);
+                _vm.Closing();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }
