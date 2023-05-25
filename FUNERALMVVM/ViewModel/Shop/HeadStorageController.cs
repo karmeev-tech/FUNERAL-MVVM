@@ -54,11 +54,13 @@ namespace FUNERALMVVM.ViewModel
             }
         }
 
-        public string Response { get => _response; set
+        public string Response
+        {
+            get => _response; set
             {
                 _response = value;
                 OnPropertyChanged(nameof(Response));
-            } 
+            }
         }
 
         #region EF
@@ -101,7 +103,7 @@ namespace FUNERALMVVM.ViewModel
 
         public override void Execute(object parameter)
         {
-           _controller.Items.Add(new StorageItemEntity());
+            _controller.Items.Add(new StorageItemEntity());
         }
     }
 

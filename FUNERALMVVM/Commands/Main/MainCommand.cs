@@ -1,11 +1,7 @@
 ﻿using BossInstruments;
-using Domain.GeneralOrder;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
-using OrderManager;
 using System.Configuration;
-using System.IO;
-using System.Text.Json;
 
 namespace FUNERALMVVM.Commands.Main
 {

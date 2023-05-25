@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Model.Order;
 using FUNERALMVVM.ViewModel;
 using System;
@@ -32,8 +31,8 @@ namespace FUNERALMVVM.Commands.Orders
                 dead = dead.Replace("/", ".");
             }
 
-            DeadModel deadModel = new() 
-            { 
+            DeadModel deadModel = new()
+            {
                 Name = _orderController.Name,
                 LastName = _orderController.LastName,
                 ThirdName = _orderController.ThirdName,
@@ -60,7 +59,7 @@ namespace FUNERALMVVM.Commands.Orders
         {
             try
             {
-                string dateString = birth.Replace(".","/");
+                string dateString = birth.Replace(".", "/");
                 string format = "dd/MM/yyyy";
                 DateTime dateTime = DateTime.ParseExact(dateString, format, CultureInfo.InvariantCulture);
                 dateString = death.Replace(".", "/");

@@ -1,5 +1,4 @@
-﻿using Domain.Complect;
-using Domain.Services.Entity;
+﻿using Domain.Services.Entity;
 using FUNERALMVVM.View.Pages;
 using FUNERALMVVM.ViewModel.Shop;
 using System;

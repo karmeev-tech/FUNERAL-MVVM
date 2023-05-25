@@ -29,8 +29,10 @@ namespace FUNERALMVVM.ViewModel.Shop
                 _headStorageController.UpdateStorages();
             }
         }
-        public string SelectedNameShop { get => _selectedNameShop;
-            set 
+        public string SelectedNameShop
+        {
+            get => _selectedNameShop;
+            set
             {
                 _selectedNameShop = value;
                 OnPropertyChanged(nameof(SelectedNameShop));

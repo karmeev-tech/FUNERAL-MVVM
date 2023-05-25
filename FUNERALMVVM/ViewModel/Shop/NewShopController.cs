@@ -15,13 +15,15 @@ namespace FUNERALMVVM.ViewModel
 
         private string _response;
 
-        public string Response { get => _response;
-            set 
+        public string Response
+        {
+            get => _response;
+            set
             {
                 _response = value;
                 OnPropertyChanged(nameof(Response));
                 _headStorageController.UpdateStorages();
-            } 
+            }
         }
         public string NameShop { get; set; }
         public ICommand AddBaseShop => new AddBaseShop(this);
@@ -39,7 +41,7 @@ namespace FUNERALMVVM.ViewModel
         public override void Execute(object parameter)
         {
             ShopConnector shopConnector = new();
-            _newShopController.Response = shopConnector.AddShop(_newShopController.NameShop) ;
+            _newShopController.Response = shopConnector.AddShop(_newShopController.NameShop);
         }
     }
 }

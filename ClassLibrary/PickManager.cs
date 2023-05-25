@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.IO;
-using System.Windows;
 
 namespace ClassLibrary
 {
@@ -18,7 +17,7 @@ namespace ClassLibrary
             _filePath = openFileDialog.FileName;
             _fileName = openFileDialog.SafeFileName;
 
-            if(_filePath != "")
+            if (_filePath != "")
             {
                 File.Copy(_filePath, CurrentDir() + _fileName);
                 _filePath = "\\.workspace\\" + _fileName;

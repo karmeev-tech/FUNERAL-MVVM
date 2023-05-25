@@ -1,4 +1,4 @@
-﻿using Domain.Complect;
+﻿using Infrastructure.Model.Storage;
 using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Model.ComplexMongo
@@ -7,6 +7,6 @@ namespace Infrastructure.Model.ComplexMongo
     {
         [Key]
         public int Id { get; set; }
-        public List<ItemComplectEntity> Complect { get; set; } = new List<ItemComplectEntity>();
+        public List<StorageItemEntity> Complect { get; set; } = new List<StorageItemEntity>();
     }
 }

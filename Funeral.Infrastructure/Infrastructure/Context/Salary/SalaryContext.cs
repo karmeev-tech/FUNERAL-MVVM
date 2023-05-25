@@ -1,5 +1,4 @@
-﻿using Infrastructure.Model.Issue;
-using Infrastructure.Model.Salary;
+﻿using Infrastructure.Model.Salary;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 

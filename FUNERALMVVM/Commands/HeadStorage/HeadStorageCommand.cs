@@ -22,7 +22,7 @@ namespace FUNERALMVVM.Commands.HeadStorage
                 _headStorageController.Response = "Выберите имя магазина";
                 return;
             }
-            shopConnector.UpdateDB(items,_headStorageController.ShopName);
+            shopConnector.UpdateDB(items, _headStorageController.ShopName);
         }
     }
 }

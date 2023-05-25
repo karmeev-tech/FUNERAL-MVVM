@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Funeral" Height="982" Width="1512" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="Funeral" Height="982" Width="1512" WindowStartupLocation="CenterScreen" WindowState="Maximized" Closed="Window_Closed">
     <Grid Background="#FFDDDDDD">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="17*"/>
@@ -52,7 +52,7 @@
                      Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3"/>
         <RadioButton Content="Главная" Grid.Row="9" VerticalAlignment="Center" Height="46"
                      x:Name="Head" 
-                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" IsChecked="True" Grid.ColumnSpan="3" Width="NaN"/>
+                     Style="{StaticResource MenuButtonTheme}" Panel.ZIndex="2" Grid.ColumnSpan="3" Width="NaN"/>
         <RadioButton Grid.Row="1" VerticalAlignment="Center" Height="60"
                      Content="Заказ"
                      x:Name="Order" 

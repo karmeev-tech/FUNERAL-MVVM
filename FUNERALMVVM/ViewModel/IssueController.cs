@@ -20,14 +20,14 @@ namespace FUNERALMVVM.ViewModel
         public string Prepayment { get; set; } = "";
 
         private string _response = string.Empty;
-        public string Response 
-        { 
+        public string Response
+        {
             get => _response;
-            set 
+            set
             {
                 _response = value;
                 OnPropertyChanged(nameof(Response));
-            } 
+            }
         }
         public ICommand GetDock => new GetDocumentCommand(this);
         public ICommand GetDock2 => new GetSecondDocumentCommand(this);

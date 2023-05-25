@@ -1,12 +1,9 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Workers;
 using FUNERALMVVM.View.Windows;
-using LegacyInfrastructure.Worker;
-using Shop;
 using Shop.EF;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Worker.EF;
 
 namespace FUNERALMVVM.ViewModel.Workers
 {

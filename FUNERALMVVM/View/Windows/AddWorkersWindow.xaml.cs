@@ -1,6 +1,4 @@
-﻿using FUNERALMVVM.ViewModel;
-using FUNERALMVVM.ViewModel.Workers;
-using System.Drawing;
+﻿using FUNERALMVVM.ViewModel.Workers;
 using System.Windows;
 using System.Windows.Media;
 
@@ -19,7 +17,7 @@ namespace FUNERALMVVM.View.Windows
 
         private void Grid_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(tb7.Text!=string.Empty && tb9.Text != string.Empty) 
+            if (tb7.Text != string.Empty && tb9.Text != string.Empty)
             {
                 AddButton.IsEnabled = true;
             }

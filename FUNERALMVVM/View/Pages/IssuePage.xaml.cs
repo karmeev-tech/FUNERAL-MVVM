@@ -1,6 +1,5 @@
 ﻿using FUNERALMVVM.ViewModel;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace FUNERALMVVM.View.Pages
 {

@@ -1,10 +1,5 @@
 ﻿using FUNERAL_MVVM.Utility;
-using FUNERALMVVM.Commands.Workers;
 using LegacyInfrastructure.Worker;
-using MongoDB.Driver.Linq;
-using System.Linq;
-using System.Windows.Input;
-using Worker;
 using Worker.EF;
 
 namespace FUNERALMVVM.ViewModel.Workers

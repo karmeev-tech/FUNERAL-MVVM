@@ -1,12 +1,13 @@
 ﻿using DocumentFormat.OpenXml.Packaging;
 using Domain.Order;
+using System.Configuration;
 using System.Text.RegularExpressions;
 
 namespace OrderManager
 {
     public class OrderCreator
     {
-        public string Workspace { get; set; }
+        public string Workspace { get => ConfigurationManager.AppSettings["ProgramWorkspace"]; }
         public void CreateDoc(string number,
                       string name,
                       string passport,
@@ -68,7 +69,7 @@ namespace OrderManager
                       string grobForm, string funColor, string polish, string other, string upFuneral, string downFuneral,
                       string otherFuneral, string epitafia, string todayDate, string createDate, string clientFIO,
                       string clientAdress, string clientPhone, string clientFuneral, string clientDelivery,
-                      string clientInstal, string clientPrice,  string clientPrepayment, string clientRe,
+                      string clientInstal, string clientPrice, string clientPrepayment, string clientRe,
                       string funeralMaterial, string funeralNumber
             )
         {

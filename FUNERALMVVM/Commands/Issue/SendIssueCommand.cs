@@ -36,10 +36,10 @@ namespace FUNERALMVVM.Commands.Issue
                 }
 
                 var id = Convert.ToInt32(number);
-                if(WorkerConnector.GetState(id)!=new StateEntity())
+                if (WorkerConnector.GetState(id) != new StateEntity())
                 {
                     var result = Transfer();
-                    if(result == 0)
+                    if (result == 0)
                     {
                         _controller.Response = "Заявка принята";
                         return;
@@ -63,7 +63,7 @@ namespace FUNERALMVVM.Commands.Issue
             };
 
             var check = paths.Where(x => x == string.Empty).ToList().Count;
-            if(check != 0)
+            if (check != 0)
             {
                 return -1;
             }
@@ -72,9 +72,9 @@ namespace FUNERALMVVM.Commands.Issue
 
             string[] storage =
             {
-                road + "\\" + DateTime.Now.ToString().Replace(" ", "").Replace(":", "-"),
-                road + "\\" + DateTime.Now.ToString().Replace(" ", "").Replace(":", "-"),
-                road + "\\" + DateTime.Now.ToString().Replace(" ", "").Replace(":", "-")
+                road + "\\" + DateTime.Now.ToString().Replace(" ", "").Replace(":", ""),
+                road + "\\" + DateTime.Now.ToString().Replace(" ", "").Replace(":", ""),
+                road + "\\" + DateTime.Now.ToString().Replace(" ", "").Replace(":", "")
             };
             Directory.CreateDirectory(storage[0]);
             Directory.CreateDirectory(storage[1]);
@@ -87,7 +87,7 @@ namespace FUNERALMVVM.Commands.Issue
                 paths[2].Remove(0,paths[2].LastIndexOf(@"\"))
             };
 
-            File.Copy(paths[0], storage[0] +  fileNames[0], true);
+            File.Copy(paths[0], storage[0] + fileNames[0], true);
             File.Copy(paths[1], storage[1] + fileNames[1], true);
             File.Copy(paths[2], storage[2] + fileNames[2], true);
             return 0;

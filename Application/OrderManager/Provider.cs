@@ -1,14 +1,11 @@
-﻿using Domain.Complect;
-using Domain.Issue;
-using Domain.Order;
+﻿using Domain.Order;
 using Domain.Services.Entity;
-using Infrastructure.Context.State;
 using Infrastructure.Model.ComplexMongo;
+using Infrastructure.Model.Storage;
 using Infrastructure.Mongo;
 using LegacyInfrastructure.Worker;
-using ORDCreator;
 using System.Text.Json;
-using Worker;
+using System.Windows;
 
 namespace OrderManager
 {
@@ -51,20 +48,19 @@ namespace OrderManager
 
             OrderEntity order = JsonSerializer.Deserialize<OrderEntity>(json);
 
-            List<ItemComplectEntity> complect = new();
-            if(json2!="")
+            List<StorageItemEntity> complect = new();
+            if (json2 != "")
             {
-                complect = JsonSerializer.Deserialize<List<ItemComplectEntity>>(json2);
+                complect = JsonSerializer.Deserialize<List<StorageItemEntity>>(json2);
             }
 
             List<Service> services = new();
-            if(json3!="")
+            if (json3 != "")
             {
                 services = JsonSerializer.Deserialize<List<Service>>(json3);
             }
 
             OrderCreator manager = new();
-            manager.Workspace = programWorkspace;
             var entity = new StateEntity()
             {
                 Id = MongoFuneral.GetUniqueId(),
@@ -75,9 +71,16 @@ namespace OrderManager
                 Services = new ComplexServiceEntity { Id = 0, Services = services },
             };
             MongoFuneral.ConnectAndAddFile(entity);
+            Console.WriteLine("в монгу закинул");
+            if (!Directory.Exists(@"\.workspace\docs"))
+            {
+                Directory.CreateDirectory(@"\.workspace\docs");
+            }
 
-            manager.CreateDoc(entity.Id.ToString(),
-                order.ClientOrder.Name,
+            try
+            {
+                manager.CreateDoc(entity.Id.ToString(),
+                order.ClientOrder.Name + " " + order.ClientOrder.LastName + " " + order.ClientOrder.ThirdName,
                 order.ClientOrder.Passport,
                 order.ClientOrder.Adress,
                 GetServicesByName(services),
@@ -86,52 +89,66 @@ namespace OrderManager
                 order.Prepayment,
                 order.ClientOrder.Phone);
 
-            manager.CreateFuneralDock(entity.Id.ToString(),
-                order.ClientOrder.Name,
-                order.ClientOrder.Passport,
-                order.ClientOrder.Adress,
-                GetComplectNames(complect),
-                order.Price,
-                order.Prepayment,
-                order.ClientOrder.Phone,
-                order.ClientOrder.Cemetry);
+                manager.CreateFuneralDock(entity.Id.ToString(),
+                    order.ClientOrder.Name + " " + order.ClientOrder.LastName + " " + order.ClientOrder.ThirdName,
+                    order.ClientOrder.Passport,
+                    order.ClientOrder.Adress,
+                    GetComplectNames(complect),
+                    order.Price,
+                    order.Prepayment,
+                    order.ClientOrder.Phone,
+                    order.ClientOrder.Cemetry);
 
-            var instal = "0";
-            if(order.Instal.Idicate == "False")
+                var instal = "0";
+                if (order.Instal.Idicate == "False")
+                {
+                    instal = order.Instal.InstalPrice;
+                }
+
+                manager.CreateBlank(
+                    order.DeadassCount,
+                    order.Deadass,
+                    order.Base.Looks,
+                    "Размер: " + order.Stela.Size + " Сечение: " + order.Stela.Section,
+                    "Размер: " + order.Stand.Size + " Сечение: " + order.Stand.Section,
+                    order.Flowershed.NoInstal == "False" ? "Размер: " + order.Flowershed.Size : "без цветника",
+                    order.Funeral.Color,
+                    order.Polishing,
+                    "",
+                    order.Funeral.UpPart,
+                    order.Funeral.DownPart,
+                    order.Funeral.Other,
+                    order.Funeral.Epitafia,
+                    order.ClientOrder.DateToday,
+                    order.ClientOrder.DateCreation,
+                    order.ClientOrder.Name + " " + order.ClientOrder.LastName + " " + order.ClientOrder.ThirdName,
+                    order.ClientOrder.Adress,
+                    order.ClientOrder.Phone,
+                    order.ClientOrder.Cemetry,
+                    order.ClientOrder.DeliveryPlace,
+                    instal,
+                    order.Price,
+                    order.Prepayment,
+                    order.Remainder,
+                    order.Funeral.Type,
+                    order.Base.ModelFuneral
+                    );
+            }
+            catch (Exception)
             {
-                instal = order.Instal.InstalPrice;
+                MessageBox.Show("доки не генерятся");
+                Console.WriteLine("доки не генерятся");
             }
 
-            manager.CreateBlank(
-                order.DeadassCount,
-                order.Deadass,
-                order.Base.Looks,
-                "Размер: " + order.Stela.Size + " Сечение: " + order.Stela.Section,
-                "Размер: " + order.Stand.Size + " Сечение: " + order.Stand.Section,
-                order.Flowershed.NoInstal == "False" ? "Размер: " + order.Flowershed.Size : "без цветника",
-                order.Funeral.Color,
-                order.Polishing,
-                "",
-                order.Funeral.UpPart,
-                order.Funeral.DownPart,
-                order.Funeral.Other,
-                order.Funeral.Epitafia,
-                order.ClientOrder.DateToday,
-                order.ClientOrder.DateCreation,
-                order.ClientOrder.Name + " " + order.ClientOrder.LastName + " " + order.ClientOrder.ThirdName,
-                order.ClientOrder.Adress,
-                order.ClientOrder.Phone,
-                order.ClientOrder.Cemetry,
-                order.ClientOrder.DeliveryPlace,
-                instal,
-                order.Price,
-                order.Prepayment,
-                order.Remainder,
-                order.Funeral.Type,
-                order.Base.ModelFuneral
-                );
-
-            DocumentTransferring(workspaceDocs, programWorkspace);
+            try
+            {
+                DocumentTransferring(workspaceDocs, programWorkspace);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("проблема с трансфером");
+                Console.WriteLine("проблема с трансфером");
+            }
         }
         private static string GetServicesByName(List<Service> services)
         {
@@ -142,7 +159,7 @@ namespace OrderManager
             }
             return result;
         }
-        private static string GetServicesPrice(List<Service> services, List<ItemComplectEntity> complect)
+        private static string GetServicesPrice(List<Service> services, List<StorageItemEntity> complect)
         {
             int result = 0;
             foreach (Service service in services)
@@ -152,29 +169,29 @@ namespace OrderManager
             result += GetFunPrice(complect);
             return result.ToString();
         }
-        private static int GetFunPrice(List<ItemComplectEntity> complect)
+        private static int GetFunPrice(List<StorageItemEntity> complect)
         {
             int result = 0;
-            foreach (ItemComplectEntity service in complect)
+            foreach (StorageItemEntity service in complect)
             {
-                result += service.Money;
+                result += service.Price;
             }
             return result;
         }
-        private static string GetComplectNames(List<ItemComplectEntity> items)
+        private static string GetComplectNames(List<StorageItemEntity> items)
         {
             string result = string.Empty;
-            foreach(ItemComplectEntity item in items)
+            foreach (StorageItemEntity item in items)
             {
-                result += item.Name + " " + item.Money + " .руб" + " (" + item.Count + "), \n"; 
+                result += item.Name + " " + item.Price + " .руб" + " (" + item.Count + "), \n";
             }
             return result;
         }
 
         // TRANSFERRING
-        private static void DocumentTransferring(string workspaceDocs,string programWorkspace)
+        private static void DocumentTransferring(string workspaceDocs, string programWorkspace)
         {
-            var time = DateTime.Now.ToString(); 
+            var time = DateTime.Now.ToString();
             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет");
             File.Copy(programWorkspace + @"\.workspace\docs\ReplacedDock.docx", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc1.docx");
             File.Copy(programWorkspace + @"\.workspace\docs\ReplacedFuneralDock.docx", Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc2.docx");
@@ -182,16 +199,16 @@ namespace OrderManager
 
             if (Directory.Exists(workspaceDocs))
             {
-                var dir = workspaceDocs + "\\" + Provider._managerName + "-" + time.Replace(" ", "-").Replace(":", "-") + " " + Provider._numberDb + @"\" ;
+                var dir = workspaceDocs + "\\" + Provider._managerName + "" + time.Replace(" ", "").Replace(":", "") + "" + Provider._numberDb + @"\";
                 Directory.CreateDirectory(dir);
                 File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc1.docx", dir + "doc1.docx", false);
-                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc2.docx", dir + "doc2.docx",false);
+                File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc2.docx", dir + "doc2.docx", false);
                 File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\blank.docx", dir + "blank.docx", false);
             }
             else
             {
                 Directory.CreateDirectory(workspaceDocs);
-                var dir = workspaceDocs + "\\" + Provider._managerName + "-" + time.Replace(" ", "-").Replace(":", "-") + "-" + Provider._numberDb;
+                var dir = workspaceDocs + "\\" + Provider._managerName + "" + time.Replace(" ", "").Replace(":", "") + "" + Provider._numberDb;
                 Directory.CreateDirectory(dir);
                 File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc1.docx", dir + "\\doc1.docx", false);
                 File.Copy(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет\\doc2.docx", dir + "\\doc2.docx", false);

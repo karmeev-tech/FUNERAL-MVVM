@@ -201,14 +201,18 @@ namespace FUNERALMVVM.ViewModel
 
 
         private string _response;
-        public string Response { get => _response; 
-            set { 
-                _response = value; 
-                OnPropertyChanged(nameof(Response)); 
-                Clean(); 
-                OnPropertyChanged(); 
+        public string Response
+        {
+            get => _response;
+            set
+            {
+                _response = value;
+                OnPropertyChanged(nameof(Response));
+                Clean();
+                OnPropertyChanged();
                 _orderPage.FormingButton.IsEnabled = false;
-            } }
+            }
+        }
         #endregion
 
         public ICommand AddOrder => new AddOrderCommand(this);

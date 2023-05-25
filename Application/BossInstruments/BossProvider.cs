@@ -1,11 +1,7 @@
 ﻿using Domain.Dord;
-using Domain.GeneralOrder;
-using Domain.Shop;
 using Infrastructure.Model.Storage;
 using LegacyInfrastructure.Salary;
 using LegacyInfrastructure.Storage;
-using ORDCreator;
-using System.Collections.Generic;
 
 namespace BossInstruments
 {
@@ -15,11 +11,11 @@ namespace BossInstruments
         private static SalaryManager _salaryManager = new();
 
         public static void SendToDB(
-            List<DordEntity> worker, 
-            List<StorageItemEntity> items, 
+            List<DordEntity> worker,
+            List<StorageItemEntity> items,
             List<OrderDord> orders)
         {
-            DBSender sender = new(_shopRepos,_salaryManager);
+            DBSender sender = new(_shopRepos, _salaryManager);
             //sender.ChangeStorage(items);
 
             sender.ChangeSalary(worker[0].ManagerName, Convert.ToInt32(worker[0].Salary));

@@ -1,10 +1,8 @@
-﻿using Domain.Complect;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FuneralClient.Commands.Complect;
 using FUNERALMVVM.View.Pages;
 using FUNERALMVVM.View.Windows;
 using Infrastructure.Model.Storage;
-using LegacyInfrastructure.Complect;
 using LegacyInfrastructure.Worker;
 using Shop.EF;
 using System;
@@ -24,14 +22,14 @@ namespace FUNERALMVVM.ViewModel
         private ObservableCollection<string> _itemFromComplect = new();
         public List<StorageItemEntity> ComplectStorage { get; set; }
         private OrderPage _orderPage;
-        public ObservableCollection<string> ItemFromComplect 
-        { 
+        public ObservableCollection<string> ItemFromComplect
+        {
             get => _itemFromComplect;
             set
             {
                 _itemFromComplect = value;
                 OnPropertyChanged(nameof(ItemFromComplect));
-            } 
+            }
         }
 
         private ObservableCollection<StorageItemEntity> _items = new();

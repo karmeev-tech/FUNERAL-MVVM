@@ -1,5 +1,4 @@
-﻿using Domain.Complect;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
 using Infrastructure.Model.Storage;
 using System.Linq;
@@ -28,7 +27,7 @@ namespace FUNERALMVVM.Commands.Shop
             };
 
             var duplicate = _complectController.Items.Where(x => x.Name == itemComplectEntity.Name);
-            if(duplicate.Any())
+            if (duplicate.Any())
             {
                 return;
             }

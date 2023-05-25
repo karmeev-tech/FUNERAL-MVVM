@@ -29,7 +29,7 @@ namespace Worker.EF
                 db.SaveChanges();
             }
 
-            using (var db = new IssueContext()) 
+            using (var db = new IssueContext())
             {
                 var query = from b in db.IssueMoney
                             orderby b.Name
@@ -39,7 +39,7 @@ namespace Worker.EF
                 {
                     return;
                 }
-                db.IssueMoney.Add(new IssueEntity() { Name = workerEntity.Name , Money = 0});
+                db.IssueMoney.Add(new IssueEntity() { Name = workerEntity.Name, Money = 0 });
                 db.SaveChanges();
             }
         }
@@ -82,7 +82,7 @@ namespace Worker.EF
 
         public static string Auth(string name, string password)
         {
-            using(var db = new WorkerContext())
+            using (var db = new WorkerContext())
             {
                 var query = from b in db.Workers
                             where b.Name == name && b.Password == password
@@ -105,7 +105,7 @@ namespace Worker.EF
                 var query = from b in db.Workers
                             where b.Name == name
                             select b.ShopName;
-                
+
                 return query.First();
             }
         }
@@ -123,7 +123,7 @@ namespace Worker.EF
         public static List<SalaryEntity> GetAllSalary()
         {
             List<SalaryEntity> result = new();
-            using(var db = new SalaryContext())
+            using (var db = new SalaryContext())
             {
                 result = db.IssueMoney.ToList();
 
@@ -139,7 +139,7 @@ namespace Worker.EF
                             where b.Id == id
                             select b;
 
-                if(query.Any())
+                if (query.Any())
                 {
                     return query.First();
                 }

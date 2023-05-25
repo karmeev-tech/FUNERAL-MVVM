@@ -1,9 +1,8 @@
-﻿using Domain.Complect;
-using FUNERALMVVM.ViewModel;
-using System.Windows;
-using System;
-using System.Windows.Controls;
+﻿using FUNERALMVVM.ViewModel;
 using Infrastructure.Model.Storage;
+using System;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace FUNERALMVVM.View.Pages
 {

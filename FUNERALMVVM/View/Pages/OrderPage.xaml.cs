@@ -1,8 +1,5 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
-using FUNERALMVVM.ViewModel;
-using OrderManager;
+﻿using FUNERALMVVM.ViewModel;
 using System;
-using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -86,7 +83,7 @@ namespace FUNERALMVVM.View.Pages
         private void tb13_GotFocus(object sender, System.Windows.RoutedEventArgs e)
         {
             tb13.Foreground = new SolidColorBrush(Colors.Black);
-            if(tb13.Text.Contains("+"))
+            if (tb13.Text.Contains("+"))
             {
                 var sign = tb13.Text.IndexOf("+");
                 var first = tb13.Text.Substring(0, sign);
@@ -103,7 +100,7 @@ namespace FUNERALMVVM.View.Pages
                 int res = Convert.ToInt32(tb13.Text) - Convert.ToInt32(tb14.Text);
                 tb12.Text = res.ToString();
             }
-            catch 
+            catch
             {
                 MessageBox.Show("Не верные значения цены");
             }

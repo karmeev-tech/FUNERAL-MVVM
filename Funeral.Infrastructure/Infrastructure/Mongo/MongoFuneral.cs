@@ -1,10 +1,8 @@
-﻿using Domain.Complect;
-using Domain.Order.Config;
-using Infrastructure.Model.ComplexMongo;
+﻿using Infrastructure.Model.ComplexMongo;
 using MongoDB.Bson;
+using MongoDB.Bson.IO;
 using MongoDB.Driver;
 using System.Configuration;
-using System.Linq.Expressions;
 
 namespace Infrastructure.Mongo
 {
@@ -81,9 +79,13 @@ namespace Infrastructure.Mongo
             var collection = database.GetCollection<StateEntity>("orders");
             var documents = collection.Find(new BsonDocument()).ToList();
 
-            foreach ( var document in documents)
+            foreach (var document in documents)
             {
-                var json = documents.ToJson();
+                JsonWriterSettings settings = new JsonWriterSettings
+                {
+                    Indent = true
+                };
+                var json = document.ToJson(settings);
                 File.WriteAllText(path + "\\json" + new Random().Next().ToString() + ".json", json);
             }
         }

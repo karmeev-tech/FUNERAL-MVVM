@@ -51,15 +51,17 @@ namespace BossInstruments
 
             try
             {
-                if(Directory.Exists(ConfigurationManager.AppSettings["ScanDocs"]))
+                if (Directory.Exists(ConfigurationManager.AppSettings["ScanDocs"]))
                 {
                     Directory.Move(ConfigurationManager.AppSettings["ScanDocs"], docsFolder + @"\scan");
                 }
-                if(Directory.Exists(ConfigurationManager.AppSettings["GenerateDocs"]))
+                if (Directory.Exists(ConfigurationManager.AppSettings["GenerateDocs"]))
                 {
                     Directory.Move(ConfigurationManager.AppSettings["GenerateDocs"], docsFolder + @"\gen");
                 }
 
+                Directory.CreateDirectory(ConfigurationManager.AppSettings["GenerateDocs"]);
+                Directory.CreateDirectory(ConfigurationManager.AppSettings["ScanDocs"]);
 
                 MongoFuneral.GetJsonFilesFolder(jsonFolder);
                 MongoItems.GetJsonFilesFolder(jsonFolder2);
@@ -72,6 +74,7 @@ namespace BossInstruments
 
                 MongoItems.ConnectAndDeleteAllFiles();
                 MongoFuneral.ConnectAndDeleteAllFiles();
+                MessageBox.Show("Отчёт кассира сформирован");
             }
             catch (Exception ex)
             {
@@ -81,13 +84,13 @@ namespace BossInstruments
 
         public static void UpdateWithDord(List<DordEntity> dordEntities,
                                           List<StorageItemEntity> storageItemEntities,
-                                         // List<OrderDord> orderDords, //нахуй не нужна
-                                         List<SalaryEntity> salaryEntities //нахуй не нужна на самом то деле тоже
+                                          // List<OrderDord> orderDords, //нахуй не нужна
+                                          List<SalaryEntity> salaryEntities //нахуй не нужна на самом то деле тоже
                                           )
         {
             var money = salaryEntities.Where(x => x.WorkerName == dordEntities.First().ManagerName).Select(x => x.WorkerMoney).First();
             UpdateSalary(dordEntities.First().ManagerName,
-                Convert.ToInt32(dordEntities.First().Salary) + Convert.ToInt32(dordEntities.First().Oklad),
+                Convert.ToInt32(dordEntities.First().Salary),
                 money);
 
             ShopConnector.EditItemInShop(storageItemEntities);
@@ -110,7 +113,7 @@ namespace BossInstruments
                 db.IssueMoney.Remove(query.First());
                 db.SaveChanges();
 
-                if(updateSalary.WorkerMoney!=realMoney)
+                if (updateSalary.WorkerMoney != realMoney)
                 {
                     updateSalary.WorkerMoney = realMoney;
                 }

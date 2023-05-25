@@ -1,7 +1,6 @@
-﻿using System.Text.RegularExpressions;
-using System.IO;
-using DocumentFormat.OpenXml.Packaging;
+﻿using DocumentFormat.OpenXml.Packaging;
 using Domain.Order;
+using System.Text.RegularExpressions;
 
 namespace LegacyInfrastructure.Order
 {
@@ -91,13 +90,13 @@ namespace LegacyInfrastructure.Order
             {
                 case 1:
                     loadPath = Directory.GetCurrentDirectory() + @"\.docs\blank1.docx";
-                    break ; 
+                    break;
                 case 2:
                     loadPath = Directory.GetCurrentDirectory() + @"\.docs\blank2.docx";
-                    break;   
+                    break;
                 case 3:
                     loadPath = Directory.GetCurrentDirectory() + @"\.docs\blank3.docx";
-                    break;   
+                    break;
                 case 4:
                     loadPath = Directory.GetCurrentDirectory() + @"\.docs\blank4.docx";
                     break;

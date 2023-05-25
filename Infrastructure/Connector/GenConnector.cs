@@ -13,7 +13,7 @@ namespace LegacyInfrastructure.Connector
             var conStr = InitialInst(nameDB);
             _sqlConnection = new SqlConnection(conStr);
             _sqlConnection.Open();
-            if(_sqlConnection.State is ConnectionState.Open)
+            if (_sqlConnection.State is ConnectionState.Open)
             {
                 Console.WriteLine("DB connected");
             }

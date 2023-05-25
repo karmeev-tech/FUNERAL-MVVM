@@ -6,7 +6,7 @@ namespace Shop.EF
 {
     public class ShopConnector
     {
-        public static List<string> GetShops() 
+        public static List<string> GetShops()
         {
             List<string> shops = new List<string>();
 
@@ -20,7 +20,7 @@ namespace Shop.EF
                     shops.Add(item.Name);
                 }
             }
-            return shops; 
+            return shops;
         }
 
 
@@ -97,7 +97,7 @@ namespace Shop.EF
                             where b == shopName
                             select b;
 
-                if(query.Any())
+                if (query.Any())
                 {
                     return "error";
                 }
@@ -121,13 +121,13 @@ namespace Shop.EF
                 var query = from shops in db.Shops
                             where shops.Name == shopName
                             select shops.Id;
-                if(query.Any() && query.ToList().Count==1)
+                if (query.Any() && query.ToList().Count == 1)
                 {
                     var shop = new StorageEntity() { Id = query.ToList().First(), Name = shopName };
                     db.Shops.Remove(shop);
                     db.SaveChanges();
 
-                    using(var  db2 = new StorageContext())
+                    using (var db2 = new StorageContext())
                     {
                         var query3 = from items in db2.StorageItems
                                      where items.ShopName == shopName
@@ -166,7 +166,7 @@ namespace Shop.EF
                     {
                         var item = query.First();
                         item.Count += storageItemEntity.Count;
-                        if(item.Price != storageItemEntity.Price)
+                        if (item.Price != storageItemEntity.Price)
                         {
                             item.Price = storageItemEntity.Price;
                         }
@@ -235,7 +235,7 @@ namespace Shop.EF
                 var query = from item in db.StorageItems
                             select item;
 
-                foreach(var workerItems in items)
+                foreach (var workerItems in items)
                 {
                     var storageItem = query.Where(x => x.Name == workerItems.Name && x.ShopName == workerItems.ShopName)
                          .Select(x => x.Count)

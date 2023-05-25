@@ -1,8 +1,5 @@
-﻿using BossInstruments;
-using Infrastructure.Context.Mongo;
-using Infrastructure.Mongo;
-using Microsoft.Extensions.DependencyInjection;
-using OrderManager;
+﻿
+using System;
 using System.Configuration;
 using System.IO;
 using System.Windows;
@@ -16,23 +13,29 @@ namespace FUNERALMVVM
     {
         public App()
         {
-            string workspace = ConfigurationManager.AppSettings["Workspace"];
-            InitCustom(workspace);
-            //IntegraTests(workspace);
-        }
-
-        public void InitCustom(string workspace)
-        {
-            if (!Directory.Exists(workspace))
+            Config config = new Config();
+            if (Directory.Exists(ConfigurationManager.AppSettings[config.DordCache]))
             {
-                MessageBox.Show("Установка некорректна");
+                Directory.Delete(ConfigurationManager.AppSettings[config.DordCache], true);
+                Directory.CreateDirectory(ConfigurationManager.AppSettings[config.DordCache]);
             }
-            new ConfigBoss.Init().Connect();
+            Directory.CreateDirectory(ConfigurationManager.AppSettings[config.DordCache]);
+            Console.WriteLine(ConfigurationManager.AppSettings[config.DordCache]);
         }
 
-        public void IntegraTests(string workspace)
+        public void SetAppSettings(string appSettings, string value)
         {
-            DordMetaFormalizer.SendDord(workspace);
+            string appSettingValue = ConfigurationManager.AppSettings[appSettings];
+            appSettingValue = appSettingValue.Replace("{path}", value);
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings[appSettings].Value = appSettingValue;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection(appSettings);
         }
+    }
+    public class Config
+    {
+        public string ProgramData { get => Directory.GetCurrentDirectory(); }
+        public string DordCache { get => "ProgramDord"; }
     }
 }
