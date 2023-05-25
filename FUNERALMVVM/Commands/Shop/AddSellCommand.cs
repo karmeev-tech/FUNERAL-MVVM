@@ -1,12 +1,8 @@
-﻿using Domain.Complect;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
 using Infrastructure.Mongo;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 
 namespace FUNERALMVVM.Commands.Shop
 {

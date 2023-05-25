@@ -11,7 +11,7 @@ namespace ORDCreator
             {
                 AddZip(basePath, @"\" + dordName + ".zip", savePath);
                 FileInfo file = new(savePath);
-                file.MoveTo(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\send.dord",true);
+                file.MoveTo(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\send.dord", true);
             }
             catch (Exception)
             {
@@ -22,7 +22,6 @@ namespace ORDCreator
         private static void AddZip(string basePath, string name, string savePath)
         {
             string startPath = basePath;
-            string zipPath = basePath + name;
 
             using (ZipFile zip = new ZipFile())
             {
@@ -33,7 +32,7 @@ namespace ORDCreator
 
         public static void UnZip(string basePath, string workPath)
         {
-            File.Move(basePath, workPath + "\\send.zip");
+            File.Copy(basePath, workPath + "\\send.zip");
             using (ZipFile zip = ZipFile.Read(workPath + "\\send.zip"))
             {
                 //var set = zip.Where(x => x.FileName.EndsWith(".docx")).Zip();

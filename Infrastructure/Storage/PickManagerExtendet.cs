@@ -1,5 +1,4 @@
 ﻿using ClassLibrary;
-using Microsoft.Win32;
 namespace LegacyInfrastructure.Storage
 {
 #nullable disable

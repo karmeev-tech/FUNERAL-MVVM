@@ -1,5 +1,4 @@
-﻿using Domain.Complect;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
 using Infrastructure.Model.Storage;
 using System.Linq;

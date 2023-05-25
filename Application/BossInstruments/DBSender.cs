@@ -18,13 +18,13 @@ namespace BossInstruments
         {
             foreach (ShoppingItem item in items)
             {
-                _shopRepos.UpdateItemInDB(item.Name,item.Count);
+                _shopRepos.UpdateItemInDB(item.Name, item.Count);
             }
         }
 
         public void ChangeSalary(string name, int money)
         {
-            _salaryManager.UpdateSalary(name,money);
+            _salaryManager.UpdateSalary(name, money);
         }
     }
 }

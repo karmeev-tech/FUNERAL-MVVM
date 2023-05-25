@@ -1,7 +1,5 @@
 ﻿using ClassLibrary;
 using Infrastructure.Model.Storage;
-using Infrastructure.Model.Worker;
-using MongoDB.Driver;
 using Shop.EF;
 using System.Text.Json;
 using System.Windows;
@@ -23,7 +21,7 @@ namespace ConfigBoss
             model.Workers = WorkerConnector.GetWorkers();
             model.Salary = WorkerConnector.GetAllSalary();
 
-            Head.AddDocument(model,filename);
+            Head.AddDocument(model, filename);
         }
 
         private static void AddDocument(ConfigModel workers, string fileName)
@@ -70,7 +68,7 @@ namespace ConfigBoss
                 //работнички
                 WorkerConnector.UpdateAllWorkers(result.Workers);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Ошибка");
             }

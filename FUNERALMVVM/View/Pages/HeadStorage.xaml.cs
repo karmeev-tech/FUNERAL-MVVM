@@ -1,5 +1,4 @@
-﻿using Domain.Shop;
-using FUNERALMVVM.ViewModel;
+﻿using FUNERALMVVM.ViewModel;
 using Infrastructure.Model.Storage;
 using System;
 using System.Windows;

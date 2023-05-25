@@ -4,7 +4,6 @@ using Infrastructure.Context.State;
 using Infrastructure.Context.Storage;
 using Infrastructure.Context.Worker;
 using Infrastructure.Mongo;
-using System.Diagnostics;
 
 namespace ConfigBoss
 {

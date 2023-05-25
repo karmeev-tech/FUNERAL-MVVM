@@ -1,5 +1,4 @@
-﻿using ClassLibrary;
-using Domain.Shop;
+﻿using Domain.Shop;
 using LegacyInfrastructure.Connector;
 using System.Collections.ObjectModel;
 using System.Data;
@@ -15,7 +14,7 @@ namespace LegacyInfrastructure.Storage
             Connect("StorageDB");
             PickManagerExtendet pickManager = new();
             pickManager.AddToWorkspace();
-            if(pickManager.CheckNotEmpty() == "not empty") 
+            if (pickManager.CheckNotEmpty() == "not empty")
             {
                 SqlCommand command = new(
                 "INSERT INTO [Storage] (Name, Type, Price, PickLink, ZakupPrice, OForm, TForm, GForm, Margin, Color, Polishing, Other, Count) " +
@@ -88,7 +87,7 @@ namespace LegacyInfrastructure.Storage
             Close();
             foreach (string itemName in itemNames)
             {
-                if(itemName==item.Name)
+                if (itemName == item.Name)
                 {
                     return "Уже существует";
                 }
@@ -213,7 +212,7 @@ namespace LegacyInfrastructure.Storage
 
             Connect("StorageDB");
             SqlCommand command = new(
-                "UPDATE [Storage] SET Count = " + baseCount.ToString() + " WHERE Id = " + id  
+                "UPDATE [Storage] SET Count = " + baseCount.ToString() + " WHERE Id = " + id
                 , _sqlConnection);
             command.ExecuteNonQuery();
             Close();
@@ -229,7 +228,7 @@ namespace LegacyInfrastructure.Storage
             ds.IsInitialized.ToString();
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                if(name == dr[1].ToString())
+                if (name == dr[1].ToString())
                 {
                     count = Convert.ToInt32(dr[4].ToString());
                 }

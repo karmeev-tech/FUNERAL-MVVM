@@ -1,8 +1,6 @@
-﻿using Domain.Complect;
-using Domain.Order.Config;
-using Infrastructure.Model.ComplexMongo;
-using Infrastructure.Model.Storage;
+﻿using Infrastructure.Model.Storage;
 using MongoDB.Bson;
+using MongoDB.Bson.IO;
 using MongoDB.Driver;
 using System.Configuration;
 
@@ -20,7 +18,7 @@ namespace Infrastructure.Mongo
             var database = client.GetDatabase("funeralOrder");
 
             // Use the database reference to create a collection
-            var collection = database.GetCollection<ItemComplectEntity>("items");
+            var collection = database.GetCollection<StorageItemEntity>("items");
         }
         public static void ConnectAndAddFile(StorageItemEntity stateEntity)
         {
@@ -39,8 +37,8 @@ namespace Infrastructure.Mongo
             var database = client.GetDatabase("funeralOrder");
 
             // Use the database reference to create a collection
-            var collection = database.GetCollection<ItemComplectEntity>("orders");
-            var filter = Builders<ItemComplectEntity>.Filter.Eq("_id", stateEntity.Id);
+            var collection = database.GetCollection<StorageItemEntity>("orders");
+            var filter = Builders<StorageItemEntity>.Filter.Eq("_id", stateEntity.Id);
 
             collection.DeleteOne(filter);
         }
@@ -75,7 +73,11 @@ namespace Infrastructure.Mongo
 
             foreach (var document in documents)
             {
-                var json = documents.ToJson();
+                JsonWriterSettings settings = new JsonWriterSettings
+                {
+                    Indent = true
+                };
+                var json = document.ToJson(settings);
                 File.WriteAllText(path + "\\json" + new Random().Next().ToString() + ".json", json);
             }
         }

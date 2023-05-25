@@ -1,8 +1,4 @@
-﻿using BossInstruments;
-using OrderManager;
-using System.Configuration;
-
-namespace FUNERALMVVM.Portal
+﻿namespace FUNERALMVVM.Portal
 {
     public class Portal
     {

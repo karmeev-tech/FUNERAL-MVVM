@@ -1,7 +1,6 @@
-﻿using Domain.Complect;
-using Domain.Services;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
+using Infrastructure.Model.Storage;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -25,16 +24,10 @@ namespace FuneralClient.Commands.Complect
         {
             try
             {
-                List<ItemComplectEntity> result = new List<ItemComplectEntity>();
+                List<StorageItemEntity> result = new List<StorageItemEntity>();
                 foreach (var item in _complectController.Items)
                 {
-                    result.Add(new ItemComplectEntity()
-                    {
-                        Name = item.Name,
-                        Money = item.Price,
-                        Count = item.Count,
-                        Procent = item.Procent,
-                    });
+                    result.Add(item);
                 }
 
                 string fileName = _pathToDocs + "\\json\\ComplectFuneralDoc.json";
@@ -47,7 +40,7 @@ namespace FuneralClient.Commands.Complect
             }
         }
 
-        public async void AddDocument(List<ItemComplectEntity> complect, string fileName)
+        public async void AddDocument(List<StorageItemEntity> complect, string fileName)
         {
             using FileStream createStream = File.Create(fileName);
             await JsonSerializer.SerializeAsync(createStream, complect, new JsonSerializerOptions

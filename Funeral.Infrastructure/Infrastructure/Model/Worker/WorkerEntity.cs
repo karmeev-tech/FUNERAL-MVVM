@@ -1,6 +1,4 @@
-﻿using Infrastructure.Model.Storage;
-
-namespace Infrastructure.Model.Worker
+﻿namespace Infrastructure.Model.Worker
 {
     public class WorkerEntity
     {

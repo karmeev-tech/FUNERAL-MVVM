@@ -10,7 +10,6 @@ namespace FUNERALMVVM.ViewModel
     {
         private string _response = null!;
         public MainWindow _mainWindow;
-
         public AuthenticationController(MainWindow mainWindow)
         {
             _mainWindow = mainWindow;
@@ -18,7 +17,7 @@ namespace FUNERALMVVM.ViewModel
 
         public string Name { get; set; } = null!;
         public string Password { get; set; } = null!;
-        public string Response 
+        public string Response
         {
             get => _response;
             set

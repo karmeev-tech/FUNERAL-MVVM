@@ -2,7 +2,6 @@
 using Domain.Dord;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Dord;
-using Infrastructure.Model.Issue;
 using Infrastructure.Model.Salary;
 using Infrastructure.Model.Storage;
 using IssueProvider;
@@ -54,8 +53,10 @@ namespace FUNERALMVVM.ViewModel
             }
         }
 
-        public ObservableCollection<SalaryEntity> Issues { get => _issues; 
-            set { _issues = value; OnPropertyChanged(nameof(Issues)); } 
+        public ObservableCollection<SalaryEntity> Issues
+        {
+            get => _issues;
+            set { _issues = value; OnPropertyChanged(nameof(Issues)); }
         }
 
         public string Response

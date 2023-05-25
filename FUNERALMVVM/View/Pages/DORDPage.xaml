@@ -40,7 +40,7 @@
                     <DataGridTextColumn Header="Looks" Binding="{Binding Path='Looks'}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Стоимость" Binding="{Binding Path='Price'}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Предоплата" Binding="{Binding Path='Prepayment'}" IsReadOnly="False"/>
-                    <DataGridTextColumn Header="Зарплата" Binding="{Binding Path='Remainder'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Остаток" Binding="{Binding Path='Remainder'}" IsReadOnly="False"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

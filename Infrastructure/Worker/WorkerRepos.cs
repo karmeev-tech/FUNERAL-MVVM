@@ -1,8 +1,7 @@
 ﻿using Domain.Worker;
 using LegacyInfrastructure.Connector;
-using System.Data.SqlClient;
 using System.Data;
-using System.Xml.Linq;
+using System.Data.SqlClient;
 
 namespace LegacyInfrastructure.Worker
 {
@@ -41,7 +40,7 @@ namespace LegacyInfrastructure.Worker
 
             foreach (UserWorker worker in workers)
             {
-                if(name == worker.Name)
+                if (name == worker.Name)
                 {
                     return worker;
                 }

@@ -11,7 +11,7 @@ namespace LegacyInfrastructure.Worker
         {
             Connect("WorkerDB");
 
-            SqlDataAdapter sqlDataAdapter = new("SELECT * FROM Worker",_sqlConnection);
+            SqlDataAdapter sqlDataAdapter = new("SELECT * FROM Worker", _sqlConnection);
             DataSet ds = new();
             sqlDataAdapter.Fill(ds);
             ds.IsInitialized.ToString();
@@ -32,7 +32,7 @@ namespace LegacyInfrastructure.Worker
             }
             sqlDataAdapter.Dispose();
             Close();
-            if(workers.Count > 0 )
+            if (workers.Count > 0)
             {
                 foreach (var worker in workers)
                 {
@@ -85,7 +85,7 @@ namespace LegacyInfrastructure.Worker
             var date = "";
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                if(name == dr["Name"].ToString())
+                if (name == dr["Name"].ToString())
                 {
                     date = dr["Date"].ToString();
                 }
@@ -105,7 +105,7 @@ namespace LegacyInfrastructure.Worker
             var role = "";
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                if(name == dr[1].ToString())
+                if (name == dr[1].ToString())
                 {
                     role = dr[6]?.ToString();
                 }

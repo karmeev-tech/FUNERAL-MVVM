@@ -19,7 +19,7 @@ namespace FUNERALMVVM.Commands.Workers
 
         public override void Execute(object parameter)
         {
-            StorageEntity storageEntity = new() { Name = _context.Status};     
+            StorageEntity storageEntity = new() { Name = _context.Status };
             WorkerEntity userWorker = new();
             userWorker.Name = _context.Name;
             userWorker.Adress = _context.Adress;
@@ -36,7 +36,7 @@ namespace FUNERALMVVM.Commands.Workers
                 IssueCenter.AddWorkerSalary(userWorker.Name);
                 _context.Closing();
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 return;
             }

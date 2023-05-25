@@ -2,7 +2,6 @@
 using FUNERALMVVM.View;
 using FUNERALMVVM.ViewModel;
 using LegacyInfrastructure.Worker;
-using Worker;
 using Worker.EF;
 
 namespace FUNERALMVVM.Commands.Workers
@@ -28,7 +27,7 @@ namespace FUNERALMVVM.Commands.Workers
             {
                 WorkWindow workWindow = new();
                 workWindow.Show();
-                if(role == "Сотрудник")
+                if (role == "Сотрудник")
                 {
                     workWindow.UploadDORD.IsEnabled = false;
                     workWindow.StorageHead.IsEnabled = false;

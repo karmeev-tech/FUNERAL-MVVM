@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FUNERALMVVM.Model.Order
+﻿namespace FUNERALMVVM.Model.Order
 {
     public class DeadModel
     {

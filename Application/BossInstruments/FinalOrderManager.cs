@@ -2,12 +2,7 @@
 using Infrastructure.Model.Storage;
 using Newtonsoft.Json;
 using ORDCreator;
-using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BossInstruments
 {
@@ -17,7 +12,7 @@ namespace BossInstruments
         {
             var programWorkspace = ConfigurationManager.AppSettings["ProgramWorkspaceDord"];
 
-            if(Directory.Exists(programWorkspace))
+            if (Directory.Exists(programWorkspace))
             {
                 Directory.Delete(programWorkspace, true);
             }
@@ -32,8 +27,8 @@ namespace BossInstruments
             List<StorageItemEntity> items = new();
             foreach (var item in Directory.GetFiles(jsonPath))
             {
-                List<StorageItemEntity> shopitem = JsonConvert.DeserializeObject<List<StorageItemEntity>>(File.ReadAllText(item));
-                items.AddRange(shopitem);
+                StorageItemEntity shopitem = JsonConvert.DeserializeObject<StorageItemEntity>(File.ReadAllText(item));
+                items.Add(shopitem);
             }
             return items;
         }
@@ -44,8 +39,8 @@ namespace BossInstruments
             List<StateEntity> items = new();
             foreach (var item in Directory.GetFiles(jsonPath))
             {
-                List<StateEntity> shopitem = JsonConvert.DeserializeObject<List<StateEntity>>(File.ReadAllText(item));
-                items.AddRange(shopitem);
+                StateEntity shopitem = JsonConvert.DeserializeObject<StateEntity>(File.ReadAllText(item));
+                items.Add(shopitem);
             }
             return items;
         }

@@ -9,6 +9,6 @@ namespace ConfigBoss
         public List<string> Shops { get; set; }
         public List<StorageItemEntity> ShopsItems { get; set; }
         public List<WorkerEntity> Workers { get; set; }
-        public List<SalaryEntity> Salary {get; set;}
+        public List<SalaryEntity> Salary { get; set; }
     }
 }

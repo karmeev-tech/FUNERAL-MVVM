@@ -22,7 +22,7 @@ namespace Worker
         {
             var repos = _workerRepos.GetWorkers();
             var clerks = repos.Where(x => x != worker.Name);
-            if(clerks.Any())
+            if (clerks.Any())
             {
                 WorkerAuthentication workerAuthentication = new(_workerRepos);
                 workerAuthentication.AddWorker(worker);

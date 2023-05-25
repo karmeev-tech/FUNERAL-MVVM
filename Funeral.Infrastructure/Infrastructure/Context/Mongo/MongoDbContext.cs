@@ -1,34 +1,37 @@
-﻿using Infrastructure.Mongo;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using System.Configuration;
 
 namespace Infrastructure.Context.Mongo
 {
-    public class MongoDbContext
+    public class MongoDbContext : IMongoDbContext
     {
-        private readonly IMongoDatabase _database = null;
-
+        private IMongoDatabase _db { get; set; }
+        private IMongoClient _mongoClient { get; set; }
+        public IClientSessionHandle Session { get; set; }
         public MongoDbContext()
         {
-            var client = new MongoClient(ConfigurationManager.ConnectionStrings["FuneralMongo"].ConnectionString);
-            if (client != null)
-                _database = client.GetDatabase("funeralOrder");
+            _mongoClient = new MongoClient(ConfigurationManager.ConnectionStrings["FuneralMongo"].ConnectionString);
+
+            _db = _mongoClient.GetDatabase("funeralOrder");
         }
 
-        public IMongoCollection<MongoFuneral> MyEntities
+        public IMongoCollection<T> GetCollection<T>(string name)
         {
-            get
+            if (string.IsNullOrEmpty(name))
             {
-                return _database.GetCollection<MongoFuneral>("MongoFuneral");
+                return null;
             }
+            return _db.GetCollection<T>(name);
         }
-    }
 
-    public class Settings
-    {
-        public string MongoDBConnectionString { get; set; }
-        public string DatabaseName { get; set; }
+        public IMongoCollection<MongoFuneral> GetCollectionFuneral<MongoFuneral>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IMongoCollection<MongoItems> GetCollectionFuneralItems<MongoItems>()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

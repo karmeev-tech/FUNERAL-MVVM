@@ -1,21 +1,10 @@
-﻿using Infrastructure.Context.Issue;
-using Infrastructure.Context.Salary;
-using Infrastructure.Context.Storage;
-using Infrastructure.Model.Issue;
+﻿using Infrastructure.Context.Salary;
 using Infrastructure.Model.Salary;
-using Infrastructure.Model.Storage;
-using Infrastructure.Model.Worker;
-using System.Xml.Linq;
 
 namespace IssueProvider
 {
     public class IssueCenter
     {
-        public void SendToDB(IssueEntity issueEntity)
-        {
-
-        }
-
         public static List<SalaryEntity> GetAllFromDB()
         {
             var result = new List<SalaryEntity>();
@@ -71,7 +60,7 @@ namespace IssueProvider
 
         public static void UpdateSalaryWorker(string workerName, int money)
         {
-            using(var db = new SalaryContext())
+            using (var db = new SalaryContext())
             {
                 var query = from b in db.IssueMoney
                             where b.WorkerName == workerName
@@ -82,7 +71,7 @@ namespace IssueProvider
                 }
                 SalaryEntity updateSalary = query.First();
                 db.IssueMoney.Remove(query.First());
-                updateSalary.WorkerMoney = money; 
+                updateSalary.WorkerMoney = money;
                 db.SaveChanges();
             }
         }

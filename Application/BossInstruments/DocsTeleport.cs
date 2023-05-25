@@ -2,7 +2,7 @@
 {
     public class DocsTeleport
     {
-        public static void Teleport(string[] folderDocPath, 
+        public static void Teleport(string[] folderDocPath,
             string docsPath, string scansPath)
         {
             //Directory.CreateDirectory(newFolderDocPath + type[0]);

@@ -1,12 +1,11 @@
 ﻿using Domain.Order;
 using MongoDB.Bson.Serialization.Attributes;
-using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Model.ComplexMongo
 {
     public class StateEntity
     {
-        [BsonId] 
+        [BsonId]
         public int Id { get; set; }
         public string Time { get; set; }
         public string ManagerName { get; set; }

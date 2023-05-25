@@ -52,8 +52,8 @@
                      Margin="215,207,215,0" FontSize="14" Height="28" VerticalAlignment="Top" BorderBrush="{x:Null}" Background="{x:Null}">
             </PasswordBox>
 
-            <Button Content="Войти" Command="{Binding AuthCommand}" Margin="0,255,0,0" Click="Button_Click"
-                Style="{StaticResource StyleButton}" HorizontalAlignment="Center">
+            <Button Content="Войти" Command="{Binding AuthCommand}" Margin="0,258,0,0" Click="Button_Click"
+                 HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -63,7 +63,7 @@
             <Image Panel.ZIndex="1" Margin="180,43,180,231" Source="/View/logo2.jpeg" Width="NaN" Stretch="Fill" StretchDirection="DownOnly"/>
             <Rectangle Height="1" Margin="215,188,215,0" Stroke="#FF0078D7" VerticalAlignment="Top"/>
             <Rectangle Height="1" Margin="215,235,215,0" Stroke="#FF0078D7" VerticalAlignment="Top"/>
-            <Button Content="Выход" Margin="0,290,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0054DC" FontWeight="Thin" VerticalAlignment="Top" Click="Button_Click_1" HorizontalAlignment="Center" FontSize="10"/>
+            <Button Content="Выход" Margin="0,295,0,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0054DC" FontWeight="Thin" VerticalAlignment="Top" Click="Button_Click_1" FontSize="10" HorizontalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>

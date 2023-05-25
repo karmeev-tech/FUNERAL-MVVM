@@ -104,6 +104,7 @@ namespace FUNERALMVVM.Commands.Orders
             };
             string fileName = ConfigurationManager.AppSettings["ProgramWorkspaceDocs"] + "\\json\\OrderDoc.json";
             AddJson(orderEntity, fileName);
+            Console.WriteLine("Json есть");
             AddDocs();
             _orderController.Response = "Успешно";
         }
@@ -112,7 +113,7 @@ namespace FUNERALMVVM.Commands.Orders
             await Task.Run(() =>
             {
                 Provider prod = new();
-                Provider.CreateOrder(ConfigurationManager.AppSettings["GenerateDocs"], 
+                Provider.CreateOrder(ConfigurationManager.AppSettings["GenerateDocs"],
                     ConfigurationManager.AppSettings["ProgramWorkspaceDocs"] + "\\json",
                     ConfigurationManager.AppSettings["ProgramWorkspace"]);
             });

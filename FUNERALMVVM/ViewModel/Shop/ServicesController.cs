@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
-using Domain.Services.Entity;
+﻿using Domain.Services.Entity;
 using FUNERAL_MVVM.Utility;
 using FuneralClient.Commands.Services;
 using FuneralClient.View.Windows;

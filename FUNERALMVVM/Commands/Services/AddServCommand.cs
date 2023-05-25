@@ -1,8 +1,6 @@
-﻿using Domain.Services;
-using Domain.Services.Entity;
+﻿using Domain.Services.Entity;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel.Shop;
-using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;

@@ -50,7 +50,7 @@ namespace FUNERALMVVM.ViewModel.Shop
 
         public string ItemName
         {
-            get;set;
+            get; set;
         }
 
         public string Response

@@ -1,10 +1,6 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FUNERALMVVM.Commands.Orders
 {
