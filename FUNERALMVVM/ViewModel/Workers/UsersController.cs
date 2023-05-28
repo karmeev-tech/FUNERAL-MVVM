@@ -1,7 +1,6 @@
 ﻿using Domain.Main;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Main;
-using LegacyInfrastructure.Worker;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -19,8 +18,7 @@ namespace FUNERALMVVM.ViewModel
 
         public UsersController()
         {
-            WorkerRepos workerRepos = new WorkerRepos();
-            UserName = workerRepos.GetLastFromJournal();
+            UserName = WorkerConnector.GetLastLoginWorker().Worker;
             Role = WorkerConnector.GetWorkerRole(UserName);
         }
 

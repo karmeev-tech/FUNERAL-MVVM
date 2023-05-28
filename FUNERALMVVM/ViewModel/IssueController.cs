@@ -1,7 +1,6 @@
 ﻿using ClassLibrary;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Issue;
-using LegacyInfrastructure.Worker;
 using System.Windows.Input;
 
 namespace FUNERALMVVM.ViewModel
@@ -33,7 +32,7 @@ namespace FUNERALMVVM.ViewModel
         public ICommand GetDock2 => new GetSecondDocumentCommand(this);
         public ICommand GetScan => new GetScanCommand(this);
         public ICommand GetOrd => new GetOrdCommand(this);
-        public ICommand Send => new SendIssueCommand(this, new WorkerRepos());
+        public ICommand Send => new SendIssueCommand(this);
 
         public string _scanLink = string.Empty;
         public string _dockLink = string.Empty;

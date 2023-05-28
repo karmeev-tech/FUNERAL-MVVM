@@ -9,20 +9,15 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PresentationFramework" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\DomainLayer\Domain\Domain.csproj" />
     <ProjectReference Include="..\..\Funeral.Infrastructure\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Legacy.Infrastructure.csproj" />
     <ProjectReference Include="..\ORDCreator\ORDCreator.csproj" />
     <ProjectReference Include="..\Shop\Shop.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="PresentationFramework">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationFramework.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Worker\Worker.csproj" />
   </ItemGroup>
 
 </Project>

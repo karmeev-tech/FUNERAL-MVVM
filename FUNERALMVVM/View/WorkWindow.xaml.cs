@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Mongo;
 using System.Windows;
+using Worker.EF;
 
 namespace FUNERALMVVM.View
 {
@@ -16,8 +17,9 @@ namespace FUNERALMVVM.View
 
         private void Window_Closed(object sender, System.EventArgs e)
         {
-            MongoItems.ConnectAndDeleteAllFiles();
-            MongoFuneral.ConnectAndDeleteAllFiles();
+            //MongoItems.ConnectAndDeleteAllFiles();
+            //MongoFuneral.ConnectAndDeleteAllFiles();
+            WorkerConnector.SetStartToDayTime();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Domain.Services.Entity;
+﻿using Infrastructure.Model.Services;
 using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Model.ComplexMongo
@@ -7,6 +7,6 @@ namespace Infrastructure.Model.ComplexMongo
     {
         [Key]
         public int Id { get; set; }
-        public List<Service> Services { get; set; } = new List<Service>();
+        public List<ServiceEntity> Services { get; set; } = new List<ServiceEntity>();
     }
 }

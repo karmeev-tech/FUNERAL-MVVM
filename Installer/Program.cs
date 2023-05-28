@@ -43,11 +43,3 @@ startInfo3.FileName = curDir + "\\utils\\net7.exe";
 startInfo3.Verb = "runas";
 Process process3 = Process.Start(startInfo3);
 process3.WaitForExit();
-
-//установка sql 
-Console.WriteLine("Установка Sql");
-ProcessStartInfo startInfo = new ProcessStartInfo();
-startInfo.FileName = curDir + "\\utils\\sql.exe";
-startInfo.Verb = "runas";
-Process process = Process.Start(startInfo);
-process.WaitForExit();

@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FuneralClient.View.Windows" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:ServicesController}"
+        xmlns:local="clr-namespace:FuneralClient.View.Windows" xmlns:viewmodel="clr-namespace:FUNERALMVVM.ViewModel" xmlns:shop="clr-namespace:FUNERALMVVM.ViewModel.Shop" d:DataContext="{d:DesignInstance Type=shop:ServicesController}"
         mc:Ignorable="d"
         Title="ServicesWindow" Height="582" Width="790" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Height="533" VerticalAlignment="Top">

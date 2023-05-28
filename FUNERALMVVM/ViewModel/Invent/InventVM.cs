@@ -56,6 +56,10 @@ namespace FUNERALMVVM.ViewModel.Invent
         {
             PickManager pickManager = new PickManager();
             var path = pickManager.OpenManagerFileNameJson();
+            if(path ==  null || path == "")
+            {
+                return;
+            }
             var result = BossProvider.GetInvent(path);
             _vm.Items = new ObservableCollection<StorageItemEntity>(result);
         }

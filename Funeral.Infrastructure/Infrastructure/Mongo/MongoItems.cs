@@ -1,4 +1,5 @@
-﻿using Infrastructure.Model.Storage;
+﻿using Domain.Order;
+using Infrastructure.Model.Storage;
 using MongoDB.Bson;
 using MongoDB.Bson.IO;
 using MongoDB.Driver;
@@ -91,6 +92,21 @@ namespace Infrastructure.Mongo
             // Use the database reference to create a collection
             var collection = database.GetCollection<StorageItemEntity>("items");
             collection.DeleteMany(new BsonDocument());
+        }
+
+        public static List<StorageItemEntity> GetItems()
+        {
+            var client = new MongoClient(connectionString);
+            var database = client.GetDatabase("funeralOrder");
+            var collection = database.GetCollection<StorageItemEntity>("items");
+
+            var documents = collection.Find(new BsonDocument()).ToList();
+            List<StorageItemEntity> result = new();
+            foreach (var item in documents)
+            {
+                result.Add(item);
+            }
+            return result;
         }
     }
 }

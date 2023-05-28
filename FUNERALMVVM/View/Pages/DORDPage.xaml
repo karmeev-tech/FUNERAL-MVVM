@@ -53,6 +53,8 @@
             <DataGrid ItemsSource="{Binding WorkerEntities}" Margin="28,16,28,79" Grid.Row="1" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Имя работника" Binding="{Binding Path='ManagerName'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Начал работу" Binding="{Binding Path='StartWorkTime'}" IsReadOnly="False"/>
+                    <DataGridTextColumn Header="Завершил работу" Binding="{Binding Path='EndWorkTime'}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Денег получено" Binding="{Binding Path='Money'}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Оклад" Binding="{Binding Path='Oklad'}" IsReadOnly="False"/>
                     <DataGridTextColumn Header="Зарплата" Binding="{Binding Path='Salary'}" IsReadOnly="False"/>

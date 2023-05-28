@@ -46,7 +46,8 @@ namespace OrderManager
                               string price,
                               string prepayment,
                               string phonenumber,
-                              string orderAdress)
+                              string orderAdress,
+                              string material)
         {
             string loadPath = Workspace + @"\.docs\CreateFuneralDock.docx";
             string savePath = Workspace + @"\.workspace\docs\ReplacedFuneralDock.docx";
@@ -62,6 +63,7 @@ namespace OrderManager
             DocCreator(loadPath, savePath, "PRICE", price);
             DocCreator(loadPath, savePath, "PREDOPLATA", prepayment);
             DocCreator(loadPath, savePath, "WHATSUP", phonenumber);
+            DocCreator(loadPath, savePath, "MTFULA", material);
         }
 
         public void CreateBlank(

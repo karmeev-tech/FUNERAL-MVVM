@@ -1,4 +1,5 @@
-﻿using FUNERALMVVM.ViewModel;
+﻿using FUNERALMVVM.View.Windows;
+using FUNERALMVVM.ViewModel;
 using Infrastructure.Model.Storage;
 using System;
 using System.Windows;
@@ -31,6 +32,12 @@ namespace FUNERALMVVM.View.Pages
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AddServicesWindow addServicesWindow = new AddServicesWindow();
+            addServicesWindow.ShowDialog();
         }
     }
 }

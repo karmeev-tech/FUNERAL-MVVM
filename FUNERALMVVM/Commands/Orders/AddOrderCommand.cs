@@ -1,6 +1,9 @@
 ﻿using Domain.Order;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
+using Infrastructure.Model.Services;
+using Infrastructure.Model.Worker;
+using Infrastructure.Mongo;
 using OrderManager;
 using System;
 using System.Collections.Generic;
@@ -99,11 +102,23 @@ namespace FUNERALMVVM.Commands.Orders
                     DateCreation = _orderController.CreateFuneralDate
                 },
                 Price = _orderController.Price,
+                FuneralPrice = _orderController.FuneralPrice.ToString(),
+                ComplectPrice = _orderController.ComplectPrice.ToString(),
+                ServsPrice = _orderController.ServsPrice.ToString(),
                 Prepayment = _orderController.Prepayment,
                 Remainder = _orderController.Remainder,
             };
-            string fileName = ConfigurationManager.AppSettings["ProgramWorkspaceDocs"] + "\\json\\OrderDoc.json";
-            AddJson(orderEntity, fileName);
+
+            //AddJson(orderEntity, fileName);
+
+            var manage = ManageComplex(Convert.ToInt32(orderEntity.Instal.InstalPrice));
+            if (manage != null)
+            {
+                MongoServices.ConnectAndAddFile(manage);
+            }
+
+            MongoOrders.ConnectAndDeleteAllFiles();
+            MongoOrders.ConnectAndAddFile(orderEntity);
             Console.WriteLine("Json есть");
             AddDocs();
             _orderController.Response = "Успешно";
@@ -119,14 +134,20 @@ namespace FUNERALMVVM.Commands.Orders
             });
         }
 
-        public async void AddJson(OrderEntity order, string fileName)
+        private ServiceEntity ManageComplex(int priceInstal)
         {
-            using FileStream createStream = File.Create(fileName);
-            await JsonSerializer.SerializeAsync(createStream, order, new JsonSerializerOptions
+            if(priceInstal != 0)
             {
-                WriteIndented = true
-            });
-            await createStream.DisposeAsync();
+                return new ServiceEntity()
+                {
+                    Id = MongoServices.GetUniqueId(),
+                    Name = "Памятник",
+                    Count = 1,
+                    Param1 = "(Установка)",
+                    Money = priceInstal
+                };
+            }
+            return null;
         }
     }
 }

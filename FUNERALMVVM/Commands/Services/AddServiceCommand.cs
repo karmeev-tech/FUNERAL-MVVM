@@ -1,6 +1,6 @@
-﻿using Domain.Services.Entity;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel.Shop;
+using Infrastructure.Model.Services;
 using System.Linq;
 
 namespace FuneralClient.Commands.Services
@@ -21,13 +21,12 @@ namespace FuneralClient.Commands.Services
             var param2 = _servicesController.ChooseParam2;
             var information = _servicesController._listComplect.Where(x => x.Name == name).ToList();
 
-            _servicesController.Services.Add(new Service()
+            _servicesController.Services.Add(new ServiceEntity()
             {
                 Name = name,
                 Money = information[0].Money,
                 Count = information[0].Count,
-                Param1 = param,
-                Param2 = param2,
+                Param1 = param
             });
         }
     }

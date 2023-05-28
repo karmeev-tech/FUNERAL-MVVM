@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
@@ -34,7 +34,7 @@
     <ProjectReference Include="..\Application\OrderManager\OrderManager.csproj" />
     <ProjectReference Include="..\Application\Shop\Shop.csproj" />
     <ProjectReference Include="..\Application\Worker\Worker.csproj" />
-    <ProjectReference Include="..\Infrastructure\Legacy.Infrastructure.csproj" />
+    <ProjectReference Include="..\ClassLibrary\ClassLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>

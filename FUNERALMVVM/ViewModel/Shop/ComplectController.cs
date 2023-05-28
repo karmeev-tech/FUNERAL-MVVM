@@ -3,22 +3,19 @@ using FuneralClient.Commands.Complect;
 using FUNERALMVVM.View.Pages;
 using FUNERALMVVM.View.Windows;
 using Infrastructure.Model.Storage;
-using LegacyInfrastructure.Worker;
 using Shop.EF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using Worker.EF;
 
 namespace FUNERALMVVM.ViewModel
 {
     public class ComplectController : ViewModelBase
     {
         private KomplektWindow _komplektWindow;
-
-        private readonly ShopConnector _shopConnector = new();
-
         private ObservableCollection<string> _itemFromComplect = new();
         public List<StorageItemEntity> ComplectStorage { get; set; }
         private OrderPage _orderPage;
@@ -48,7 +45,7 @@ namespace FUNERALMVVM.ViewModel
         public ComplectController(KomplektWindow complectWindow, OrderPage orderPage)
         {
             _komplektWindow = complectWindow;
-            var user = new WorkerRepos().GetLastFromJournal();
+            var user = WorkerConnector.GetLastLoginWorker().Worker;
             var shop = ShopConnector.GetUserStorage(user);
             var items = ShopConnector.GetStorageItems(shop);
             ComplectStorage = items;
@@ -86,9 +83,8 @@ namespace FUNERALMVVM.ViewModel
             {
                 price += item.Price * item.Count;
             }
-            var result = Convert.ToInt32(_orderPage.tb13.Text) + price;
-            _komplektWindow._orderPage._orderController.FuneralPrice = result;
-            _orderPage.tb13.Text = result.ToString();
+            _komplektWindow._orderPage._orderController.ComplectPrice = price;
+
             _komplektWindow.Opacity = 0;
             _komplektWindow.Close();
         }

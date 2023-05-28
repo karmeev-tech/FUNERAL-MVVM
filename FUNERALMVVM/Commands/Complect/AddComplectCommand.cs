@@ -1,53 +1,46 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
 using Infrastructure.Model.Storage;
+using Infrastructure.Mongo;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
-using System.Text.Json;
+using System.Linq;
+using System.Windows;
 
 namespace FuneralClient.Commands.Complect
 {
     public class AddComplectCommand : BaseCommands
     {
         private readonly ComplectController _complectController;
-        private string _pathToDocs;
-
-        public AddComplectCommand(ComplectController servicesController)
+        public AddComplectCommand(ComplectController complectController)
         {
-            _complectController = servicesController;
-            _pathToDocs = ConfigurationManager.AppSettings["ProgramWorkspaceDocs"];
+            _complectController = complectController;
         }
 
         public override void Execute(object parameter)
         {
+            var check = _complectController.Items.ToList();
+            var duplicates = check.GroupBy(x => x.Name).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+            if(duplicates.Any())
+            {
+                MessageBox.Show("В списке есть повторяющиеся элементы");
+                return;
+            }
             try
             {
-                List<StorageItemEntity> result = new List<StorageItemEntity>();
+                MongoComplect.ConnectAndDeleteAllFiles();
                 foreach (var item in _complectController.Items)
                 {
-                    result.Add(item);
+                    item.Id = MongoComplect.GetUniqueId();
+                    MongoComplect.ConnectAndAddFile(item);
                 }
 
-                string fileName = _pathToDocs + "\\json\\ComplectFuneralDoc.json";
-                AddDocument(result, fileName);
                 _complectController.Response = "good";
             }
             catch (Exception ex)
             {
                 _complectController.Response = "Ошибка";
             }
-        }
-
-        public async void AddDocument(List<StorageItemEntity> complect, string fileName)
-        {
-            using FileStream createStream = File.Create(fileName);
-            await JsonSerializer.SerializeAsync(createStream, complect, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-            await createStream.DisposeAsync();
         }
     }
 }

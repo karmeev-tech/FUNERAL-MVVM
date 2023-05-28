@@ -98,6 +98,73 @@ namespace Worker.EF
             }
         }
 
+        public static void AuthSend(string name)
+        {
+            using (var db = new AuthContext())
+            {
+                db.Auth.Add(new AuthEntity()
+                {
+                    Worker = name,
+                    Time = DateTime.Now.ToString()
+                });
+                db.SaveChanges();
+            }
+        }
+
+        public static void SetStartToDayTime()
+        {
+            using (var db = new AuthContext())
+            {
+                var maxTime = db.Auth.ToList();
+                var last = maxTime.Last().Time.Substring(0,10);
+                var todayTime = db.Auth.Where(x => x.Time.Contains(last)).ToList();
+                if(todayTime.Any())
+                {
+                    db.Auth.RemoveRange(maxTime);
+                    db.SaveChanges();
+                    db.Auth.AddRange(todayTime);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        public static string GetStartToDayTime()
+        {
+            using (var db = new AuthContext())
+            {
+                var maxTime = db.Auth.ToList();
+                var first = maxTime.First().Time;
+                return first;
+            }
+        }
+
+        public static void DeleteAllAuths()
+        {
+            using (var db = new AuthContext())
+            {
+                var now = db.Auth.ToList();
+                if(now.Count > 50)
+                {
+                    db.Auth.RemoveRange(now);
+                    db.SaveChanges();
+                }
+                var take = now.Take(50);
+                db.Auth.AddRange(take);
+                db.SaveChanges();
+            }
+        }
+
+        public static AuthEntity GetLastLoginWorker()
+        {
+            using (var db = new AuthContext())
+            {
+                var query = from log in db.Auth
+                            select log;
+                var result = query.FirstOrDefault();
+                return result;
+            }
+        }
+
         public static string GetWorkerShop(string name)
         {
             using (var db = new WorkerContext())
@@ -117,6 +184,17 @@ namespace Worker.EF
                 var query = from b in db.Workers
                             select b;
                 return query.ToList();
+            }
+        }
+
+        public static WorkerEntity GetWorker(string name)
+        {
+            using (var db = new WorkerContext())
+            {
+                var query = from b in db.Workers
+                            where b.Name == name
+                            select b;
+                return query.ToList().First();
             }
         }
 

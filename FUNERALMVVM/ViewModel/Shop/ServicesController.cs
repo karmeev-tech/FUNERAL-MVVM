@@ -1,10 +1,11 @@
-﻿using Domain.Services.Entity;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FuneralClient.Commands.Services;
 using FuneralClient.View.Windows;
 using FUNERALMVVM.Commands.Services;
 using FUNERALMVVM.View.Pages;
-using Legacy.Infrastructure.Services;
+using FUNERALMVVM.View.Windows;
+using Infrastructure.Model.Services;
+using Shop.EF;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,20 +18,19 @@ namespace FUNERALMVVM.ViewModel.Shop
     {
         private ServicesWindow _ordersWindow;
 
-        private readonly ServiceRepos _complectRepos = new();
-        public readonly List<Service> _listComplect;
+        public readonly List<ServiceEntity> _listComplect;
         private string _exception;
         private ObservableCollection<string> _servicesName = new();
         private ObservableCollection<string> _paramsNames = new();
         private ObservableCollection<string> _paramsNames2 = new();
-        private ObservableCollection<Service> _services = new();
+        private ObservableCollection<ServiceEntity> _services = new();
         private OrderPage _orderPage;
         public ServicesController(ServicesWindow ordersWindow, OrderPage orderPage)
         {
             _ordersWindow = ordersWindow;
-            _listComplect = _complectRepos.GetServices();
+            _listComplect = ServicesConnector.GetServices();
 
-            List<string> names = _complectRepos.GetServicesByName();
+            List<string> names = ServicesConnector.GetServicesNames();
             var servicesNames = names.Distinct().ToList();
 
             foreach (var item in servicesNames)
@@ -95,7 +95,7 @@ namespace FUNERALMVVM.ViewModel.Shop
             }
         }
 
-        public ObservableCollection<Service> Services
+        public ObservableCollection<ServiceEntity> Services
         {
             get => _services;
             set
@@ -124,8 +124,7 @@ namespace FUNERALMVVM.ViewModel.Shop
             {
                 price += item.Money * item.Count;
             }
-            var result = Convert.ToInt32(_orderPage.tb13.Text) + price;
-            _orderPage.tb13.Text = result.ToString();
+            _orderPage._orderController.ServsPrice = price;
 
             _ordersWindow.Opacity = 0;
             _ordersWindow.Close();

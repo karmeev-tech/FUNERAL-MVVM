@@ -1,6 +1,7 @@
 ﻿using BossInstruments;
 using ClassLibrary;
 using Domain.Dord;
+using Domain.Order;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel;
 using Infrastructure.Model.ComplexMongo;
@@ -47,30 +48,27 @@ namespace FUNERALMVVM.Commands.Dord
             try
             {
                 FinalOrderManager.GetDord(bossFolder, dordFile);
-                List<StorageItemEntity> items = FinalOrderManager.GetJsonItems();
-                List<StateEntity> orders = FinalOrderManager.GetJsonOrders();
-                List<StorageItemEntity> orderItems = new();
+                var programWorkspace = ConfigurationManager.AppSettings["ProgramWorkspaceDord"];
+                string json = File.ReadAllText(programWorkspace + @"\orderjson\forder.json");
+                DordusEntity finalochka = JsonSerializer.Deserialize<DordusEntity>(json);
 
-                foreach (StateEntity item in orders)
+                List<StorageItemEntity> items = finalochka.Complect.Complect;
+                List<OrderEntity> orders = finalochka.AllOrders;
+                List<ComplexServiceEntity> servs = finalochka.AllServices;
+                foreach (OrderEntity item in orders)
                 {
                     OrderDord orderDord = new OrderDord()
                     {
-                        CategoryFuneral = item.Order.Base.CategoryFuneral,
-                        ModelFuneral = item.Order.Base.ModelFuneral,
-                        Rock = item.Order.Base.Rock,
-                        Price = item.Order.Price,
-                        Prepayment = item.Order.Prepayment,
-                        Remainder = item.Order.Remainder,
+                        CategoryFuneral = item.Base.CategoryFuneral,
+                        ModelFuneral = item.Base.ModelFuneral,
+                        Rock = item.Base.Rock,
+                        Price = item.Price,
+                        Prepayment = item.Prepayment,
+                        Remainder = item.Remainder,
                     };
                     _dORDController.Order.Add(orderDord);
-
-                    foreach (var itemComplect in item.Complect.Complect)
-                    {
-                        orderItems.Add(itemComplect);
-                    }
                 }
-                orderItems.AddRange(items);
-                _dORDController.Items = new(orderItems);
+                _dORDController.Items = new(items);
 
                 var orderMoney = _dORDController.Order.Select(x => x.Price);
 
@@ -112,7 +110,9 @@ namespace FUNERALMVVM.Commands.Dord
 
                 _dORDController.WorkerEntities.Add(new DordEntity()
                 {
-                    ManagerName = orders.Select(x => x.ManagerName).First(),
+                    ManagerName = finalochka.ManagerName,
+                    StartWorkTime = finalochka.Time,
+                    EndWorkTime = finalochka.TimeEnd,
                     Money = workerConfig.MoneyGet.ToString(),
                     Oklad = workerConfig.Oklad,
                     Salary = workerConfig.HisMoney.ToString(),

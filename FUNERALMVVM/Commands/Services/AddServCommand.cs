@@ -1,8 +1,8 @@
-﻿using Domain.Services.Entity;
-using FUNERAL_MVVM.Utility;
+﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.ViewModel.Shop;
+using Infrastructure.Model.Services;
+using Infrastructure.Mongo;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
 using System.Text.Json;
 
@@ -19,16 +19,23 @@ namespace FUNERALMVVM.Commands.Services
 
         public override void Execute(object parameter)
         {
-            List<Service> serv = new();
-            foreach (var item in _servicesController.Services)
+            try
             {
-                serv.Add(item);
+                MongoServices.ConnectAndDeleteAllFiles();
+                foreach (var item in _servicesController.Services)
+                {
+                    item.Id = MongoServices.GetUniqueId();
+                    MongoServices.ConnectAndAddFile(item);
+                }
+
+                _servicesController.ViewClosed();
             }
-            string fileName = ConfigurationManager.AppSettings["ProgramWorkspaceDocs"] + "\\json\\ServicesDoc.json";
-            AddDocument(serv, fileName);
-            _servicesController.ViewClosed();
+            catch
+            {
+                return;
+            }
         }
-        public async void AddDocument(List<Service> serv, string fileName)
+        public async void AddDocument(List<ServiceEntity> serv, string fileName)
         {
             using FileStream createStream = File.Create(fileName);
             await JsonSerializer.SerializeAsync(createStream, serv, new JsonSerializerOptions

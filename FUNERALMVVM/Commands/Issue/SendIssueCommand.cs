@@ -2,7 +2,6 @@
 using FUNERALMVVM.ViewModel;
 using Infrastructure.Model.ComplexMongo;
 using Infrastructure.Mongo;
-using LegacyInfrastructure.Worker;
 using System;
 using System.Configuration;
 using System.IO;
@@ -14,12 +13,9 @@ namespace FUNERALMVVM.Commands.Issue
     public class SendIssueCommand : BaseCommands
     {
         private readonly IssueController _controller;
-
-        private readonly IWorkerRepos _repos;
-        public SendIssueCommand(IssueController controller, IWorkerRepos repos)
+        public SendIssueCommand(IssueController controller)
         {
             _controller = controller;
-            _repos = repos;
         }
 
         public override void Execute(object parameter)

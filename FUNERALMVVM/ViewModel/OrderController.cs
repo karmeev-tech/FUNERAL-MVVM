@@ -23,6 +23,9 @@ namespace FUNERALMVVM.ViewModel
             Price = "0";
             Prepayment = "0";
             Remainder = "0";
+            _instalPrice = "0";
+            ComplectPrice = 0;
+            ServsPrice = 0;
             _orderPage = orderPage;
 
 #if DBG
@@ -129,8 +132,46 @@ namespace FUNERALMVVM.ViewModel
         #endregion
 
         #region Price
-        public int FuneralPrice { get; set; } = 0;
-        public int ServsPrice { get; set; } = 0;
+        private int _funeralPrice = 0;
+        private int _complectPrice;
+        private int _servsPrice;
+        public int FuneralPrice 
+        { 
+            get => _funeralPrice;
+            set
+            {
+                Price = (Convert.ToInt32(Price) - FuneralPrice).ToString();
+                OnPropertyChanged(nameof(Price));
+                _funeralPrice = value;
+                OnPropertyChanged(nameof(FuneralPrice));
+                Price = (Convert.ToInt32(Price) + FuneralPrice).ToString();
+                OnPropertyChanged(nameof(Price));
+            }
+        }
+        public int ComplectPrice
+        {
+            get => _complectPrice;
+            set
+            {
+                Price = (Convert.ToInt32(Price) - ComplectPrice).ToString();
+                OnPropertyChanged(nameof(Price));
+                _complectPrice = value;
+                Price = (Convert.ToInt32(Price) + ComplectPrice).ToString();
+                OnPropertyChanged(nameof(Price));
+            }
+        }
+        public int ServsPrice
+        {
+            get => _servsPrice;
+            set
+            {
+                Price = (Convert.ToInt32(Price) - ServsPrice).ToString();
+                OnPropertyChanged(nameof(Price));
+                _servsPrice = value;
+                Price = (Convert.ToInt32(Price) + ServsPrice).ToString();
+                OnPropertyChanged(nameof(Price));
+            }
+        }
 
         //price
         public string Price
@@ -158,7 +199,20 @@ namespace FUNERALMVVM.ViewModel
         public string FlowerSection { get; set; } = string.Empty;
         public string FlowerIndicate { get; set; } = "False";
         public string PolishingColor { get; set; } = string.Empty;
-        public string InstalPrice { get; set; } = string.Empty;
+        private string _instalPrice = string.Empty;
+        public string InstalPrice 
+        { 
+            get => _instalPrice; 
+            set
+            {
+                Price = (Convert.ToInt32(Price) - Convert.ToInt32(InstalPrice)).ToString();
+                _instalPrice = value;
+                OnPropertyChanged(nameof(Price));
+                OnPropertyChanged(nameof(InstalPrice));
+                Price = (Convert.ToInt32(Price) + Convert.ToInt32(InstalPrice)).ToString();
+                OnPropertyChanged(nameof(Price));
+            }
+        }
         public string InstalIndicate { get; set; } = "False";
         #endregion
 
@@ -201,6 +255,7 @@ namespace FUNERALMVVM.ViewModel
 
 
         private string _response;
+
         public string Response
         {
             get => _response;
@@ -252,7 +307,6 @@ namespace FUNERALMVVM.ViewModel
             FlowerSection = "9";
             FlowerIndicate = "False";
             PolishingColor = "10";
-            InstalPrice = "11";
             InstalIndicate = "False";
 
             ClientName = "12";
@@ -293,7 +347,7 @@ namespace FUNERALMVVM.ViewModel
             FlowerSection = "";
             FlowerIndicate = "False";
             PolishingColor = "";
-            InstalPrice = "";
+            InstalPrice = "0";
             InstalIndicate = "False";
 
             ClientName = "";

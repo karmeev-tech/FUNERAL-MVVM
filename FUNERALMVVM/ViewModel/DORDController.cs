@@ -2,6 +2,7 @@
 using Domain.Dord;
 using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Dord;
+using Infrastructure.Model.ComplexMongo;
 using Infrastructure.Model.Salary;
 using Infrastructure.Model.Storage;
 using IssueProvider;
@@ -16,6 +17,7 @@ namespace FUNERALMVVM.ViewModel
         private string _linkToFolder = string.Empty;
         private ObservableCollection<StorageItemEntity> _items = new();
         private ObservableCollection<DordEntity> _workerEntities = new();
+        private ObservableCollection<ComplexServiceEntity> _servsEntities = new();
         private ObservableCollection<OrderDord> _order = new();
         private string _response = string.Empty;
         private ObservableCollection<SalaryEntity> _issues;
@@ -24,7 +26,15 @@ namespace FUNERALMVVM.ViewModel
         {
             Issues = new ObservableCollection<SalaryEntity>(IssueCenter.GetAllFromDB());
         }
-
+        private ObservableCollection<ComplexServiceEntity> ServsEntities
+        {
+            get => _servsEntities;
+            set
+            {
+                _servsEntities = value;
+                OnPropertyChanged(nameof(_servsEntities));
+            }
+        }
         public ObservableCollection<DordEntity> WorkerEntities
         {
             get => _workerEntities;

@@ -1,21 +1,29 @@
 ﻿using FUNERAL_MVVM.Utility;
-using LegacyInfrastructure.Worker;
+using System.Linq;
 using Worker.EF;
 
 namespace FUNERALMVVM.ViewModel.Workers
 {
     public class WorkerController : ViewModelBase
     {
-        public WorkerController(IWorkerRepos workerContext)
+        public WorkerController()
         {
             //сбор всех сотрудников из базы
             //нужно обеспечение из журнала посещения последнее имя
-            var worker = workerContext.GetLastFromJournal();
+            var worker = WorkerConnector.GetLastLoginWorker().Worker;
+            string salary = "";
+            try
+            {
+                salary = WorkerConnector.GetAllSalary().Where(x => x.WorkerName == worker).ToList().First().WorkerMoney.ToString();
+            }
+            catch
+            {
+                salary = "";
+            }
 
-            //WorkerMoney = WorkerConnector.GetAllSalary().Where(x => x.WorkerName == worker).Select(x => x.WorkerMoney).First().ToString();
-            WorkerSalary = "0";
+            WorkerSalary = salary;
             WorkerStatus = WorkerConnector.GetWorkerRole(worker);
-            WorkerProcent = "0";
+            WorkerProcent = "1000";
 
             if (WorkerStatus == "Сотрудник")
             {

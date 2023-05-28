@@ -1,7 +1,6 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.Commands.Shop;
 using Infrastructure.Model.Storage;
-using LegacyInfrastructure.Worker;
 using Shop.EF;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,8 +14,7 @@ namespace FUNERALMVVM.ViewModel
     {
         public SellItemController()
         {
-            WorkerRepos repos = new WorkerRepos();
-            string userLog = repos.GetLastFromJournal();
+            string userLog = WorkerConnector.GetLastLoginWorker().Worker;
 
             string shopname = WorkerConnector.GetWorkerShop(userLog);
             _shopName = shopname;

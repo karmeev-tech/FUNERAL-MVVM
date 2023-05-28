@@ -30,7 +30,8 @@ namespace FUNERALMVVM.View.Pages
             tb16.Text == string.Empty || tb17.Text == string.Empty || tb18.Text == string.Empty ||
             tb19.Text == string.Empty || tb20.Text == string.Empty || tb21.Text == string.Empty ||
             tb24.Text == string.Empty || tb30.Text == string.Empty || tb31.Text == string.Empty || tb32.Text == string.Empty ||
-            tb25.Text == string.Empty || tb26.Text == string.Empty || tb28.Text == string.Empty)
+            tb25.Text == string.Empty || tb26.Text == string.Empty || tb28.Text == string.Empty
+            || tb29.Text == string.Empty)
             {
                 FormingButton.Opacity = 0.4;
                 FormingButton.IsEnabled = false;

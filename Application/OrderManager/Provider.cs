@@ -1,18 +1,17 @@
 ﻿using Domain.Order;
-using Domain.Services.Entity;
 using Infrastructure.Model.ComplexMongo;
+using Infrastructure.Model.Services;
 using Infrastructure.Model.Storage;
 using Infrastructure.Mongo;
-using LegacyInfrastructure.Worker;
-using System.Text.Json;
 using System.Windows;
+using Worker.EF;
 
 namespace OrderManager
 {
     public class Provider
     {
         // metadata
-        public static string _managerName = new WorkerRepos().GetLastFromJournal();
+        public static string _managerName = "";
         public static string _dateNow = DateTime.Now.ToString();
         public static string _numberDb = string.Empty;
         public static void CreateOrder(string workspaceDocs, string workspaceJson, string programWorkspace)
@@ -20,58 +19,51 @@ namespace OrderManager
             Provider.Clean(workspaceDocs);
             if (Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет"))
             {
-                Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет", true);
+                try
+                {
+                    Directory.Delete(Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Пакет", true);
+                }
+                catch
+                {
+                    MessageBox.Show("Закройте документ и заполните заказ заново");
+                    return;
+                }
             }
 
-            string json = "";
-            using (StreamReader r = new StreamReader(workspaceJson + "\\OrderDoc.json"))
-            {
-                json = r.ReadToEnd();
-            }
+            OrderEntity order = MongoOrders.GetItems().First();
+            MongoOrders.ConnectAndDeleteAllFiles();
 
-            string json2 = "";
-            var compservPath = workspaceJson + "\\ComplectFuneralDoc.json";
-            if (File.Exists(compservPath) == true)
-            {
-                using (StreamReader r = new StreamReader(workspaceJson + "\\ComplectFuneralDoc.json"))
-                    json2 = r.ReadToEnd();
-            }
+            List<StorageItemEntity> complect = MongoComplect.GetItems();
+            MongoComplect.ConnectAndDeleteAllFiles();
 
-            compservPath = workspaceJson + "\\ServicesDoc.json";
-            string json3 = "";
-            if (File.Exists(compservPath) == true)
-            {
-                using (StreamReader r = new StreamReader(workspaceJson + "\\ServicesDoc.json"))
-                    json3 = r.ReadToEnd();
-            }
-
-
-            OrderEntity order = JsonSerializer.Deserialize<OrderEntity>(json);
-
-            List<StorageItemEntity> complect = new();
-            if (json2 != "")
-            {
-                complect = JsonSerializer.Deserialize<List<StorageItemEntity>>(json2);
-            }
-
-            List<Service> services = new();
-            if (json3 != "")
-            {
-                services = JsonSerializer.Deserialize<List<Service>>(json3);
-            }
+            List<ServiceEntity> services = MongoServices.GetItems();
+            MongoServices.ConnectAndDeleteAllFiles();
 
             OrderCreator manager = new();
+            string managerName = WorkerConnector.GetLastLoginWorker().Worker;
             var entity = new StateEntity()
             {
                 Id = MongoFuneral.GetUniqueId(),
-                ManagerName = new WorkerRepos().GetLastFromJournal(),
+                ManagerName = managerName,
                 Time = DateTime.Now.ToString(),
                 Order = order,
                 Complect = new ItemsEntity { Id = 0, Complect = complect },
                 Services = new ComplexServiceEntity { Id = 0, Services = services },
             };
+
             MongoFuneral.ConnectAndAddFile(entity);
+            if(complect.Any())
+            {
+                var shopName = WorkerConnector.GetWorkerShop(managerName);
+                foreach(var item in complect)
+                {
+                    item.Id = MongoFuneral.GetUniqueId();
+                    item.ShopName = shopName;
+                    MongoItems.ConnectAndAddFile(item);
+                }
+            }
             Console.WriteLine("в монгу закинул");
+
             if (!Directory.Exists(@"\.workspace\docs"))
             {
                 Directory.CreateDirectory(@"\.workspace\docs");
@@ -85,7 +77,7 @@ namespace OrderManager
                 order.ClientOrder.Adress,
                 GetServicesByName(services),
                 GetServicesPrice(services, complect),
-                order.Price,
+                order.FuneralPrice,
                 order.Prepayment,
                 order.ClientOrder.Phone);
 
@@ -97,7 +89,8 @@ namespace OrderManager
                     order.Price,
                     order.Prepayment,
                     order.ClientOrder.Phone,
-                    order.ClientOrder.Cemetry);
+                    order.ClientOrder.Cemetry,
+                    order.Base.CategoryFuneral);
 
                 var instal = "0";
                 if (order.Instal.Idicate == "False")
@@ -138,6 +131,7 @@ namespace OrderManager
             {
                 MessageBox.Show("доки не генерятся");
                 Console.WriteLine("доки не генерятся");
+                return;
             }
 
             try
@@ -150,19 +144,19 @@ namespace OrderManager
                 Console.WriteLine("проблема с трансфером");
             }
         }
-        private static string GetServicesByName(List<Service> services)
+        private static string GetServicesByName(List<ServiceEntity> services)
         {
             string result = string.Empty;
-            foreach (Service service in services)
+            foreach (ServiceEntity service in services)
             {
-                result += service.Name + ",\n";
+                result += service.Name + " (" + service.Param1 + ") " + ",\n";
             }
             return result;
         }
-        private static string GetServicesPrice(List<Service> services, List<StorageItemEntity> complect)
+        private static string GetServicesPrice(List<ServiceEntity> services, List<StorageItemEntity> complect)
         {
             int result = 0;
-            foreach (Service service in services)
+            foreach (ServiceEntity service in services)
             {
                 result += service.Money;
             }
@@ -172,9 +166,9 @@ namespace OrderManager
         private static int GetFunPrice(List<StorageItemEntity> complect)
         {
             int result = 0;
-            foreach (StorageItemEntity service in complect)
+            foreach (StorageItemEntity complectItem in complect)
             {
-                result += service.Price;
+                result += complectItem.Price * complectItem.Count;
             }
             return result;
         }

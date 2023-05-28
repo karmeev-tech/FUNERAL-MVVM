@@ -1,6 +1,5 @@
 ﻿using FUNERALMVVM.View.Windows;
 using FUNERALMVVM.ViewModel.Workers;
-using LegacyInfrastructure.Worker;
 using System.Windows.Controls;
 
 namespace FUNERALMVVM.View.Pages
@@ -10,7 +9,7 @@ namespace FUNERALMVVM.View.Pages
     /// </summary>
     public partial class WorkerPage : Page
     {
-        private readonly WorkerController _workerController = new(new WorkerRepos());
+        private readonly WorkerController _workerController = new();
         public WorkerPage()
         {
             DataContext = _workerController;

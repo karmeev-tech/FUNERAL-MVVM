@@ -1,7 +1,6 @@
 ﻿using FUNERAL_MVVM.Utility;
 using FUNERALMVVM.View;
 using FUNERALMVVM.ViewModel;
-using LegacyInfrastructure.Worker;
 using Worker.EF;
 
 namespace FUNERALMVVM.Commands.Workers
@@ -18,13 +17,10 @@ namespace FUNERALMVVM.Commands.Workers
         {
             _controller.Response = WorkerConnector.Auth(_controller.Name, _controller.Password);
 
-            string role = WorkerConnector.GetWorkerRole(_controller.Name);
-
-            WorkerRepos workerRepos = new WorkerRepos();
-            workerRepos.SendToJournal(_controller.Name);
-
             if (_controller.Response is "ok")
             {
+                string role = WorkerConnector.GetWorkerRole(_controller.Name);
+                WorkerConnector.AuthSend(_controller.Name);
                 WorkWindow workWindow = new();
                 workWindow.Show();
                 if (role == "Сотрудник")

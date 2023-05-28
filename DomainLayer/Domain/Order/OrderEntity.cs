@@ -17,6 +17,9 @@ namespace Domain.Order
         public FuneralEntity Funeral { get; set; }
         public ClientOrderEntity ClientOrder { get; set; }
         public string Price { get; set; }
+        public string FuneralPrice { get; set; }
+        public string ComplectPrice { get; set; }
+        public string ServsPrice { get; set; }
         public string Prepayment { get; set; }
         public string Remainder { get; set; }
     }

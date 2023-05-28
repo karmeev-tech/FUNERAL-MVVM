@@ -1,6 +1,7 @@
 ﻿using Domain.Dord;
 using Domain.GeneralOrder;
 using Infrastructure.Context.Salary;
+using Infrastructure.Model.ComplexMongo;
 using Infrastructure.Model.Salary;
 using Infrastructure.Model.Storage;
 using Infrastructure.Mongo;
@@ -9,6 +10,7 @@ using Shop.EF;
 using System.Configuration;
 using System.Text.Json;
 using System.Windows;
+using Worker.EF;
 
 namespace BossInstruments
 {
@@ -36,9 +38,6 @@ namespace BossInstruments
             var jsonFolder = desktopDir + @"\orderjson";
             Directory.CreateDirectory(jsonFolder);
 
-            var jsonFolder2 = desktopDir + @"\itemsjson";
-            Directory.CreateDirectory(jsonFolder2);
-
             var docsFolder = desktopDir + @"\Documents";
             Directory.CreateDirectory(docsFolder);
 
@@ -63,8 +62,26 @@ namespace BossInstruments
                 Directory.CreateDirectory(ConfigurationManager.AppSettings["GenerateDocs"]);
                 Directory.CreateDirectory(ConfigurationManager.AppSettings["ScanDocs"]);
 
-                MongoFuneral.GetJsonFilesFolder(jsonFolder);
-                MongoItems.GetJsonFilesFolder(jsonFolder2);
+                DordusEntity stateEntity = new DordusEntity()
+                {
+                    Time = WorkerConnector.GetStartToDayTime(),
+                    TimeEnd = DateTime.Now.ToString(),
+                    ManagerName = WorkerConnector.GetLastLoginWorker().Worker,
+                    AllOrders = MongoFuneral.GetItems().Select(x => x.Order).ToList(),
+                    Complect = new ItemsEntity()
+                    {
+                        Id = 0,
+                        Complect = MongoItems.GetItems()
+                    },
+                    AllServices = MongoFuneral.GetItems().Select(x => x.Services).ToList(),
+                };
+
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                };
+                string json = JsonSerializer.Serialize(stateEntity, options);
+                File.WriteAllText(jsonFolder + @"\forder.json", json);
 
                 Zipper.CreateDordFile(
                     desktopDir,

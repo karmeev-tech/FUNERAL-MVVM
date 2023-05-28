@@ -1,6 +1,6 @@
-﻿using Domain.Services.Entity;
-using FUNERALMVVM.View.Pages;
+﻿using FUNERALMVVM.View.Pages;
 using FUNERALMVVM.ViewModel.Shop;
+using Infrastructure.Model.Services;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,7 +24,7 @@ namespace FuneralClient.View.Windows
         {
             try
             {
-                Service dataRowView = (Service)((Button)e.Source).DataContext;
+                ServiceEntity dataRowView = (ServiceEntity)((Button)e.Source).DataContext;
                 string name = dataRowView.Name;
                 _servicesController.DeleteItem(name);
             }

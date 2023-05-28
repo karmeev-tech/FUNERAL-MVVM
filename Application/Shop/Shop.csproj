@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Funeral.Infrastructure\Infrastructure\Infrastructure.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Legacy.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
