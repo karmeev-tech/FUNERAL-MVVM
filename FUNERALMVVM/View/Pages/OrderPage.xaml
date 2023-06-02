@@ -7,7 +7,7 @@
       mc:Ignorable="d"
       Title="OrderPage" Height="1066" Width="1406">
 
-    <Grid GotFocus="Grid_GotFocus">
+    <Grid>
         <Grid Margin="10,0,0,0">
             <Grid Panel.ZIndex="1">
                 <Grid.RowDefinitions>
@@ -26,13 +26,13 @@
                 <ComboBox x:Name="tb30" ItemsSource="{Binding FuneralType}" Text="{Binding Type}" HorizontalAlignment="Left" Margin="375,60,0,0" VerticalAlignment="Top" Width="142" Height="44" Grid.Column="2" Grid.RowSpan="2"/>
 
                 <Label Content="Тип" HorizontalAlignment="Left" Margin="318,8,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="47" Grid.Row="1"/>
-                <Label Content="Верхняя часть обелиска" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="198" Grid.Row="1"/>
-                <Label Content="Эпитафия" HorizontalAlignment="Left" Margin="0,176,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="80" Grid.Row="1"/>
-                <Label Content="Данные о заказчике" HorizontalAlignment="Left" Margin="123,204,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="167" Grid.Row="1"/>
-                <Label Content="Имя" HorizontalAlignment="Left" Margin="0,239,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="48" Grid.Row="1"/>
+                <Label Content="Верхняя часть обелиска" HorizontalAlignment="Left" Margin="1,5,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="198" Grid.Row="1"/>
+                <Label Content="Эпитафия" HorizontalAlignment="Left" Margin="0,156,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="80" Grid.Row="1"/>
+                <Label Content="Данные о заказчике" HorizontalAlignment="Left" Margin="130,203,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="167" Grid.Row="1"/>
+                <Label Content="Имя" HorizontalAlignment="Left" Margin="209,236,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="48" Grid.Row="1"/>
 
-                <Label Content="Фамилия" HorizontalAlignment="Left" Margin="163,239,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="73" Grid.Row="1"/>
-                <TextBox x:Name="tb31" HorizontalAlignment="Center" Margin="0,236,0,0" TextWrapping="Wrap" Text="{Binding ClientLastName}" VerticalAlignment="Top" Width="104" Height="34" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
+                <Label Content="Фамилия" HorizontalAlignment="Left" Margin="0,241,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="84" Grid.Row="1"/>
+                <TextBox x:Name="tb31" HorizontalAlignment="Left" Margin="92,238,0,0" TextWrapping="Wrap" Text="{Binding ClientLastName}" VerticalAlignment="Top" Width="104" Height="34" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -62,30 +62,30 @@
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <TextBox x:Name="tb2" HorizontalAlignment="Left" Margin="292,48,0,0" TextWrapping="Wrap" Text="{Binding UpDesign}" VerticalAlignment="Top" Width="226" Height="36" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
+                <TextBox x:Name="tb2" HorizontalAlignment="Left" Margin="293,1,0,0" TextWrapping="Wrap" Text="{Binding UpDesign}" VerticalAlignment="Top" Width="226" Height="36" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <TextBox x:Name="tb3" HorizontalAlignment="Left" Margin="292,171,0,0" TextWrapping="Wrap" Text="{Binding Epitafia}" VerticalAlignment="Top" Width="226" Height="37" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
+                <TextBox x:Name="tb3" HorizontalAlignment="Left" Margin="292,151,0,0" TextWrapping="Wrap" Text="{Binding Epitafia}" VerticalAlignment="Top" Width="226" Height="37" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <Label Content="Нижняя часть обелиска" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="196" Grid.Row="1"/>
-                <TextBox x:Name="tb4" HorizontalAlignment="Left" Margin="292,89,0,0" TextWrapping="Wrap" Text="{Binding DownDesign}" VerticalAlignment="Top" Width="226" Height="36" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
+                <Label Content="Нижняя часть обелиска" HorizontalAlignment="Left" Margin="1,43,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="196" Grid.Row="1"/>
+                <TextBox x:Name="tb4" HorizontalAlignment="Left" Margin="293,42,0,0" TextWrapping="Wrap" Text="{Binding DownDesign}" VerticalAlignment="Top" Width="226" Height="36" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <Label Content="Прочее оформление" HorizontalAlignment="Left" Margin="0,134,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="174" Grid.Row="1"/>
-                <TextBox x:Name="tb5" HorizontalAlignment="Left" Margin="292,130,0,0" TextWrapping="Wrap" Text="{Binding OtherDesign}" VerticalAlignment="Top" Width="226" Height="36" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
+                <Label Content="Прочее оформление" HorizontalAlignment="Left" Margin="1,87,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="174" Grid.Row="1"/>
+                <TextBox x:Name="tb5" HorizontalAlignment="Left" Margin="293,83,0,0" TextWrapping="Wrap" Text="{Binding OtherDesign}" VerticalAlignment="Top" Width="226" Height="36" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -93,7 +93,7 @@
                     </TextBox.Resources>
                 </TextBox>
                 <!--Клиент-->
-                <TextBox x:Name="tb6" HorizontalAlignment="Left" Margin="48,236,0,0" TextWrapping="Wrap" Text="{Binding ClientName}" VerticalAlignment="Top" Width="110" Height="34" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
+                <TextBox x:Name="tb6" HorizontalAlignment="Left" Margin="292,238,0,0" TextWrapping="Wrap" Text="{Binding ClientName}" VerticalAlignment="Top" Width="62" Height="34" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -176,7 +176,7 @@
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <TextBox x:Name="tb14" HorizontalAlignment="Left" Margin="302,761,0,0" TextWrapping="Wrap" Text="{Binding Prepayment}" VerticalAlignment="Top" Width="159" Height="37" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1">
+                <TextBox x:Name="tb14" HorizontalAlignment="Left" Margin="302,761,0,0" TextWrapping="Wrap" Text="{Binding Prepayment}" VerticalAlignment="Top" Width="159" Height="37" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1" GotFocus="tb14_GotFocus">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -185,7 +185,7 @@
                 </TextBox>
 
                 <Button x:Name="FormingButton" Command="{Binding AddOrder}" Content="Сформировать" 
-                Style="{StaticResource StyleButton}" Margin="467,796,0,0" Width="120" HorizontalAlignment="Left" Grid.Column="3" IsEnabled="False" Height="50" Grid.Row="1">
+                Style="{StaticResource StyleButton}" Margin="0,736,0,0" Width="120" HorizontalAlignment="Left" Grid.Column="3" IsEnabled="True" Height="50" Grid.Row="1">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -202,30 +202,37 @@
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <Label Content="Вид камня" HorizontalAlignment="Left" Margin="227,52,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="86" Grid.Row="1"/>
-                <ComboBox x:Name="tb17" ItemsSource="{Binding RockType}" Text="{Binding FuneralRock}" HorizontalAlignment="Left" Margin="315,48,0,0" VerticalAlignment="Top" Width="121" Height="37" Grid.Column="2" Grid.Row="1"/>
-                <Label Content="Размер" HorizontalAlignment="Left" Margin="1,132,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" Grid.Column="2" Height="28" Grid.Row="1"/>
-                <ComboBox x:Name="tb18" ItemsSource="{Binding StelaWidth}" Text="{Binding StelaSize}" HorizontalAlignment="Left" Margin="100,123,0,0" VerticalAlignment="Top" Width="96" Height="39" Grid.Column="2" Grid.Row="1"/>
-                <Label Content="Сечение" HorizontalAlignment="Center" Margin="0,133,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="94" Grid.Column="2" Height="28" Grid.Row="1"/>
-                <ComboBox x:Name="tb19" ItemsSource="{Binding StelasSection}" Text="{Binding StelaSection}" HorizontalAlignment="Left" Margin="315,121,0,0" VerticalAlignment="Top" Width="121" Height="39" Grid.Column="2" Grid.Row="1"/>
-                <Label Content="Стела" HorizontalAlignment="Left" Margin="1,91,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="47" Grid.Row="1"/>
-                <Label Content="Размер" HorizontalAlignment="Left" Margin="1,210,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" RenderTransformOrigin="0.529,0.884" Grid.Column="2" Height="28" Grid.Row="1"/>
-                <ComboBox x:Name="tb20" ItemsSource="{Binding StandWidth}" Text="{Binding StandSize}" HorizontalAlignment="Left" Margin="101,206,0,0" VerticalAlignment="Top" Width="94" Height="38" Grid.Column="2" Grid.Row="1"/>
-                <Label Content="Сечение" HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="70" Grid.Row="1"/>
-                <ComboBox x:Name="tb21" ItemsSource="{Binding StandsSection}" Text="{Binding StandSection}" HorizontalAlignment="Left" Margin="314,207,0,0" VerticalAlignment="Top" Width="121" Height="37" Grid.Column="2" Grid.Row="1"/>
-                <Label Content="Подставка" HorizontalAlignment="Left" Margin="1,177,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="86" Grid.Row="1"/>
-                <Label Content="Размер" HorizontalAlignment="Left" Margin="1,295,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" Grid.Column="2" Height="28" Grid.Row="1"/>
-                <ComboBox x:Name="tb22" ItemsSource="{Binding FloralWidth}" Text="{Binding FlowerSize}" HorizontalAlignment="Left" Margin="101,292,0,0" VerticalAlignment="Top" Width="96" Height="36" Grid.Column="2" Grid.Row="1"/>
+                <Label Content="Вид камня" HorizontalAlignment="Left" Margin="264,51,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="86" Grid.Row="1"/>
+                <ComboBox x:Name="tb17" ItemsSource="{Binding RockType}" Text="{Binding FuneralRock}" HorizontalAlignment="Left" Margin="375,47,0,0" VerticalAlignment="Top" Width="121" Height="37" Grid.Column="2" Grid.Row="1"/>
+                <Label Content="Размер" HorizontalAlignment="Left" Margin="0,159,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <ComboBox x:Name="tb18" ItemsSource="{Binding StelaWidth}" Text="{Binding StelaSize}" HorizontalAlignment="Left" Margin="99,150,0,0" VerticalAlignment="Top" Width="98" Height="39" Grid.Column="2" Grid.Row="1"/>
+                <TextBox x:Name="OtherStela" HorizontalAlignment="Left" Margin="202,152,0,0" TextWrapping="Wrap" Text="{Binding StelaSize}" VerticalAlignment="Top" Width="46" Height="36" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label Content="Сечение" HorizontalAlignment="Left" Margin="263,156,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="94" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <ComboBox x:Name="tb19" ItemsSource="{Binding StelasSection}" Text="{Binding StelaSection}" HorizontalAlignment="Left" Margin="374,150,0,0" VerticalAlignment="Top" Width="70" Height="40" Grid.Column="2" Grid.Row="1"/>
+                <Label Content="Стела" HorizontalAlignment="Left" Margin="220,113,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="47" Grid.Row="1"/>
+                <Label Content="Размер" HorizontalAlignment="Left" Margin="1,241,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" RenderTransformOrigin="0.529,0.884" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <ComboBox x:Name="tb20" ItemsSource="{Binding StandWidth}" Text="{Binding StandSize}" HorizontalAlignment="Left" Margin="101,237,0,0" VerticalAlignment="Top" Width="94" Height="38" Grid.Column="2" Grid.Row="1"/>
+                <Label Content="Сечение" HorizontalAlignment="Left" Margin="267,242,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="70" Grid.Row="1"/>
+                <ComboBox x:Name="tb21" ItemsSource="{Binding StandsSection}" Text="{Binding StandSection}" HorizontalAlignment="Left" Margin="375,238,0,0" VerticalAlignment="Top" Width="88" Height="37" Grid.Column="2" Grid.Row="1"/>
+                <Label Content="Подставка" HorizontalAlignment="Left" Margin="201,203,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="86" Grid.Row="1"/>
+                <Label Content="Размер" HorizontalAlignment="Left" Margin="1,319,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <ComboBox x:Name="tb22" ItemsSource="{Binding FloralWidth}" Text="{Binding FlowerSize}" HorizontalAlignment="Left" Margin="101,316,0,0" VerticalAlignment="Top" Width="116" Height="36" Grid.Column="2" Grid.Row="1"/>
                 <Label Content="Сечение" HorizontalAlignment="Left" Margin="232,294,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="70" Grid.Row="1" Visibility="Hidden"/>
                 <ComboBox x:Name="tb23" ItemsSource="{Binding FloralSection}" Text="{Binding FlowerSection}" HorizontalAlignment="Left" Margin="315,292,0,0" VerticalAlignment="Top" Width="120" Height="38" Grid.Column="2" Grid.Row="1" Visibility="Hidden"/>
-                <Label Content="Цветник" HorizontalAlignment="Left" Margin="0,253,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="69" Grid.Row="1"/>
-                <Label Content="Полировка" HorizontalAlignment="Left" Margin="1,332,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="103" Grid.Column="2" Height="28" Grid.Row="1"/>
-                <ComboBox x:Name="tb24" ItemsSource="{Binding PolishingColors}" Text="{Binding PolishingColor}" HorizontalAlignment="Left" Margin="101,330,0,0" VerticalAlignment="Top" Width="126" Height="38" Grid.Column="2" Grid.Row="1"/>
+                <Label Content="Цветник" HorizontalAlignment="Left" Margin="209,280,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Width="69" Grid.Row="1"/>
+                <Label Content="Полировка" HorizontalAlignment="Left" Margin="1,364,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="95" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <ComboBox x:Name="tb24" ItemsSource="{Binding PolishingColors}" Text="{Binding PolishingColor}" HorizontalAlignment="Left" Margin="101,360,0,0" VerticalAlignment="Top" Width="126" Height="38" Grid.Column="2" Grid.Row="1"/>
 
 
 
-                <Label Content="Цвет" HorizontalAlignment="Left" Margin="232,335,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" Grid.Column="2" Height="28" Grid.Row="1"/>
-                <TextBox x:Name="tb28" HorizontalAlignment="Left" Margin="315,332,0,0" TextWrapping="Wrap" Text="{Binding Color}" VerticalAlignment="Top" Width="139" Height="35" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                <Label Content="Цвет" HorizontalAlignment="Left" Margin="1,411,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="70" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <TextBox x:Name="tb28" HorizontalAlignment="Left" Margin="100,409,0,0" TextWrapping="Wrap" Text="{Binding Color}" VerticalAlignment="Top" Width="80" Height="35" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -233,7 +240,7 @@
                     </TextBox.Resources>
                 </TextBox>
 
-                <TextBox x:Name="tb27" HorizontalAlignment="Left" Margin="314,381,0,0" TextWrapping="Wrap" Text="{Binding InstalPrice}" VerticalAlignment="Top" Width="139" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                <TextBox x:Name="tb27" HorizontalAlignment="Left" Margin="270,450,0,0" TextWrapping="Wrap" Text="{Binding InstalPrice}" VerticalAlignment="Top" Width="139" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -241,16 +248,16 @@
                     </TextBox.Resources>
                 </TextBox>
 
-                <CheckBox x:Name="tb121" IsChecked="{Binding FlowerIndicate}" Content="Без цветника" Margin="101,255,0,0" VerticalAlignment="Top" Grid.Column="2" Height="32" Width="120" Grid.Row="1"/>
-                <CheckBox x:Name="tb122" IsChecked="{Binding InstalIndicate}" Content="без установки" Margin="100,386,0,0" VerticalAlignment="Top" Grid.Column="2" Height="32" Width="120" Grid.Row="1"/>
+                <CheckBox x:Name="tb121" IsChecked="{Binding FlowerIndicate}" Content="Без цветника" Margin="375,321,0,0" VerticalAlignment="Top" Grid.Column="2" Height="32" Width="120" Grid.Row="1"/>
+                <CheckBox x:Name="tb122" IsChecked="{Binding InstalIndicate}" Content="без установки" Margin="100,455,0,0" VerticalAlignment="Top" Grid.Column="2" Height="32" Width="120" Grid.Row="1"/>
 
-                <Label Content="Установка" HorizontalAlignment="Left" Margin="1,384,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="90" Grid.Column="2" Height="28" Grid.Row="1"/>
-                <Label Content="Умершие" HorizontalAlignment="Left" Margin="1,423,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="113" Grid.Column="2" Height="28" Grid.Row="1"/>
-                <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="1,599,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="147" Grid.Column="2" Height="28" Grid.Row="1"/>
-                <Label Content="Дата смерти" Margin="1,652,399,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <Label Content="Установка" HorizontalAlignment="Left" Margin="1,453,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="90" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <Label Content="Умершие" HorizontalAlignment="Left" Margin="1,520,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="113" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <Label Content="Дата рождения" HorizontalAlignment="Left" Margin="271,572,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="148" Grid.Column="2" Height="28" Grid.Row="1"/>
+                <Label Content="Дата смерти" Margin="270,616,165,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="2" Height="28" Grid.Row="1"/>
 
-                <Label Content="Имя" HorizontalAlignment="Left" Margin="1,474,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="90" Grid.Column="2" RenderTransformOrigin="0.457,0.555" Height="28" Grid.Row="1"/>
-                <TextBox HorizontalAlignment="Left" Margin="175,474,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="226" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                <Label Content="Имя" HorizontalAlignment="Left" Margin="1,616,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="90" Grid.Column="2" RenderTransformOrigin="0.457,0.555" Height="28" Grid.Row="1"/>
+                <TextBox HorizontalAlignment="Left" Margin="175,616,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="226" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -258,8 +265,8 @@
                     </TextBox.Resources>
                 </TextBox>
 
-                <Label Content="Фамилия" HorizontalAlignment="Left" Margin="1,513,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="90" Grid.Column="2" RenderTransformOrigin="0.457,0.555" Height="28" Grid.Row="1"/>
-                <TextBox HorizontalAlignment="Left" Margin="175,510,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="226" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                <Label Content="Фамилия" HorizontalAlignment="Left" Margin="1,571,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="90" Grid.Column="2" RenderTransformOrigin="0.457,0.555" Height="28" Grid.Row="1"/>
+                <TextBox HorizontalAlignment="Left" Margin="175,569,0,0" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="95" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -267,8 +274,8 @@
                     </TextBox.Resources>
                 </TextBox>
 
-                <Label Content="Отчество" HorizontalAlignment="Left" Margin="1,552,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="90" Grid.Column="2" RenderTransformOrigin="0.457,0.555" Height="28" Grid.Row="1"/>
-                <TextBox HorizontalAlignment="Left" Margin="175,549,0,0" TextWrapping="Wrap" Text="{Binding ThirdName}" VerticalAlignment="Top" Width="226" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                <Label Content="Отчество" HorizontalAlignment="Left" Margin="1,664,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Width="90" Grid.Column="2" RenderTransformOrigin="0.457,0.555" Height="28" Grid.Row="1"/>
+                <TextBox HorizontalAlignment="Left" Margin="175,661,0,0" TextWrapping="Wrap" Text="{Binding ThirdName}" VerticalAlignment="Top" Width="226" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -279,21 +286,21 @@
 
 
 
-                <TextBox HorizontalAlignment="Left" Margin="175,593,0,0" TextWrapping="Wrap" Text="{Binding BirthDeads}" VerticalAlignment="Top" Width="226" Height="36" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                <TextBox HorizontalAlignment="Left" Margin="424,567,0,0" TextWrapping="Wrap" Text="{Binding BirthDeads}" VerticalAlignment="Top" Width="68" Height="36" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <TextBox HorizontalAlignment="Left" Margin="175,649,0,0" TextWrapping="Wrap" Text="{Binding DeathDeads}" VerticalAlignment="Top" Width="226" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                <TextBox HorizontalAlignment="Left" Margin="426,613,0,0" TextWrapping="Wrap" Text="{Binding DeathDeads}" VerticalAlignment="Top" Width="112" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <TextBox x:Name="tb25" HorizontalAlignment="Left" Margin="1,701,0,0" TextWrapping="Wrap" Text="{Binding Deadbody}" VerticalAlignment="Top" Width="287" Height="190" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                <TextBox x:Name="tb25" HorizontalAlignment="Left" Margin="0,714,0,0" TextWrapping="Wrap" Text="{Binding Deadbody}" VerticalAlignment="Top" Width="270" Height="194" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1" IsReadOnly="True">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -302,7 +309,7 @@
                 </TextBox>
 
                 <Button Command="{Binding AddDeads}" Content="Добавить" 
-            Style="{StaticResource StyleButton}" Margin="175,423,0,0" Width="82" HorizontalAlignment="Left" Grid.Column="2" Height="40" Grid.Row="1">
+            Style="{StaticResource StyleButton}" Margin="175,514,0,0" Width="82" HorizontalAlignment="Left" Grid.Column="2" Height="40" Grid.Row="1">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -310,7 +317,7 @@
                     </Button.Resources>
                 </Button>
                 <Button Command="{Binding DeleteLastDead}" Content="Удалить последнего" 
-            Style="{StaticResource StyleButton}" Margin="314,697,0,0" Width="110" HorizontalAlignment="Left" Grid.Column="2" Height="42" Grid.Row="1">
+            Style="{StaticResource StyleButton}" Margin="270,513,0,0" Width="110" HorizontalAlignment="Left" Grid.Column="2" Height="42" Grid.Row="1">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
@@ -344,7 +351,21 @@
                 <!--Reponse-->
                 <Label Grid.Column="3" Content="{Binding Response}" HorizontalAlignment="Center" Margin="0,861,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                 <Label Content="Цена памятника" HorizontalAlignment="Left" Margin="157,677,0,0" VerticalAlignment="Top" FontSize="18" Foreground="#FFA1A1A1" Panel.ZIndex="1" Grid.Column="3" Height="28" Width="140" Grid.Row="1"/>
-                <TextBox x:Name="tb29" HorizontalAlignment="Left" Margin="302,675,0,0" TextWrapping="Wrap" Text="{Binding FuneralPrice}" VerticalAlignment="Top" Width="159" Height="36" IsReadOnly="False" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1" Foreground="#E4797979" GotFocus="tb13_GotFocus">
+                <TextBox x:Name="tb29" HorizontalAlignment="Left" Margin="302,675,0,0" TextWrapping="Wrap" Text="{Binding FuneralPrice}" VerticalAlignment="Top" Width="159" Height="36" IsReadOnly="False" Panel.ZIndex="1" Grid.Column="3" Grid.Row="1" Foreground="#E4797979" GotFocus="tb29_GotFocus" LostFocus="tb29_LostFocus">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <TextBox x:Name="OtherStand" HorizontalAlignment="Left" Margin="468,238,0,0" TextWrapping="Wrap" Text="{Binding StandSection}" VerticalAlignment="Top" Width="70" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <TextBox x:Name="OtherFloral" HorizontalAlignment="Left" Margin="270,319,0,0" TextWrapping="Wrap" Text="{Binding FlowerSize}" VerticalAlignment="Top" Width="50" Height="34" Panel.ZIndex="1" Grid.Column="2" Grid.Row="1">
                     <TextBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="5"/>
@@ -362,7 +383,7 @@
                     <ColumnDefinition Width="66*"/>
                     <ColumnDefinition Width="1295*"/>
                 </Grid.ColumnDefinitions>
-                <Rectangle Fill="White" Margin="10,10,25,28" RadiusX="10" RadiusY="10" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <Rectangle Fill="White" Margin="0,10,25,0" RadiusX="10" RadiusY="10" Grid.ColumnSpan="2"/>
             </Grid>
 
         </Grid>

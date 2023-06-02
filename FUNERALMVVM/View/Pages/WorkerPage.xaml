@@ -35,7 +35,7 @@
             <Rectangle Fill="#FFF2F2F2" HorizontalAlignment="Left" Width="365" Grid.RowSpan="6" Height="NaN"/>
         </Grid>
         <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Удалить сотрудника" Margin="89,0,0,0" Grid.Row="3" Width="187" Click="Button_Click2" Height="36"/>
-        <ui:Button Panel.ZIndex="1" Content="Загрузить ордер" Click="UploadOrder" Margin="89,0,0,0" Grid.Row="4" Width="187" Height="36"/>
+        <ui:Button Panel.ZIndex="1" Content="Принять товар" Click="UploadOrder" Margin="89,0,0,0" Grid.Row="4" Width="187" Height="36"/>
         <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Собрать шаблон" Margin="89,0,0,0" Grid.Row="5" Width="187" Height="36" Click="Button_Click_1"/>
         <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Загрузить шаблон" Margin="89,8,0,0" Grid.Row="6" Width="187" Height="36" VerticalAlignment="Top" Click="Button_Click_2"/>
     </Grid>

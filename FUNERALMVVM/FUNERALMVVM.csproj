@@ -7,10 +7,12 @@
     <UseWPF>true</UseWPF>
     <StartupObject></StartupObject>
     <Configurations>Debug;Release;dbg</Configurations>
+    <PackageId>$(AssemblyName)</PackageId>
+    <Product>Funeral</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>True</Optimize>
+    <Optimize>False</Optimize>
   </PropertyGroup>
 
   <ItemGroup>

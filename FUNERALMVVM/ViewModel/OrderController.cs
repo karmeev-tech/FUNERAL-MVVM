@@ -24,6 +24,7 @@ namespace FUNERALMVVM.ViewModel
             Prepayment = "0";
             Remainder = "0";
             _instalPrice = "0";
+            FuneralSize = "0";
             ComplectPrice = 0;
             ServsPrice = 0;
             _orderPage = orderPage;
@@ -360,7 +361,7 @@ namespace FUNERALMVVM.ViewModel
             ClientPassport = "";
             ClientDelivery = "";
 
-            FuneralSize = "";
+            FuneralSize = "qwe";
             UpDesign = "";
             DownDesign = "";
             OtherDesign = "";
