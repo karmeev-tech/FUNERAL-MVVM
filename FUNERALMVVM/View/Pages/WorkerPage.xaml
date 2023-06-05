@@ -12,14 +12,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="76*"/>
+            <RowDefinition Height="75*"/>
+            <RowDefinition Height="52*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="53*"/>
             <RowDefinition Height="53*"/>
             <RowDefinition Height="54*"/>
-            <RowDefinition Height="54*"/>
-            <RowDefinition Height="54*"/>
-            <RowDefinition Height="54*"/>
             <RowDefinition Height="55*"/>
-            <RowDefinition Height="472*"/>
+            <RowDefinition Height="431*"/>
         </Grid.RowDefinitions>
         <Label Content="Статус:" HorizontalAlignment="Left" Margin="439,0,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="24" Height="36" Width="75" Grid.Row="1"/>
         <Label Content="ЗП:" HorizontalAlignment="Left" Margin="439,0,0,0" VerticalAlignment="Top" Foreground="#FF4F4F4F" FontSize="24" Grid.Row="2" Height="36" Width="35"/>
@@ -31,12 +32,13 @@
 
         <Label Panel.ZIndex="1" Content="Сотрудники" HorizontalAlignment="Left" Margin="117,0,0,0" VerticalAlignment="Top" Foreground="Black" FontSize="24" Height="36" Width="131" Grid.Row="1"/>
         <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Добавить сотрудника" Margin="89,0,0,0" Grid.Row="2" Width="187" Click="Button_Click" Height="36"/>
-        <Grid Height="NaN" Grid.RowSpan="8" Margin="0,0,854,0" Width="NaN">
+        <Grid Height="NaN" Grid.RowSpan="9" Margin="0,0,854,0" Width="NaN">
             <Rectangle Fill="#FFF2F2F2" HorizontalAlignment="Left" Width="365" Grid.RowSpan="6" Height="NaN"/>
         </Grid>
         <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Удалить сотрудника" Margin="89,0,0,0" Grid.Row="3" Width="187" Click="Button_Click2" Height="36"/>
-        <ui:Button Panel.ZIndex="1" Content="Принять товар" Click="UploadOrder" Margin="89,0,0,0" Grid.Row="4" Width="187" Height="36"/>
-        <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Собрать шаблон" Margin="89,0,0,0" Grid.Row="5" Width="187" Height="36" Click="Button_Click_1"/>
-        <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Загрузить шаблон" Margin="89,8,0,0" Grid.Row="6" Width="187" Height="36" VerticalAlignment="Top" Click="Button_Click_2"/>
+        <ui:Button Panel.ZIndex="1" Content="Принять товар" Click="UploadOrder" Margin="89,6,0,0" Grid.Row="5" Width="187" Height="36" VerticalAlignment="Top"/>
+        <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Собрать шаблон" Margin="89,6,0,0" Grid.Row="6" Width="187" Height="36" Click="Button_Click_1" VerticalAlignment="Top"/>
+        <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Загрузить шаблон" Margin="89,0,0,0" Grid.Row="7" Width="187" Height="36" Click="Button_Click_2"/>
+        <ui:Button IsEnabled="{Binding IsEnabled}" Panel.ZIndex="1" Content="Изменить сотрудников" Margin="89,6,0,0" Grid.Row="4" Width="187" Height="36" VerticalAlignment="Top" Click="Button_Click_3"/>
     </Grid>
 </Page>

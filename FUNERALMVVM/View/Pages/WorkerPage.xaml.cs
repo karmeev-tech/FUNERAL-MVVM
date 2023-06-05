@@ -43,5 +43,11 @@ namespace FUNERALMVVM.View.Pages
             AddInventWindow deleteWorkersWindow = new AddInventWindow();
             deleteWorkersWindow.Show();
         }
+
+        private void Button_Click_3(object sender, System.Windows.RoutedEventArgs e)
+        {
+            EditWorkersWindow editWorkersWindow = new EditWorkersWindow();
+            editWorkersWindow.Show();
+        }
     }
 }

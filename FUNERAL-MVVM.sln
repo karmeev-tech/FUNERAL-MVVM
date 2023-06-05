@@ -43,6 +43,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Update", "Update\Update\Upd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Installer.Framework472", "Installer472\Installer.Framework472\Installer.Framework472.csproj", "{E915F299-042A-4925-96C3-D4AA659FB7DE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2CFA8C92-8988-44FA-9BF8-067CB54DF404}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderTest", "Tests\OrderTest\OrderTest.csproj", "{E7951EC0-BCC7-4CCB-AAB1-E377CA988A99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		dbg|Any CPU = dbg|Any CPU
@@ -134,6 +138,12 @@ Global
 		{E915F299-042A-4925-96C3-D4AA659FB7DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E915F299-042A-4925-96C3-D4AA659FB7DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E915F299-042A-4925-96C3-D4AA659FB7DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7951EC0-BCC7-4CCB-AAB1-E377CA988A99}.dbg|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7951EC0-BCC7-4CCB-AAB1-E377CA988A99}.dbg|Any CPU.Build.0 = Debug|Any CPU
+		{E7951EC0-BCC7-4CCB-AAB1-E377CA988A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7951EC0-BCC7-4CCB-AAB1-E377CA988A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7951EC0-BCC7-4CCB-AAB1-E377CA988A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7951EC0-BCC7-4CCB-AAB1-E377CA988A99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -153,6 +163,7 @@ Global
 		{346DEB4E-01C9-4F68-91ED-B9EC9C9939D8} = {B46CA564-5353-487D-88B1-3CBEE989D5BB}
 		{9E9AF296-93B4-4DD6-92FA-D86A201B3E8F} = {FEE8E523-FD91-4629-88CF-8CF9056F03E7}
 		{E915F299-042A-4925-96C3-D4AA659FB7DE} = {B46CA564-5353-487D-88B1-3CBEE989D5BB}
+		{E7951EC0-BCC7-4CCB-AAB1-E377CA988A99} = {2CFA8C92-8988-44FA-9BF8-067CB54DF404}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DD543608-F7C6-494C-8230-5DA3F17FD226}

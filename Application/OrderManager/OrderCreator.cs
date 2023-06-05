@@ -2,12 +2,21 @@
 using Domain.Order;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace OrderManager
 {
     public class OrderCreator
     {
-        public string Workspace { get => ConfigurationManager.AppSettings["ProgramWorkspace"]; }
+        public string _workspace;
+
+        public OrderCreator()
+        {
+            _workspace = ConfigurationManager.AppSettings["ProgramWorkspace"];
+        }
+
+        public string Workspace { get => _workspace; set { _workspace = value; } }
         public void CreateDoc(string number,
                       string name,
                       string passport,
@@ -136,22 +145,23 @@ namespace OrderManager
                     DocCreator(loadPath, savePath, "чмгрд", entities[0].Life);
                     DocCreator(loadPath, savePath, "чмгсд", entities[0].Death);
 
-                    DocCreator(loadPath, savePath, "TXO", entities[1].Name);
-                    DocCreator(loadPath, savePath, "TMI", entities[1].Life);
-                    DocCreator(loadPath, savePath, "TIHO", entities[1].Death);
+                    DocCreator(loadPath, savePath, "ф2иод", entities[1].Name + " " + entities[1].ThirdName + " " + entities[1].LastName + " ");
+                    DocCreator(loadPath, savePath, "ч2мгрд", entities[1].Life);
+                    DocCreator(loadPath, savePath, "ч2мгсд", entities[1].Death);
                     break;
                 case 3:
                     DocCreator(loadPath, savePath, "фиод", entities[0].Name + " " + entities[0].ThirdName + " " + entities[0].LastName + " ");
                     DocCreator(loadPath, savePath, "чмгрд", entities[0].Life);
                     DocCreator(loadPath, savePath, "чмгсд", entities[0].Death);
 
-                    DocCreator(loadPath, savePath, "TXO", entities[1].Name);
-                    DocCreator(loadPath, savePath, "TMI", entities[1].Life);
-                    DocCreator(loadPath, savePath, "TIHO", entities[1].Death);
+                    DocCreator(loadPath, savePath, "ф2иод", entities[1].Name + " " + entities[1].ThirdName + " " + entities[1].LastName + " ");
+                    DocCreator(loadPath, savePath, "ч2мгрд", entities[1].Life);
+                    DocCreator(loadPath, savePath, "ч2мгсд", entities[1].Death);
 
-                    DocCreator(loadPath, savePath, "THR", entities[2].Name);
-                    DocCreator(loadPath, savePath, "THMR", entities[2].Life);
-                    DocCreator(loadPath, savePath, "THIMI", entities[2].Death);
+
+                    DocCreator(loadPath, savePath, "3дои", entities[2].Name + " " + entities[2].ThirdName + " " + entities[2].LastName + " ");
+                    DocCreator(loadPath, savePath, "3чрд", entities[2].Life);
+                    DocCreator(loadPath, savePath, "3рсд", entities[2].Death);
                     break;
                 case 4:
                     DocCreator(loadPath, savePath, "фиод", entities[0].Name + " " + entities[0].ThirdName + " " + entities[0].LastName + " ");
@@ -183,6 +193,9 @@ namespace OrderManager
                 {
                     docText = sr.ReadToEnd();
                 }
+
+                XElement doc = XElement.Parse(docText);
+                string res = doc.ToString();
 
                 Regex regexText = new Regex(tag);
                 docText = regexText.Replace(docText, content);

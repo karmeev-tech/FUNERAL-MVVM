@@ -1,4 +1,5 @@
-﻿using Infrastructure.Context.Issue;
+﻿using Domain.Order;
+using Infrastructure.Context.Issue;
 using Infrastructure.Context.Salary;
 using Infrastructure.Context.State;
 using Infrastructure.Context.Worker;
@@ -40,6 +41,24 @@ namespace Worker.EF
                     return;
                 }
                 db.IssueMoney.Add(new IssueEntity() { Name = workerEntity.Name, Money = 0 });
+                db.SaveChanges();
+            }
+        }
+
+        public static void EditWorker(List<WorkerEntity> workers)
+        {
+            using (var db = new WorkerContext())
+            {
+                var query = from b in db.Workers
+                            select b;
+
+                if (!query.Any())
+                {
+                    return;
+                }
+                db.Workers.RemoveRange(db.Workers);
+                db.SaveChanges();
+                db.Workers.AddRange(workers);
                 db.SaveChanges();
             }
         }
@@ -160,8 +179,9 @@ namespace Worker.EF
             {
                 var query = from log in db.Auth
                             select log;
-                var result = query.FirstOrDefault();
-                return result;
+                var result = query.ToList();
+                result.Reverse();
+                return result.FirstOrDefault();
             }
         }
 

@@ -79,6 +79,7 @@ namespace FUNERALMVVM.ViewModel
             foreach (var item in newItems)
             {
                 Items.Remove(item);
+                ItemsPack.Remove(item);
             }
         }
     }

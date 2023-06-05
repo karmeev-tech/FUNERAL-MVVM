@@ -14,7 +14,8 @@ namespace FUNERALMVVM
         {
             Config config = new();
 
-            StartupUri = config.WorkUri;
+            StartupUri = config.StartupUri;
+            //StartupUri = config.WorkUri;
 
             if (Directory.Exists(ConfigurationManager.AppSettings[config.DordCache]))
             {

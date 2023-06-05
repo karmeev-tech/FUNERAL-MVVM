@@ -21,6 +21,7 @@ namespace FUNERALMVVM.Commands.Workers
         {
             StorageEntity storageEntity = new() { Name = _context.Status };
             WorkerEntity userWorker = new();
+            _context.Role = _context.Role.Replace("System.Windows.Controls.ComboBoxItem: ", "");
             userWorker.Name = _context.Name;
             userWorker.Adress = _context.Adress;
             userWorker.Passport = _context.Passport;

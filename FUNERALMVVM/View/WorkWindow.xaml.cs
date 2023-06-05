@@ -19,7 +19,7 @@ namespace FUNERALMVVM.View
         {
             //MongoItems.ConnectAndDeleteAllFiles();
             //MongoFuneral.ConnectAndDeleteAllFiles();
-            WorkerConnector.SetStartToDayTime();
+            //WorkerConnector.SetStartToDayTime();
         }
     }
 }

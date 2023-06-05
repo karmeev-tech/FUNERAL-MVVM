@@ -27,9 +27,11 @@ namespace FUNERALMVVM.Commands.Workers
                 {
                     workWindow.UploadDORD.IsEnabled = false;
                     workWindow.StorageHead.IsEnabled = false;
+                    workWindow.OrderRequest.IsEnabled = false;
 
                     workWindow.UploadDORD.Content = "";
                     workWindow.StorageHead.Content = "";
+                    workWindow.OrderRequest.Content = "";
                 }
                 _controller._mainWindow.Close();
             }

@@ -1,0 +1,32 @@
+﻿<Window x:Class="FUNERALMVVM.View.Windows.EditWorkersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="EditWorkersWindow" Height="556" Width="700">
+    <Grid>
+        <Button Content="Изменить" 
+            Command="{Binding Edit}"
+            Style="{StaticResource StyleButton}" Margin="0,425,0,0" HorizontalAlignment="Center">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <DataGrid Style="{DynamicResource DataGridStyle1}" ItemsSource="{Binding Workers}" AutoGenerateColumns="False" IsSynchronizedWithCurrentItem="False" SelectionMode="Single" SelectionUnit="Cell" CanUserAddRows="False" RowDetailsVisibilityMode="Visible"
+                  Margin="76,107,76,143" Background="White" Foreground="Black">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path='Name'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Path='Adress'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Паспорт" Binding="{Binding Path='Passport'}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Контакты" Binding="{Binding Path='Contacts'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Реквизиты" Binding="{Binding Path='Credentials'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding Path='Role'}" IsReadOnly="False"/>
+                <DataGridTextColumn Header="Магазин" Binding="{Binding Path='ShopName'}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Пароль" Binding="{Binding Path='Password'}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

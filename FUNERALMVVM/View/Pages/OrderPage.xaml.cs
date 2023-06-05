@@ -60,5 +60,65 @@ namespace FUNERALMVVM.View.Pages
                 MessageBox.Show("Не верные значения цены");
             }
         }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var result = LastNameDead.Text;
+            if (result!="")
+            {
+                result = result.Substring(0, 1).ToUpper() + result.Remove(0,1);  
+            }
+            LastNameDead.Text = result;
+        }
+
+        private void TextBox_LostFocus_1(object sender, RoutedEventArgs e)
+        {
+            var result = NameDead.Text;
+            if (result != "")
+            {
+                result = result.Substring(0, 1).ToUpper() + result.Remove(0, 1);
+            }
+            NameDead.Text = result;
+        }
+
+        private void ThirdNameDead_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var result = ThirdNameDead.Text;
+            if (result != "")
+            {
+                result = result.Substring(0, 1).ToUpper() + result.Remove(0, 1);
+            }
+            ThirdNameDead.Text = result;
+        }
+
+        private void tb31_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var result = tb31.Text;
+            if (result != "")
+            {
+                result = result.Substring(0, 1).ToUpper() + result.Remove(0, 1);
+            }
+            tb31.Text = result;
+        }
+
+        private void tb6_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var result = tb6.Text;
+            if (result != "")
+            {
+                result = result.Substring(0, 1).ToUpper() + result.Remove(0, 1);
+            }
+            tb6.Text = result;
+        }
+
+        private void tb32_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var result = tb32.Text;
+            if (result != "")
+            {
+                result = result.Substring(0, 1).ToUpper() + result.Remove(0, 1);
+            }
+            tb32.Text = result;
+        }
     }
 }
